@@ -1,0 +1,54 @@
+System.out.println("ㅋㅋ");
+			driver.findElement(By.xpath("//*[@id=\"container\"]/div/section[1]/article[1]/div[3]/ul[1]/li[1]/a/div[1]/img")).click();
+			String title1 = driver.findElement(By.xpath("//*[@id=\"container\"]/div/section[1]/article[1]/div[3]/ul[1]/li[1]/a/div[2]/p")).getText();
+			String author1= driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/div/div[1]/span[1]/em")).getText();
+			driver.navigate().back();
+
+			driver.findElement(By.xpath("//*[@id=\"container\"]/div/section[1]/article[1]/div[3]/ul[1]/li[2]/a/div[1]/img")).click();
+			String title2 = driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/h3/span[2]")).getText();
+			String author2= driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/div/div[1]/span[1]/em")).getText();
+			driver.navigate().back();
+			
+			driver.findElement(By.xpath("//*[@id=\"container\"]/div/section[1]/article[1]/div[3]/ul[1]/li[3]/a/div[1]/img")).click();
+			String title3 = driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/h3/span[2]")).getText();
+			String author3= driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/div/div[1]/span[1]/em")).getText();
+			driver.navigate().back();
+			
+			driver.findElement(By.xpath("//*[@id=\"container\"]/div/section[1]/article[1]/div[3]/ul[1]/li[4]/a/div[1]/img")).click();
+			String title4 = driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/h3/span[2]")).getText();
+			String author4= driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/div/div[1]/span[1]/em")).getText();
+			driver.navigate().back();
+			
+			driver.findElement(By.xpath("//*[@id=\"container\"]/div/section[1]/article[1]/div[3]/ul[1]/li[5]/a/div[1]/img")).click();
+			String title5 = driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/h3/span[2]")).getText();
+			String author5= driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/div/div[1]/span[1]/em")).getText();
+			driver.navigate().back();
+			
+			driver.findElement(By.xpath("//*[@id=\"container\"]/div/section[1]/article[1]/div[3]/ul[1]/li[6]/a/div[1]/img")).click();
+			String title6 = driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/h3/span[2]")).getText();
+			String author6= driver.findElement(By.xpath("//*[@id=\"container\"]/section/article[2]/div[1]/header/div/div/div[1]/span[1]/em")).getText();
+			driver.navigate().back();
+			
+			
+			
+			System.out.println("================================================");
+//			System.out.println(title);
+			System.out.println(title1);
+			System.out.println(author1);
+			
+			System.out.println(title2);
+			System.out.println(author2);
+			
+			System.out.println(title3);
+			System.out.println(author3);
+			
+			System.out.println(title4);
+			System.out.println(author4);
+			
+			System.out.println(title5);
+			System.out.println(author5);
+			
+			System.out.println(title6);
+			System.out.println(author6);
+	
+			System.out.println("================================================");
