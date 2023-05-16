@@ -1,0 +1,119 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+  user-select: none;
+  font-family:'Pretendard-Regular';
+}
+
+
+/* #nav {
+	display: flex;
+	width:100%;
+	height:115px;
+	margin-left:25%;
+	margin-right:25%;
+	background-color:skyblue;
+} */
+
+#container {
+	    width: 1500px;
+	    position:relative;
+        margin: 15px auto 0;
+        display:flex;
+}
+
+#left {
+	width:300px;
+	height:100%;
+	float:left;
+	background-color:skyblue;
+
+}
+
+#middle {
+	width:730px;
+	height:100%;
+	float:left;
+	background-color:pink;
+	
+}
+
+.logo img {
+	width:200px;
+}
+
+.write {
+	margin-bottom:20px;
+}
+
+.bestList .category {
+	width:30px;
+	background-color:red;
+	float:left;
+}
+
+.bestList .title {
+	width:200px;
+	background-color:yellow;
+	float:left;
+}
+
+.bestList .comment {
+	width:30px;
+	background-color:aqua;
+	float:left;
+}
+
+.bestList .writer {
+	width:70px;
+	background-color:orange;
+	float:left;
+}
+
+.bestList .like {
+	width:30px;
+	background-color:blue;
+	float:left;
+}
+
+.bestList .views {
+	width:30px;
+	background-color:red;
+	float:left;
+}
+
+.bestList .regdate {
+	width:80px;
+	background-color:yellow;
+	float:left;
+}
+
+
+#right {
+	width:300px;
+	height:100%;
+	float:right;
+	margin-right:0px;
+	background-color:yellow;
+
+}
+
+
+.search{
+	margin-bottom:20px;
+}
+
+.bestSearch {
+	border:1px solid gray;
+}
+

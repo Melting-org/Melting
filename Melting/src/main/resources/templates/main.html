@@ -2,9 +2,48 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Melting | 통합 유머 커뮤니티</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-	<h1>test</h1>
+	<div id="container">
+		<div></div>
+		<div id="left">
+			<div class="my">
+				<div class="myName">김지원님</div>
+				<div class="myAlarm">알림</div>
+			</div>
+		</div>
+		
+		<div id="middle">
+			<div class="logo"><img src="images/meltingLogo.png"></div>
+			<div class="write"><a>새로운 글 쓰러 가기</a></div>
+			<div class="bestBoard">
+			<h2>BEST</h2>
+				<div class="bestList">
+					<div class="category">카테고리</div>
+					<div class="title">제목</div>
+					<div class="comment">댓글수</div>
+					<div class="writer">작성자</div>
+					<div class="like">추천수</div>
+					<div class="views">조회수</div>
+					<div class="regdate">등록일</div>
+				</div>
+			</div>		
+		</div>
+		
+		<div id="right">
+			<div class="search">
+				<input type="text" name="searchWord" class="form-control" placeholder=" 검색어를 입력하세요" onkeypress="if( event.keyCode == 13 ){enterKey();}">
+			</div>
+			<div class="bestSearch">
+				<h3>인기검색어</h3>
+				<div class="bestSearchList">
+					1<br>2<br>3<br>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>
