@@ -1,18 +1,18 @@
 @charset "UTF-8";
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
+	font-family: 'Pretendard-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: black;
-  user-select: none;
-  font-family:'Pretendard-Regular';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: black;
+	user-select: none;
+	font-family:'Pretendard-Regular';
 }
 
 
@@ -23,10 +23,10 @@
 
 .header-area {
 	width: 1000px;
-    position:relative;
-    margin: 0 auto;
-    height:100%;
-    border-bottom: 1px solid black;
+	position:relative;
+	margin: 0 auto;
+	height:100%;
+	border-bottom: 1px solid black;
 }
 
 .logo {
@@ -78,10 +78,10 @@
 }
 
 #container {
-    width: 1000px;
-    position:relative;
-    margin: 35px auto 0;
-    display:flex;
+	width: 1000px;
+	position:relative;
+	margin: 35px auto 0;
+	display:flex;
 }
 
 
@@ -110,7 +110,7 @@
 	float:left;
 	padding:4px;
 	width: 182px;
-    height: 114px;
+	height: 114px;
 }
 
 .board {
@@ -143,10 +143,9 @@
 
 .boardlist {
 	width:100%;
-	/* border-top:1px solid lightgray; */
 	border-bottom:1px solid black;
-    height: 800px;
-    margin-bottom: 20px;
+	height: 800px;
+	margin-bottom: 20px;
 }
 
 .boardlist .category {
@@ -195,17 +194,16 @@
 #right {
 	width:250px;
 	height:100%;
-/* 	float:right; */
 	margin-left: auto;
 }
 
 .write {
-    width: 50px;
-    position: absolute;
-    top: -30px;
-    right: 0px;
-    border: 1px solid black;
-    text-align: center;
+	width: 50px;
+	position: absolute;
+	top: -30px;
+	right: 0px;
+	border: 1px solid black;
+	text-align: center;
     
 }
 
@@ -235,7 +233,7 @@
 .bestkeyword {
 	width:248px;
 	position: relative;
-    margin-top: 40px;
+	margin-top: 40px;
 }
 
 .bestkeyword-list {
