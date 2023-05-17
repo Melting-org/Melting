@@ -8,7 +8,7 @@
 <body>
 	<div id="header">
 		<div class="header-area">
-			<div class="logo"><img src="images/meltingLogo.JPG"></div>
+			<div class="logo"><a><img src="images/meltingLogo.JPG"></a></div>
 			<div class="menu">
 				<h2 class="best">BEST</h2>
 				<h2 class="new">NEW</h2>
@@ -16,22 +16,27 @@
 			</div>
  			<div class="my">name님</div>				
 		</div>
-		
 	</div>
+	
 	<div id="container">
-		
-		<div id="left">HIT!</div>
-			
-		<!-- <div id="middle">
-			<div class="logo"><img src="images/meltingLogo.JPG"></div>
-			<div class="write"><a>새로운 글 쓰러 가기</a></div>
-			
-			<div class="boardType">
-				<h2 class="best">BEST</h2>
-				<h2 class="new">NEW</h2>
+		<div id="left">
+			<div class="hit-area">
+				<div class="hit-title"><h2>HIT!</h2></div>
+				<div class="hit-contents">
+					<a><img src="images/grayphoto.png"></a>
+					<a><img src="images/grayphoto.png"></a>
+					<a><img src="images/grayphoto.png"></a>
+					<a><img src="images/grayphoto.png"></a>
+				</div>
 			</div>
-			<div class="bestBoard">
-				<div class="bestList">
+			
+			<div class="board">
+				<div class="board-array">
+					<h2 class="array-views">조회순</h2>
+					<h2 class="array-comment">댓글순</h2>
+					<h2 class="array-like">추천순</h2>
+				</div>
+				<div class="boardlist">
 					<div class="category">카테고리</div>
 					<div class="title">제목</div>
 					<div class="comment">댓글수</div>
@@ -40,21 +45,30 @@
 					<div class="views">조회수</div>
 					<div class="regdate">등록일</div>
 				</div>
-			</div>		
+			</div>	
 		</div>
 		
 		<div id="right">
+			<div class="write"><a>글쓰기</a></div>
 			<div class="search">
 				<input type="text" name="searchWord" class="form-control" placeholder=" 검색어를 입력하세요" onkeypress="if( event.keyCode == 13 ){enterKey();}">
 			</div>
-			<div class="bestSearch">
-				<h3>인기검색어</h3>
-				<div class="bestSearchList">
+			<div class="bestsearch">
+				<h3>인기 검색어</h3>
+				<div class="bestsearch-list">
 					<br>1<br>2<br>3<br>4<br>5<br>
+					6<br>7<br>7<br>8<br>9<br>10<br>
 				</div>
 			</div>
-		</div> -->
+			<div class="bestkeyword">
+				<h3>인기 키워드</h3>
+				<div class="bestkeyword-list">
+					<br>1<br>2<br>3<br>4<br>5<br>
+					6<br>7<br>7<br>8<br>9<br>10<br>
+				</div>
+			</div>
+			
+		</div>
 	</div>
-	
 </body>
 </html>
