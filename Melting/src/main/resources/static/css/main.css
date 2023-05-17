@@ -15,6 +15,10 @@
 	font-family:'Pretendard-Regular';
 }
 
+a {
+	text-decoration: none;
+}
+
 
 #header {
 	height:200px;

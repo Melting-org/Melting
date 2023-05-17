@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
@@ -8,7 +8,7 @@
 <body>
 	<div id="header">
 		<div class="header-area">
-			<div class="logo"><a><img src="images/meltingLogo.JPG"></a></div>
+			<div class="logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
 			<div class="menu">
 				<h2 class="best">BEST</h2>
 				<h2 class="new">NEW</h2>
@@ -49,7 +49,9 @@
 		</div>
 		
 		<div id="right">
-			<div class="write"><a>글쓰기</a></div>
+			<div class="write">
+				<a th:href="@{/write}">글쓰기</a>
+			</div>
 			<div class="search">
 				<input type="text" name="searchWord" class="form-control" placeholder=" 검색어를 입력하세요" onkeypress="if( event.keyCode == 13 ){enterKey();}">
 			</div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Melting | 통합 유머 커뮤니티</title>
+</head>
+<body>
+	<h2>[ 게시글 쓰기 ]</h2>
+	<form th:action="@{/write}" method="POST">
+	<table border="1">
+		<tr>
+			<th>작성자</th>
+			<td><input type="text" name="membername" required></td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td style="width:250px;"><input type="text" name="title" required></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea name="boardtxt" required rows="7" cols="80"></textarea></td>
+		</tr>
+		
+		<tr>
+			<th colspan="2">
+				<input type="submit" value="등록">
+			</th>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>
