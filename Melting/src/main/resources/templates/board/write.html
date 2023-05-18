@@ -3,30 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
+<link rel="stylesheet" type="text/css" href="css/write.css">
 </head>
 <body>
-	<h2>[ 게시글 쓰기 ]</h2>
-	<form th:action="@{/write}" method="POST">
-	<table border="1">
-		<tr>
-			<th>작성자</th>
-			<td><input type="text" name="membername" required></td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td style="width:250px;"><input type="text" name="title" required></td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td><textarea name="boardtxt" required rows="7" cols="80"></textarea></td>
-		</tr>
+	<div id="header">
+		<div class="header-area">
+			<div class="logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
+			<div class="menu">
+				<h2 class="best">BEST</h2>
+				<h2 class="new">NEW</h2>
+				<h2 class="m">M</h2>
+			</div>
+ 			<div class="my">name님</div>				
+		</div>
+	</div>
+	
+	<div id="container">
+		<div class="write-name"><h1>게시글 작성하기</h1></div>
+		<div class="write-area">
+			<form th:action="@{/write}" method="POST">
+				<table border="1">
+					<tr>
+						<th>작성자</th>
+						<td><input type="text" name="membername" required></td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td style="width:250px;"><input type="text" name="title" required></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td><textarea name="boardtxt" required rows="7" cols="80"></textarea></td>
+					</tr>
+					
+					<tr>
+						<th colspan="2">
+							<input type="submit" value="등록">
+						</th>
+					</tr>
+				</table>
+			</form>
+		</div>
 		
-		<tr>
-			<th colspan="2">
-				<input type="submit" value="등록">
-			</th>
-		</tr>
-	</table>
-	</form>
+	</div>
 </body>
 </html>

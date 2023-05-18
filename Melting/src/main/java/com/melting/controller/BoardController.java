@@ -15,6 +15,11 @@ public class BoardController {
 	
 	// 쓰기write | 한개읽기read | 글목록list  
 	
+	@GetMapping({"/", ""})
+	public String main() {
+		return "main";
+	}
+	
 	/*게시글 쓰기 화면 요청*/
 	@GetMapping("/write")
 	public String write() {
