@@ -15,6 +15,7 @@ import lombok.ToString;
 
 public class Board {
 	private int boardseq;
+	private String memberid;
 	private String membername;
 	private String title;
 	private String boardtxt;

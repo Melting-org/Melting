@@ -1,7 +1,10 @@
 package com.melting.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -17,7 +20,7 @@ public class BoardController {
 	
 	@GetMapping({"/", ""})
 	public String main() {
-		return "main";
+		return "/main";
 	}
 	
 	/*게시글 쓰기 화면 요청*/
@@ -29,12 +32,21 @@ public class BoardController {
 	/*게시글 저장 요청*/
 	@PostMapping("/write")
 	public String write(Board board) {
-		System.out.println(board);
+//		System.out.println(board);
 		int result = boardService.write(board);
 		System.out.println(result);
-		return "redirect:/";
+		return "redirect:/board/newlist";
 	}
 	
+	/*게시글 목록 화면 요청*/
+	@GetMapping("/board/newlist")
+	public String boardlist(String memberid, Model model) {
+		List<Board> list = boardService.getUserInfo(memberid);
+		model.addAttribute("list", list);
+		model.addAttribute("memberid", memberid);
+		System.out.println(list);
+		return "/board/newlist";
+	}
 	
 	
 	

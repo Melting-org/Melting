@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
-<link rel="stylesheet" type="text/css" href="css/write.css">
+<link rel="stylesheet" type="text/css" href="css/board/write.css">
 </head>
 <body>
 	<div id="header">
@@ -24,8 +24,12 @@
 			<form th:action="@{/write}" method="POST">
 				<table border="1">
 					<tr>
+						<th>아이디</th>
+						<td><input type="text" name="memberid" required></td>
+					</tr>
+					<tr>
 						<th>작성자</th>
-						<td><input type="text" name="membername" required></td>
+						<td><input type="text" name="membername"></td>
 					</tr>
 					<tr>
 						<th>제목</th>

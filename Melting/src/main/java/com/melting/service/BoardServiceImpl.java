@@ -1,5 +1,7 @@
 package com.melting.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,13 @@ public class BoardServiceImpl implements BoardService {
 	public int write(Board board) {
 		int result = boardDao.insertBoard(board);
 		return result;
+	}
+
+
+	@Override
+	public List<Board> getUserInfo(String memberid) {
+		List<Board> list = boardDao.getUserInfo(memberid);
+		return list;
 	}
 
 }

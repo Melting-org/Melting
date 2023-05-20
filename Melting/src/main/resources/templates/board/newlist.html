@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
-<link rel="stylesheet" type="text/css" href="css/board/main.css">
+<link href="../css/board/newlist.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="header">
 		<div class="header-area">
-			<div class="logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
+			<div class="logo"><a th:href="@{/}"><img src="../images/meltingLogo.JPG"></a></div>
 			<div class="menu">
 				<h2 class="hot">HOT</h2>
 				<div class="all">전체</div>
@@ -25,10 +25,10 @@
 			<div class="hit-area">
 				<div class="hit-title"><h2>오늘의 HIT!</h2></div>
 				<div class="hit-contents">
-					<a><img src="images/grayphoto.png"></a>
-					<a><img src="images/grayphoto.png"></a>
-					<a><img src="images/grayphoto.png"></a>
-					<a><img src="images/grayphoto.png"></a>
+					<a><img src="../images/grayphoto.png"></a>
+					<a><img src="../images/grayphoto.png"></a>
+					<a><img src="../images/grayphoto.png"></a>
+					<a><img src="../images/grayphoto.png"></a>
 				</div>
 			</div>
 			
@@ -46,15 +46,29 @@
 					<div class="like">추천수</div>
 					<div class="views">조회수</div>
 					<div class="regdate">등록일</div> -->
-					<ul>
+<!-- 					<ul>
 					  <li>
-<!--  					  	<span th:text="${board.title}"></span>
-					  	<span th:text="${board.membername}"></span> -->
+ 					  	<span th:text="${board.title}"></span>
+					  	<span th:text="${board.membername}"></span>
 					  	<div></div>
 					  </li>
 					  <li> Item two </li>
-					</ul>
-
+					</ul> -->
+					<table border="1">
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>등록일</th>
+						</tr>
+					
+						<tr th:each="board :${list}">
+							<td th:text="${board.boardseq}"></td>
+							<td>
+							 	<a th:text="${board.title}"></a>
+							 </td>
+							<td th:text="${board.regdate}"></td>
+						</tr>
+					</table>
 				</div>
 			</div>	
 		</div>

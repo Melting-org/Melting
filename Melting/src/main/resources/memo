@@ -1,53 +1,8 @@
--- 230511 Melting spring db 연동
-
--- 필요한 테이블
--- 사용자, 게시글, 댓글
-
-DROP TABLE m_members;
-DROP TABLE m_board;
-DROP TABLE m_reply;
-
-DROP SEQUENCE m_board_seq;
-DROP SEQUENCE m_reply_seq;
-
-
-CREATE TABLE m_members
-(
-    memberid    varchar2(20)    not null,    -- 사용자 식별 ID
-    memberpwd   varchar2(100)   not null,       -- 비밀번호
-    membername  varchar2(8)    primary key,       -- 사용자 이름
-    email       varchar2(50),                   -- 이메일
-    enabled     number(1)   default 1 check(enabled in (0, 1)),  -- 계정상태(0 or 1)
-    rolename    varchar2(20)    default 'ROLE_USER' 
-                check(rolename in ('ROLE_USER', 'ROLE_ADMIN')) -- 사용자 구분(등급)
-);
-select * from m_members;
-
-CREATE TABLE m_board
-(
-    boardseq        number(1)  primary key,    -- 게시글 번호
-    membername      varchar2(8) REFERENCES m_members(membername) ON DELETE CASCADE,    --사용자 이름
-    title           varchar2(200)   default '제목없음'  not null,    -- 글제목
-    boardtxt        varchar2(3000)  not null,   -- 글내용
-    regdate         date default sysdate,    -- 글 등록일
-    hitcount        number default 0,   -- 조회수
-    likecnt         number(1)   default 0,    -- 해당 글에 대한 추천수
-    originalfile    varchar2(200),  -- 첨부파일 원래 이름
-    savedfile       varchar2(200)  -- 첨부파일이 서버에 저장될 때의 이름
-);
-
-CREATE SEQUENCE m_board_seq;
-
----댓글
-CREATE TABLE m_reply
-(
-    replyseq    number  primary key,    -- 댓글 번호
-    boardseq    number REFERENCES m_board(boardseq) ON DELETE CASCADE,  -- 참조하는 게시판 글
-    membername  varchar2(8) REFERENCES m_members(membername) ON DELETE CASCADE,   -- 댓글 작성자
-    replytxt    varchar2(1000)  not null,   -- 댓글 내용
-    regdate     date default sysdate    -- 댓글 작성일
-
-);
-
-CREATE Sequence m_reply_seq;
-
+	<select id="getUserInfo" parameterType="String" resultType="Board">
+	SELECT 
+		boardseq, memberid, membername, title, 
+		to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
+	FROM m_board
+	WHERE memberid = #{memberid, jdbcType=VARCHAR}
+	ORDER BY boardseq DESC, regdate DESC
+	</select>

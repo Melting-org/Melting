@@ -49,14 +49,14 @@ a {
 	
 }
 
-.best {
+.hot {
 	font-size:28px;
 	color:red;
 	width: 80px;
 	float: left;
 }
 
-.new {
+.all {
 	font-size:28px;
 	margin-left:5px;
 	color:black;
@@ -64,6 +64,31 @@ a {
 	width: 80px;
 	
 }
+
+.humor {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.sports {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.game {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
 
 .m {
 	float: left;

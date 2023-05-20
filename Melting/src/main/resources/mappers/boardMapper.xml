@@ -7,8 +7,20 @@
 
 	<insert id="insertBoard" parameterType="Board">
 	INSERT INTO m_board
-	(boardseq, membername, title, boardtxt)
+	(
+		boardseq, memberid, membername, title, boardtxt
+	)
 	VALUES
-	(m_board_seq.NEXTVAL, #{membername}, #{title}, #{boardtxt})
+	(
+		m_board_seq.NEXTVAL, #{memberid}, #{membername}, #{title}, #{boardtxt}
+	)
 	</insert>
+	
+	<select id="getUserInfo" parameterType="String" resultType="Board">
+	SELECT 
+		boardseq, memberid, membername, title, 
+		to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
+	FROM m_board
+	ORDER BY boardseq DESC, regdate DESC
+	</select>
 </mapper>

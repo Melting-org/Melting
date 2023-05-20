@@ -1,5 +1,7 @@
 package com.melting.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.melting.domain.Board;
@@ -8,5 +10,7 @@ import com.melting.domain.Board;
 public interface BoardDAO {
 
 	public int insertBoard(Board board);
+
+	public List<Board> getUserInfo(String memberid);
 
 }
