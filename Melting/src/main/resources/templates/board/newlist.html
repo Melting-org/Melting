@@ -10,8 +10,8 @@
 		<div class="header-area">
 			<div class="logo"><a th:href="@{/}"><img src="../images/meltingLogo.JPG"></a></div>
 			<div class="menu">
-				<h2 class="hot">HOT</h2>
-				<div class="all">전체</div>
+				<div class="hot">HOT</div>
+				<h2 class="all">전체</h2>
 				<div class="humor">유머</div>
 				<div class="sports">스포츠</div>
 				<div class="game">게임</div>
@@ -22,16 +22,6 @@
 	
 	<div id="container">
 		<div id="left">
-			<div class="hit-area">
-				<div class="hit-title"><h2>오늘의 HIT!</h2></div>
-				<div class="hit-contents">
-					<a><img src="../images/grayphoto.png"></a>
-					<a><img src="../images/grayphoto.png"></a>
-					<a><img src="../images/grayphoto.png"></a>
-					<a><img src="../images/grayphoto.png"></a>
-				</div>
-			</div>
-			
 			<div class="board">
 				<div class="board-array">
 					<h3 class="array-views">조회순</h3>
@@ -56,16 +46,16 @@
 					</ul> -->
 					<table border="1">
 						<tr>
-							<th>번호</th>
 							<th>제목</th>
+							<th>작성자</th>
 							<th>등록일</th>
 						</tr>
 					
 						<tr th:each="board :${list}">
-							<td th:text="${board.boardseq}"></td>
 							<td>
 							 	<a th:text="${board.title}"></a>
 							 </td>
+							 <td th:text="${board.membername}"></td>
 							<td th:text="${board.regdate}"></td>
 						</tr>
 					</table>
