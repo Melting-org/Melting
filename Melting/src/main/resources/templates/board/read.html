@@ -28,7 +28,7 @@
 			<div class="read-header">
 				<div class="title" th:text="${board.title}">제목</div>
 				<div class="read-header-l">
-					<div class="writer" th:text="${board.memberid}">작성자</div>
+					<div class="writer" th:text="${board.membername}">작성자</div>
 					<div class="regdate" th:text="${board.regdate}">작성일</div>
 				</div>
 				<div class="read-header-r">
@@ -40,7 +40,7 @@
 			
 			<div class="boardtxt" th:text="${board.boardtxt}">본문내용칸</div>
 			<a th:href="@{/delete(boardseq=${board.boardseq})}">삭제</a>
-			
+			<a th:href="@{/update(boardseq=${board.boardseq})}">수정</a>		
 		</div>
 		
 	

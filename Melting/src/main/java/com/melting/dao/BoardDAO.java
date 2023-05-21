@@ -17,4 +17,6 @@ public interface BoardDAO {
 
 	public int delete(int boardseq);
 
+	public int update(Board board);
+
 }

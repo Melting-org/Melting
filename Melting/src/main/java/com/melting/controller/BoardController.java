@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.melting.domain.Board;
 import com.melting.service.BoardService;
@@ -33,9 +34,7 @@ public class BoardController {
 	/*게시글 저장 요청*/
 	@PostMapping("/write")
 	public String write(Board board) {
-//		System.out.println(board);
 		int result = boardService.write(board);
-//		System.out.println(result);
 		return "redirect:/board/newlist";
 	}
 	
@@ -45,7 +44,6 @@ public class BoardController {
 		List<Board> list = boardService.getAllList(memberid);
 		model.addAttribute("list", list);
 		model.addAttribute("memberid", memberid);
-//		System.out.println(list);
 		return "/board/newlist";
 	}
 	
@@ -54,7 +52,6 @@ public class BoardController {
 	public String read(int boardseq, Model model) {
 		Board board = boardService.read(boardseq);
 		model.addAttribute("board", board);
-		System.out.println(board);
 		return "/board/read";
 	}
 	
@@ -65,7 +62,25 @@ public class BoardController {
 		return "redirect:/board/newlist";
 	}
 	
+	/*게시글 수정 화면 요청*/
+	@GetMapping("/update")
+	public String update(int boardseq, Model model) {
+		Board board = boardService.read(boardseq);
+		model.addAttribute("board", board);
+		System.out.println(board);
+		return "/board/update";
+	}
 	
+	
+	/*게시글 수정 처리*/
+	@PostMapping("/update")
+	public String update(Board board, RedirectAttributes rttr) {
+		int result = boardService.update(board);
+		System.out.println(result);
+		rttr.addAttribute("boardseq", board.getBoardseq());
+		System.out.println("board 글 수정됨");
+		return "redirect:/board/newlist";
+	}
 	
 	
 	

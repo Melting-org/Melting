@@ -4,38 +4,43 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.melting.dao.BoardDAO">
-
 	<insert id="insertBoard" parameterType="Board">
-	INSERT INTO m_board
-	(
-		boardseq, memberid, membername, title, boardtxt
-	)
-	VALUES
-	(
-		m_board_seq.NEXTVAL, #{memberid}, #{membername}, #{title}, #{boardtxt}
-	)
+		INSERT INTO m_board
+		(
+			boardseq, memberid, membername, title, boardtxt
+		)
+		VALUES
+		(
+			m_board_seq.NEXTVAL, #{memberid}, #{membername}, #{title}, #{boardtxt}
+		)
 	</insert>
 	
 	<select id="getAllList" parameterType="String" resultType="Board">
-	SELECT 
-		boardseq, memberid, membername, title, 
-		to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
-	FROM m_board
-	ORDER BY boardseq DESC, regdate DESC
+		SELECT 
+			boardseq, memberid, membername, title, 
+			to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
+		FROM m_board
+		ORDER BY boardseq DESC, regdate DESC
 	</select>
 	
 	<select id="read" parameterType="int" resultType="Board">
-	SELECT
-		boardseq, membername, title, boardtxt,
-		to_char(regdate, 'YYYY-MM-DD') as regdate,
-		viewscnt, likecnt, replycnt
-	FROM m_board
-	WHERE boardseq = #{boardseq} 
+		SELECT
+			boardseq, membername, title, boardtxt,
+			to_char(regdate, 'YYYY-MM-DD') as regdate,
+			viewscnt, likecnt, replycnt
+		FROM m_board
+		WHERE boardseq = #{boardseq} 
 	</select>
 	
 	<delete id="delete" parameterType="int">
-	DELETE FROM m_board
-	WHERE boardseq = #{boardseq}
+		DELETE FROM m_board
+		WHERE boardseq = #{boardseq}
 	</delete>
+	
+	<update id="update" parameterType="Board">
+		UPDATE m_board
+		SET title = #{title}, boardtxt= #{boardtxt}, regdate = sysdate
+		WHERE boardseq = #{boardseq}
+	</update>
 	
 </mapper>
