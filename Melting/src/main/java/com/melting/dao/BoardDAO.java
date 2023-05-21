@@ -15,4 +15,6 @@ public interface BoardDAO {
 
 	public Board read(int boardseq);
 
+	public int delete(int boardseq);
+
 }

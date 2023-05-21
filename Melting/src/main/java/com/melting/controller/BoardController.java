@@ -58,6 +58,12 @@ public class BoardController {
 		return "/board/read";
 	}
 	
+	/*게시글 삭제*/
+	@GetMapping("/delete")
+	public String delete(int boardseq) {
+		int result = boardService.delete(boardseq);
+		return "redirect:/board/newlist";
+	}
 	
 	
 	

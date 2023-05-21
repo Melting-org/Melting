@@ -33,4 +33,9 @@
 	WHERE boardseq = #{boardseq} 
 	</select>
 	
+	<delete id="delete" parameterType="int">
+	DELETE FROM m_board
+	WHERE boardseq = #{boardseq}
+	</delete>
+	
 </mapper>

@@ -39,6 +39,8 @@
 			</div>
 			
 			<div class="boardtxt" th:text="${board.boardtxt}">본문내용칸</div>
+			<a th:href="@{/delete(boardseq=${board.boardseq})}">삭제</a>
+			
 		</div>
 		
 	

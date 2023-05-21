@@ -12,5 +12,7 @@ public interface BoardService {
 
 	public Board read(int boardseq);
 
+	public int delete(int boardseq);
+
 
 }
