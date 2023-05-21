@@ -17,6 +17,7 @@ public class Board {
 	private int boardseq;
 	private String memberid;
 	private String membername;
+	private String kind;
 	private String title;
 	private String boardtxt;
 	private String regdate;

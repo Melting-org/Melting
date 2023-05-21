@@ -30,29 +30,21 @@
 					<h3 class="array-like">추천순</h3>
 				</div>
 				<div class="boardlist">
-<!-- 					<div class="category">카테고리</div>
-					<div class="title">제목</div>
-					<div class="comment">댓글수</div>
-					<div class="writer">작성자</div>
-					<div class="like">추천수</div>
-					<div class="views">조회수</div>
-					<div class="regdate">등록일</div> -->
-<!-- 					<ul>
-					  <li>
- 					  	<span th:text="${board.title}"></span>
-					  	<span th:text="${board.membername}"></span>
-					  	<div></div>
-					  </li>
-					  <li> Item two </li>
-					</ul> -->
 					<table border="1">
 						<tr>
+							<th>카테고리</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>등록일</th>
 						</tr>
 					
 						<tr th:each="board :${list}">
+							<td> 
+								<span th:if="${board.kind=='free'}">자유</span>
+								<span th:if="${board.kind=='humor'}">유머</span>
+								<span th:if="${board.kind=='sports'}">스포츠</span>
+								<span th:if="${board.kind=='game'}">게임</span>
+							</td>
 							<td>
 							 	<a th:href="@{/read(boardseq=${board.boardseq})}" th:text="${board.title}"></a>
 							 </td>

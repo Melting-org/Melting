@@ -22,7 +22,12 @@
 	</div>
 	<div id="container">
 		<div class="category-area">
-			<div class="category">자유게시판</div>
+			<div class="category">
+				<span th:if="${board.kind=='free'}">자유 게시판</span>
+				<span th:if="${board.kind=='humor'}">유머 게시판</span>
+				<span th:if="${board.kind=='sports'}">스포츠 게시판</span>
+				<span th:if="${board.kind=='game'}">게임 게시판</span>
+			</div>
 		</div>
 		<div class="read">
 			<div class="read-header">

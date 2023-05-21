@@ -27,6 +27,21 @@
 				
 				<table border="1">
 					<tr>
+						<th>카테고리</th>
+						<td>
+							<select name="kind" th:value="${board.kind}">
+							    <option value="free" selected>자유게시판</option>
+							    <option value="humor">유머게시판</option>
+							    <option value="sports">스포츠게시판</option>
+							    <option value="game">게임게시판</option>
+							</select>	
+						</td>
+						
+						
+						
+						
+					</tr>
+					<tr>
 						<th>작성자</th>
 						<td><input type="text" name="membername" th:value="${board.membername}" readonly></td>
 					</tr>

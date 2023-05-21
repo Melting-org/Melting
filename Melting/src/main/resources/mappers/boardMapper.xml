@@ -7,17 +7,17 @@
 	<insert id="insertBoard" parameterType="Board">
 		INSERT INTO m_board
 		(
-			boardseq, memberid, membername, title, boardtxt
+			boardseq, memberid, membername, title, boardtxt, kind
 		)
 		VALUES
 		(
-			m_board_seq.NEXTVAL, #{memberid}, #{membername}, #{title}, #{boardtxt}
+			m_board_seq.NEXTVAL, #{memberid}, #{membername}, #{title}, #{boardtxt}, #{kind}
 		)
 	</insert>
 	
 	<select id="getAllList" parameterType="String" resultType="Board">
 		SELECT 
-			boardseq, memberid, membername, title, 
+			boardseq, memberid, membername, title, kind,
 			to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
 		FROM m_board
 		ORDER BY boardseq DESC, regdate DESC
@@ -25,7 +25,7 @@
 	
 	<select id="read" parameterType="int" resultType="Board">
 		SELECT
-			boardseq, membername, title, boardtxt,
+			boardseq, membername, title, boardtxt, kind,
 			to_char(regdate, 'YYYY-MM-DD') as regdate,
 			viewscnt, likecnt, replycnt
 		FROM m_board
@@ -39,7 +39,7 @@
 	
 	<update id="update" parameterType="Board">
 		UPDATE m_board
-		SET title = #{title}, boardtxt= #{boardtxt}, regdate = sysdate
+		SET title = #{title}, boardtxt= #{boardtxt}, regdate = sysdate, kind = #{kind}
 		WHERE boardseq = #{boardseq}
 	</update>
 	
