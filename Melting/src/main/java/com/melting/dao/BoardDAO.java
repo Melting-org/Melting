@@ -11,6 +11,6 @@ public interface BoardDAO {
 
 	public int insertBoard(Board board);
 
-	public List<Board> getUserInfo(String memberid);
+	public List<Board> getAllList(String memberid);
 
 }

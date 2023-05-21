@@ -16,7 +16,7 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	// 쓰기write | 한개읽기read | 글목록list  
+	// 쓰기write | 한개읽기read | 글목록list  | 글삭제delete | 글수정update |
 	
 	@GetMapping({"/", ""})
 	public String main() {
@@ -41,12 +41,20 @@ public class BoardController {
 	/*게시글 목록 화면 요청*/
 	@GetMapping("/board/newlist")
 	public String boardlist(String memberid, Model model) {
-		List<Board> list = boardService.getUserInfo(memberid);
+		List<Board> list = boardService.getAllList(memberid);
 		model.addAttribute("list", list);
 		model.addAttribute("memberid", memberid);
 		System.out.println(list);
 		return "/board/newlist";
 	}
+	
+	/*게시글 읽기 화면 요청*/
+	@GetMapping("/read")
+	public String read() {
+		return "/board/read";
+	}
+	
+	
 	
 	
 	

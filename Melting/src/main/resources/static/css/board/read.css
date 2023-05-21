@@ -84,27 +84,58 @@ a {
 #container {
 	width: 1000px;
 	position:relative;
-	margin: 80px auto 0;
+	margin: 50px auto 0;
 }
 
-.write-name {
-	width:100%;
+.category-area {
 	border-bottom:1px solid black;
-	text-align: center;
-	height:50px;
-	position:static;
-
+	height:40px;
 }
 
-.write-area {
-	width:100%;
-	height:400px;
-	position:absolute;
-	top:90px;
+
+
+.read-header {
+	background-color:yellow;
+	height:80px;
+	border:1px solid lightgrey;
+}
+
+.read-header-l {
+	float:left;
+	width:200px;
+}
+
+.writer {
+	float:left;
+}
+
+.regdate {
+	float:left;
+}
+
+.read-header-r {
+	float:right;
+	width:300px;
+}
+
+.view {
+	float:right;
+}
+
+.like {
+	float:right;
 	
 }
 
-table {
-	margin:0 auto; 
+.comment {
+	float:right;
 }
+
+.content {
+	height:800px;
+}
+
+
+
+
 

@@ -8,7 +8,7 @@ public interface BoardService {
 
 	public int write(Board board);
 
-	public List<Board> getUserInfo(String memberid);
+	public List<Board> getAllList(String memberid);
 
 
 }

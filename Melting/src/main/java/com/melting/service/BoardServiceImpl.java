@@ -22,8 +22,8 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public List<Board> getUserInfo(String memberid) {
-		List<Board> list = boardDao.getUserInfo(memberid);
+	public List<Board> getAllList(String memberid) {
+		List<Board> list = boardDao.getAllList(memberid);
 		return list;
 	}
 

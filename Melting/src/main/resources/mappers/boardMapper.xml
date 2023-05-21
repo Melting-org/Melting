@@ -16,7 +16,7 @@
 	)
 	</insert>
 	
-	<select id="getUserInfo" parameterType="String" resultType="Board">
+	<select id="getAllList" parameterType="String" resultType="Board">
 	SELECT 
 		boardseq, memberid, membername, title, 
 		to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
