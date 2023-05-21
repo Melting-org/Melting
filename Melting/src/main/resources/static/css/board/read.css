@@ -49,20 +49,55 @@ a {
 	
 }
 
-.best {
+.hot {
 	font-size:28px;
-	color:red;
 	width: 80px;
 	float: left;
 }
 
-.new {
+.hot a {
+	color:red;
+}
+
+.all {
 	font-size:28px;
 	margin-left:5px;
 	color:black;
 	float: left;
 	width: 80px;
 	
+}
+
+.humor {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.sports {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.game {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.free {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
 }
 
 .m {
@@ -118,20 +153,20 @@ a {
 	width:300px;
 }
 
-.view {
+.viewscnt {
 	float:right;
 }
 
-.like {
+.likecnt {
 	float:right;
 	
 }
 
-.comment {
+.replycnt {
 	float:right;
 }
 
-.content {
+.boardtxt {
 	height:800px;
 }
 

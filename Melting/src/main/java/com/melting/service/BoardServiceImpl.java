@@ -27,4 +27,11 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+
+	@Override
+	public Board read(int boardseq) {
+		Board board = boardDao.read(boardseq);
+		return board;
+	}
+
 }

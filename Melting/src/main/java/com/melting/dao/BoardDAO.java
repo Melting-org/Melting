@@ -13,4 +13,6 @@ public interface BoardDAO {
 
 	public List<Board> getAllList(String memberid);
 
+	public Board read(int boardseq);
+
 }

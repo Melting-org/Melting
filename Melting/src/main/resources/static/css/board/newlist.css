@@ -51,7 +51,6 @@ a {
 
 .hot {
 	font-size:28px;
-	color:color;
 	width: 80px;
 	float: left;
 }
@@ -59,10 +58,13 @@ a {
 .all {
 	font-size:28px;
 	margin-left:5px;
-	color:red;
 	float: left;
 	width: 80px;
 	
+}
+
+.all a {
+	color:red;
 }
 
 .humor {
@@ -82,6 +84,14 @@ a {
 }
 
 .game {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.free {
 	font-size:28px;
 	margin-left:5px;
 	color:black;

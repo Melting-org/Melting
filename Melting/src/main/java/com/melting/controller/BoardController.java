@@ -1,5 +1,6 @@
 package com.melting.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class BoardController {
 	public String write(Board board) {
 //		System.out.println(board);
 		int result = boardService.write(board);
-		System.out.println(result);
+//		System.out.println(result);
 		return "redirect:/board/newlist";
 	}
 	
@@ -44,13 +45,16 @@ public class BoardController {
 		List<Board> list = boardService.getAllList(memberid);
 		model.addAttribute("list", list);
 		model.addAttribute("memberid", memberid);
-		System.out.println(list);
+//		System.out.println(list);
 		return "/board/newlist";
 	}
 	
 	/*게시글 읽기 화면 요청*/
 	@GetMapping("/read")
-	public String read() {
+	public String read(int boardseq, Model model) {
+		Board board = boardService.read(boardseq);
+		model.addAttribute("board", board);
+		System.out.println(board);
 		return "/board/read";
 	}
 	
