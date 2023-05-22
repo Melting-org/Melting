@@ -18,8 +18,6 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	// 쓰기write | 한개읽기read | 글목록list  | 글삭제delete | 글수정update |
-	
 	@GetMapping({"/", ""})
 	public String main() {
 		return "/main";
