@@ -17,7 +17,7 @@
 	
 	<select id="getAllList" parameterType="String" resultType="Board">
 		SELECT 
-			boardseq, memberid, membername, title, kind,
+			boardseq, memberid, membername, title, kind, viewscnt,
 			to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
 		FROM m_board
 		ORDER BY boardseq DESC, regdate DESC
@@ -43,4 +43,10 @@
 		WHERE boardseq = #{boardseq}
 	</update>
 	
+	<update id="updateViewsCount" parameterType="int">
+		UPDATE m_board
+		SET viewscnt = viewscnt + 1
+		WHERE boardseq = #{boardseq}
+	</update>
+		
 </mapper>

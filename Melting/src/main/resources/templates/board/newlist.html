@@ -35,6 +35,7 @@
 							<th>카테고리</th>
 							<th>제목</th>
 							<th>작성자</th>
+							<th>조회수</th>
 							<th>등록일</th>
 						</tr>
 					
@@ -47,8 +48,9 @@
 							</td>
 							<td>
 							 	<a th:href="@{/read(boardseq=${board.boardseq})}" th:text="${board.title}"></a>
-							 </td>
-							 <td th:text="${board.membername}"></td>
+						 	</td>
+						 	<td th:text="${board.membername}"></td>
+						 	<td th:text="${board.viewscnt}"></td>
 							<td th:text="${board.regdate}"></td>
 						</tr>
 					</table>

@@ -51,6 +51,7 @@ public class BoardController {
 	@GetMapping("/read")
 	public String read(int boardseq, Model model) {
 		Board board = boardService.read(boardseq);
+		boardService.updateViewsCount(boardseq);
 		model.addAttribute("board", board);
 		return "/board/read";
 	}

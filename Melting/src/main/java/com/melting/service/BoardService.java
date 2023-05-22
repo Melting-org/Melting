@@ -15,6 +15,8 @@ public interface BoardService {
 	public int delete(int boardseq);
 
 	public int update(Board board);
+	
+	public int updateViewsCount(int boardseq);
 
 
 

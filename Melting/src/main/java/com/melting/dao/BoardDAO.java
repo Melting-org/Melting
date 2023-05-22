@@ -19,4 +19,6 @@ public interface BoardDAO {
 
 	public int update(Board board);
 
+	public int updateViewsCount(int boardseq);
+
 }

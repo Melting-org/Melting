@@ -49,6 +49,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public int updateViewsCount(int boardseq) {
+		return boardDao.updateViewsCount(boardseq);
+	}
+
+
 
 
 
