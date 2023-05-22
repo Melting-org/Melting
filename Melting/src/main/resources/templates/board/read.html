@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
 <link rel="stylesheet" type="text/css" href="css/board/read.css">
+<script th:src="@{/script/read.js}"></script>
+<script th:src="@{/script/jquery-3.6.3.min.js}"></script>
 </head>
 <body>
 	<div id="header">
@@ -47,6 +49,7 @@
 			<a th:href="@{/delete(boardseq=${board.boardseq})}">삭제</a>
 			<a th:href="@{/update(boardseq=${board.boardseq})}">수정</a>		
 		</div>
+		<!-- <button type ="button" id="btnRecommend">추천하기</button> -->
 		
 	
 	</div>
