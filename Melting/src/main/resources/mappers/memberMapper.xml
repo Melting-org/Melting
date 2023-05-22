@@ -15,4 +15,10 @@
 		)
 	</insert>
 	
+	<select id="login" parameterType="String" resultType="Member">
+		SELECT *
+		FROM m_member
+		WHERE memberid = #{memberid}
+	</select>
+	
 </mapper>

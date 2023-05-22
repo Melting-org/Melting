@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>로그인</h2>
+	<form th:action="@{/login}" method="POST">
+		<table border="1">
+			<tr>
+				<th>ID</th>
+				<td><input type="text" name="memberid"></td>
+			</tr>
+			<tr>
+				<th>PASSWORD</th>
+				<td><input type="text" name="memberpwd"></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><input type="submit" value="login"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
