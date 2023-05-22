@@ -7,11 +7,11 @@
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO m_member
 		(
-			email, membername, memberpwd,
+			memberid, email, membername, memberpwd
 		)
 		VALUES
 		(
-			#{email}, #{membername}, #{memberpwd}
+			#{memberid}, #{email}, #{membername}, #{memberpwd}
 		)
 	</insert>
 	

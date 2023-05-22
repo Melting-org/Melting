@@ -9,7 +9,7 @@
 	<form th:action="@{/join}" method="POST">
 	<table border="1">
 		<tr>
-			<th>이메일</th>
+			<th>ID</th>
 			<td><input type="text" name="memberid"></td>
 		</tr>
 		<tr>
@@ -19,6 +19,10 @@
 		<tr>
 			<th>닉네임</th>
 			<td><input type="text" name="membername"></td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td><input type="text" name="email"></td>
 		</tr>
 		<tr>
 			<td><input type="submit" value="가입하기"></td>
