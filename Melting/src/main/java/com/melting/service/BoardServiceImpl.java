@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.melting.dao.BoardDAO;
 import com.melting.domain.Board;
+import com.melting.domain.Member;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -53,6 +54,8 @@ public class BoardServiceImpl implements BoardService {
 	public int updateViewsCount(int boardseq) {
 		return boardDao.updateViewsCount(boardseq);
 	}
+
+
 
 
 

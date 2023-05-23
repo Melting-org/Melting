@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.melting.domain.Board;
+import com.melting.domain.Member;
 import com.melting.service.BoardService;
 
 @Controller
@@ -25,7 +26,8 @@ public class BoardController {
 	
 	/*게시글 쓰기 화면 요청*/
 	@GetMapping("/write")
-	public String write() {
+	public String write(Model model, Member member) {
+		model.addAttribute("member", member);
 		return "/board/write";
 	}
 	

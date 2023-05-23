@@ -24,15 +24,16 @@ public class WebSecurityConfig {
 		.authorizeRequests()
 		.antMatchers("/", 
 				"/board/newlist",
-				"/board/read",
-				"/member/join",
+				"/read",
+				"/join",
 				"/images/**",
-				"/css/**"
+				"/css/**",
+				"/script/**"
 				).permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
-		.loginPage("/member/login")
+		.loginPage("/loginForm")
 		.loginProcessingUrl("/login").permitAll() 
 		.usernameParameter("memberid")
 		.passwordParameter("memberpwd")

@@ -18,7 +18,7 @@ public class MemberController {
 	/*회원가입 화면 요청*/
 	@GetMapping("/join")
 	public String join() {
-		return "/member/join";
+		return "/member/joinView";
 	}
 	
 	/*회원가입 처리*/
@@ -30,18 +30,10 @@ public class MemberController {
 	}
 	
 	/*로그인 화면 요청*/
-	@GetMapping("/login")
+	@GetMapping("/loginForm")
 	public String login() {
-		return "/member/login";
+		return "/member/loginForm";
 	}
 	
-	/*로그인 처리*/
-	@PostMapping("/login")
-	public String login(String memberid, Model model) {
-		Member member = memberService.login(memberid);
-		model.addAttribute("member", member);
-		System.out.println(member);
-		return "redirect:/";
-	}
 
 }

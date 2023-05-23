@@ -9,6 +9,5 @@ public interface MemberDAO {
 
 	public int insertMember(Member member);
 
-	public Member login(String memberid);
 
 }

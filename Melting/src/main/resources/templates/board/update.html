@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
@@ -14,7 +15,9 @@
 				<h2 class="new">NEW</h2>
 				<h2 class="m">M</h2>
 			</div>
- 			<div class="my">name님</div>				
+ 			<div class="my">
+ 				<div sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
+ 			</div>				
 		</div>
 	</div>
 	
@@ -36,14 +39,6 @@
 							    <option value="game">게임게시판</option>
 							</select>	
 						</td>
-						
-						
-						
-						
-					</tr>
-					<tr>
-						<th>작성자</th>
-						<td><input type="text" name="membername" th:value="${board.membername}" readonly></td>
 					</tr>
 					<tr>
 						<th>제목</th>

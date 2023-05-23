@@ -24,10 +24,5 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	@Override
-	public Member login(String memberid) {
-		Member member = memberDao.login(memberid);
-		return member;
-	}
 
 }

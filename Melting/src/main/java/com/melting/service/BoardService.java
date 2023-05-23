@@ -3,6 +3,7 @@ package com.melting.service;
 import java.util.List;
 
 import com.melting.domain.Board;
+import com.melting.domain.Member;
 
 public interface BoardService {
 
@@ -17,6 +18,7 @@ public interface BoardService {
 	public int update(Board board);
 	
 	public int updateViewsCount(int boardseq);
+
 
 
 

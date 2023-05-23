@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
@@ -14,7 +15,9 @@
 				<h2 class="new">NEW</h2>
 				<h2 class="m">M</h2>
 			</div>
- 			<div class="my">name님</div>				
+ 			<div class="my">
+ 				<div sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
+ 			</div>				
 		</div>
 	</div>
 	
@@ -22,6 +25,7 @@
 		<div class="write-name"><h1>게시글 작성하기</h1></div>
 		<div class="write-area">
 			<form th:action="@{/write}" method="POST">
+				<input type="hidden" name="memberid" th:value="${#authentication.name}" readonly>
 				<table border="1">
 					<tr>
 						<th>카테고리</th>
@@ -36,14 +40,6 @@
 					
 					</tr>
 					<tr>
-						<th>아이디</th>
-						<td><input type="text" name="memberid" required></td>
-					</tr>
-					<tr>
-						<th>작성자</th>
-						<td><input type="text" name="membername"></td>
-					</tr>
-					<tr>
 						<th>제목</th>
 						<td style="width:250px;"><input type="text" name="title" required></td>
 					</tr>
@@ -56,6 +52,8 @@
 						<th colspan="2">
 							<input type="submit" value="등록">
 						</th>
+						
+						
 					</tr>
 				</table>
 			</form>

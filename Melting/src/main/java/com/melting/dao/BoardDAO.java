@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.melting.domain.Board;
+import com.melting.domain.Member;
 
 @Mapper
 public interface BoardDAO {
@@ -20,5 +21,6 @@ public interface BoardDAO {
 	public int update(Board board);
 
 	public int updateViewsCount(int boardseq);
+
 
 }

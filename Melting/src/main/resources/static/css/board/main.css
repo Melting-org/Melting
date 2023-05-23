@@ -114,7 +114,28 @@ a {
 	top:160px;
 	right:1px;
 	font-size: 23px;
+	display: inline-block;
 	
+}
+
+.join {
+	float:left;
+	margin:0px 2px;
+}
+
+.login {
+	float:left;
+	margin:0px 2px;
+}
+
+.logout {
+	float:left;
+	margin:0px 2px;
+}
+
+.myid {
+	float:left;
+	margin:0px 2px;
 }
 
 #container {

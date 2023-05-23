@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
@@ -17,7 +18,12 @@
 				<div class="game">게임</div>
 				<div class="free">자유</div>
 			</div>
- 			<div class="my">name님</div>				
+ 			<div class="my">
+ 				<div class="join"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/join}">회원가입</a></div>
+ 				<div class="login"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
+ 				<div class="logout" sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
+ 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
+ 			</div>				
 		</div>
 	</div>
 	
@@ -40,22 +46,10 @@
 					<h3 class="array-like">추천순</h3>
 				</div>
 				<div class="boardlist">
-<!-- 					<div class="category">카테고리</div>
-					<div class="title">제목</div>
-					<div class="comment">댓글수</div>
-					<div class="writer">작성자</div>
-					<div class="like">추천수</div>
-					<div class="views">조회수</div>
-					<div class="regdate">등록일</div> -->
 					<ul>
-					  <li>
-<!--  					  	<span th:text="${board.title}"></span>
-					  	<span th:text="${board.membername}"></span> -->
-					  	<div></div>
-					  </li>
+					  <li> Item two </li>
 					  <li> Item two </li>
 					</ul>
-
 				</div>
 			</div>	
 		</div>
