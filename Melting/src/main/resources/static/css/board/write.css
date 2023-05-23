@@ -81,6 +81,16 @@ a {
 	
 }
 
+.logout {
+	float:left;
+	margin:0px 2px;
+}
+
+.myid {
+	float:left;
+	margin:0px 2px;
+}
+
 #container {
 	width: 1000px;
 	position:relative;

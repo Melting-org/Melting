@@ -17,7 +17,6 @@ public class WebSecurityConfig {
 	@Autowired
 	private DataSource dataSource;
 	
-	// 설정
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable()
@@ -48,19 +47,17 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 	
-	// 인증을 위한 쿼리
 	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
-		// 인증 (로그인)
+
 		.usersByUsernameQuery(
 				"select memberid username, memberpwd password, enabled "
 				+ "from m_member "
 				+ "where memberid = ?"
 				)
 		
-		// 권한
 		.authoritiesByUsernameQuery(
 				"select memberid username, rolename role_name "
 				+ "from m_member "
@@ -69,7 +66,6 @@ public class WebSecurityConfig {
 		
 	}
 	
-	// 단방향 비밀번호 암호화
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();

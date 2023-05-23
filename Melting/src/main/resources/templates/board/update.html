@@ -16,7 +16,8 @@
 				<h2 class="m">M</h2>
 			</div>
  			<div class="my">
- 				<div sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
+ 				<div class="logout" sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
+ 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
  			</div>				
 		</div>
 	</div>
