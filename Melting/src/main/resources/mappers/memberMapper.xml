@@ -15,5 +15,16 @@
 		)
 	</insert>
 	
+ 	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT memberid
+		FROM m_member
+		WHERE memberid = #{memberid}
+	</select>
+	
+	<select id="idChk" resultType="int">
+		SELECT count(*) 
+		FROM m_member
+		WHERE memberid = #{memberid}
+	</select>
 	
 </mapper>

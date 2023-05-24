@@ -2,9 +2,9 @@ package com.melting.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.melting.domain.Member;
 import com.melting.service.MemberService;
@@ -25,7 +25,6 @@ public class MemberController {
 	@PostMapping("/join")
 	public String join(Member member) {
 		int result = memberService.insertMember(member);
-		System.out.println(result);
 		return "redirect:/";
 	}
 	
@@ -35,5 +34,24 @@ public class MemberController {
 		return "/member/loginForm";
 	}
 	
+	/*중복 아이디 확인*/
+	@GetMapping("/idCheck")
+	@ResponseBody
+	public String idCheck(String memberid) {
+		System.out.println("전달된 id :"+ memberid);
+		boolean result = memberService.idCheck(memberid);
+		
+		if(result)
+			return "OK";
+		return "Fail";
+	}
+	
+	/*중복 아이디 확인 - 버튼용*/
+	@ResponseBody
+	@GetMapping("/idChk")
+	public int idChk(Member member) {
+		int result = memberService.idChk(member);
+		return result;
+	}
 
 }

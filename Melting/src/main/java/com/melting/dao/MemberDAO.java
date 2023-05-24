@@ -9,5 +9,9 @@ public interface MemberDAO {
 
 	public int insertMember(Member member);
 
+	public String idCheck(String memberid);
+
+	public int idChk(Member member);
+
 
 }

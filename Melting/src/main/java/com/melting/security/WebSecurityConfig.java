@@ -27,7 +27,9 @@ public class WebSecurityConfig {
 				"/join",
 				"/images/**",
 				"/css/**",
-				"/script/**"
+				"/script/**",
+				"/idChk",
+				"/idCheck"
 				).permitAll()
 		.anyRequest().authenticated()
 		.and()

@@ -6,5 +6,9 @@ public interface MemberService {
 
 	public int insertMember(Member member);
 
+	public boolean idCheck(String memberid);
+
+	public int idChk(Member member);
+
 
 }
