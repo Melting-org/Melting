@@ -27,4 +27,10 @@
 		WHERE memberid = #{memberid}
 	</select>
 	
+	<select id="nameCheck" parameterType="String" resultType="String">
+		SELECT membername
+		FROM m_member
+		WHERE membername = #{membername}
+	</select>
+	
 </mapper>

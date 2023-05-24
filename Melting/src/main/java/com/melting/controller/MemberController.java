@@ -43,7 +43,7 @@ public class MemberController {
 		
 		if(result)
 			return "OK";
-		return "Fail";
+		return "FAIL";
 	}
 	
 	/*중복 아이디 확인 - 버튼용*/
@@ -52,6 +52,18 @@ public class MemberController {
 	public int idChk(Member member) {
 		int result = memberService.idChk(member);
 		return result;
+	}
+	
+	/*중복 닉네임 확인*/
+	@ResponseBody
+	@GetMapping("/nameCheck")
+	public String nameCheck(String membername) {
+		System.out.println("전달된 name :"+ membername);
+		boolean result = memberService.nameCheck(membername);
+		
+		if(result)
+			return "OK";
+		return "FAIL";
 	}
 
 }

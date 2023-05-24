@@ -6,6 +6,7 @@
 <script th:inline="javascript" th:src="@{/script/member.js}"></script>
 <script th:inline="javascript" th:src="@{/script/jquery-3.6.3.min.js}"></script>
 <script th:inline="javascript" th:src="@{/script/idcheck.js}"></script>
+<script th:inline="javascript" th:src="@{/script/namecheck.js}"></script>
 </head>
 <body>
 	<h2>[ 회원 가입 ]</h2>
@@ -29,7 +30,10 @@
 			</tr>
 			<tr>
 				<th>닉네임</th>
-				<td><input type="text" name="membername" placeholder="닉네임 입력"></td>
+				<td>
+					<input type="text" name="membername" id="membername" placeholder="닉네임 입력">
+					<span id="checkResult2"></span>
+				</td>
 			</tr>
 			<tr>
 				<th>이메일</th>

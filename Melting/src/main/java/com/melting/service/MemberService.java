@@ -10,5 +10,7 @@ public interface MemberService {
 
 	public int idChk(Member member);
 
+	public boolean nameCheck(String membername);
+
 
 }

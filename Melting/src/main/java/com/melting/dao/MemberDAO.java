@@ -13,5 +13,7 @@ public interface MemberDAO {
 
 	public int idChk(Member member);
 
+	public String nameCheck(String membername);
+
 
 }

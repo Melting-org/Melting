@@ -38,5 +38,13 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	public boolean nameCheck(String membername) {
+		String result = memberDao.nameCheck(membername);
+		if(result == null)
+			return true;
+		return false;
+	}
+
 
 }

@@ -15,13 +15,13 @@ $(function(){
 		
 		$.ajax({
 			method : "GET"
-			, url : "./idCheck"
+			, url : "idCheck"
 			, data : {"memberid" : mid}
 			, success : function(resp) {	
 				if(resp == "OK") {  
 					$("#checkResult").css("color", "blue");
 					$("#checkResult").text('사용가능한 아이디입니다.');
-				} else if(resp == "Fail") {
+				} else if(resp == "FAIL") {
 					$("#checkResult").css("color", "red");
 					$("#checkResult").text('사용할 수 없는 아이디입니다.');
 				}
