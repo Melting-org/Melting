@@ -52,5 +52,5 @@
 		SET viewscnt = viewscnt + 1
 		WHERE boardseq = #{boardseq}
 	</update>
-		
+	
 </mapper>

@@ -57,7 +57,19 @@
 		</div>
 		<!-- <button type ="button" id="btnRecommend">추천하기</button> -->
 		
-	
+		<!-- 댓글 처리 영역 -->
+		<!-- 댓글 입력 창 -->
+		<form th:action="@{/reply/replywrite}" method="POST">
+			<input type="hidden" id="boardseq"  name="boardseq" th:value="${board.boardseq}">
+			<input type="text"   id="replytxt" name="replytxt">
+			<input type="button" id="replybtn" value="등록">
+		</form>
+		<br>
+		
+		<!-- 댓글 출력창 -->
+		<span id="loginID" th:text="${#authentication.name}" style="display:none"></span>
+		<div id="replyResult"></div>
+		
 	</div>
 </body>
 </html>
