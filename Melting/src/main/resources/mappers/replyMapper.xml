@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.melting.dao.ReplyDAO">
+
+	<insert id="writeReply" parameterType="Reply">
+		INSERT INTO m_reply
+		(replyseq, boardseq, memberid, replytxt)
+		VALUES
+		(m_reply_seq.NEXTVAL, #{boardseq}, #{memberid}, #{replytxt})
+	</insert>
+	
+	<select id="listReply" parameterType="int" resultType="Reply">
+		SELECT
+			replyseq, boardseq, memberid, 
+			replytxt, to_char(regdate, 'YYYY/MM/DD') as regdate
+		FROM m_reply
+		WHERE boardseq = #{boardseq}
+	</select>
+	
+	<delete id="deleteReply" parameterType="int">
+		DELETE reply
+		WHERE replyseq = #{replyseq}
+	</delete>
+</mapper>
