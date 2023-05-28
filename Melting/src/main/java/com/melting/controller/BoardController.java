@@ -53,6 +53,7 @@ public class BoardController {
 		Board board = boardService.read(boardseq);
 		boardService.updateViewsCount(boardseq);
 		model.addAttribute("board", board);
+		System.out.println(board);
 		return "/board/read";
 	}
 	

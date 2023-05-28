@@ -45,7 +45,7 @@
 							<th>등록일</th>
 						</tr>
 					
-						<tr th:each="board :${list}">
+						<tr th:each="board : ${list}">
 							<td> 
 								<span th:if="${board.kind=='free'}">자유</span>
 								<span th:if="${board.kind=='humor'}">유머</span>

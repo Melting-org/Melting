@@ -6,10 +6,10 @@ import com.melting.domain.Reply;
 
 public interface ReplyService {
 
-	int writeReply(Reply reply);
+	public int writeReply(Reply reply);
 
-	List<Reply> listReply(int boardseq);
+	public List<Reply> listReply(int boardseq);
 
-	int deleteReply(int replyseq);
+	public int deleteReply(int replyseq);
 
 }

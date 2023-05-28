@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
 <link rel="stylesheet" type="text/css" href="css/board/read.css">
-<!-- <script th:src="@{/script/jquery-3.6.3.min.js}"></script> -->
-<script th:src="@{/script/reply.js}"></script>
+<!-- <script th:src="@{/script/jquery-3.6.3.min.js}"></script>
+<script th:src="@{/script/reply.js}"></script> -->
 </head>
 <body>
 	<div id="header">
@@ -57,18 +57,60 @@
 		</div>
 		<!-- <button type ="button" id="btnRecommend">추천하기</button> -->
 		
+		<br><hr><br>
+		<!-- 댓글 목록 -->
+		<ul>
+			<li>
+				<div>
+					<p>첫번째 댓글 작성자</p>
+					<p>첫번째 댓글</p>
+				</div>
+			</li>
+			<li>
+				<div>
+					<p>두번째 댓글 작성자</p>
+					<p>두번째 댓글</p>
+				</div>
+			</li>
+			<li>
+				<div>
+					<p>세번째 댓글 작성자</p>
+					<p>세번째 댓글</p>
+				</div>
+			</li>
+		</ul>
+		
+		<div th:each="reply : ${replylist}">
+		<input type="hidden" name="boardseq"  th:value="${board.boardseq}">
+		  <div>
+		    <p>작성자: <span th:text="${reply.memberid}"></span></p>
+		    <p>내용: <span th:text="${reply.replytxt}"></span></p>
+		    <hr>
+		  </div>
+		</div>
+
+		<!-- 댓글 작성 폼 -->
+		<form action="#" th:action="@{/reply/replywrite}" method="post">
+		  <input type="hidden" name="boardseq"  th:value="${board.boardseq}">
+		  <input type="text"   id="replytxt" name="replytxt">
+		  <button type="submit">댓글 등록하기</button>
+		</form>
+		
+		
+		
+		
 		<!-- 댓글 처리 영역 -->
 		<!-- 댓글 입력 창 -->
-		<form th:action="@{/reply/replywrite}" method="POST">
+		<!-- <form th:action="@{/reply/replywrite}" method="POST">
 			<input type="hidden" id="boardseq"  name="boardseq" th:value="${board.boardseq}">
 			<input type="text"   id="replytxt" name="replytxt">
 			<input type="button" id="replybtn" value="등록">
 		</form>
-		<br>
+		<br> -->
 		
 		<!-- 댓글 출력창 -->
-		<span id="loginID" th:text="${#authentication.name}" style="display:none"></span>
-		<div id="replyResult"></div>
+		<!-- <span id="loginID" th:text="${#authentication.name}" style="display:none"></span>
+		<div id="replyResult"></div> -->
 		
 	</div>
 </body>

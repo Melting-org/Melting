@@ -10,6 +10,7 @@ import com.melting.domain.Reply;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
+	
 	@Autowired
 	ReplyDAO replyDao;
 

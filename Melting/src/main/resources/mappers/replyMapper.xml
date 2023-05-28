@@ -9,7 +9,7 @@
 		INSERT INTO m_reply
 		(replyseq, boardseq, memberid, replytxt)
 		VALUES
-		(m_reply_seq.NEXTVAL, #{boardseq}, #{memberid}, #{replytxt})
+		(m_reply_seq.NEXTVAL, #{boardseq}, #{memberid, jdbcType=VARCHAR}, #{replytxt})
 	</insert>
 	
 	<select id="listReply" parameterType="int" resultType="Reply">
