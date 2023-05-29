@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:each="crawling : ${crawling}">
+		<div><span th:text="${crawling.title}"></span></div>
+	</div>
+</body>
+</html>
