@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
 <link rel="stylesheet" type="text/css" href="css/board/read.css">
-<!-- <script th:src="@{/script/jquery-3.6.3.min.js}"></script>
-<script th:src="@{/script/reply.js}"></script> -->
+<script th:src="@{/script/jquery-3.6.3.min.js}"></script>
+<script th:src="@{/script/reply.js}"></script>
 </head>
 <body>
 	<div id="header">
@@ -72,19 +72,14 @@
 					<p>두번째 댓글</p>
 				</div>
 			</li>
-			<li>
-				<div>
-					<p>세번째 댓글 작성자</p>
-					<p>세번째 댓글</p>
-				</div>
-			</li>
 		</ul>
 		
 		<div th:each="reply : ${replylist}">
-		<input type="hidden" name="boardseq"  th:value="${board.boardseq}">
+		<input type="hidden" name="boardseq" id="boardseq" th:value="${board.boardseq}">
 		  <div>
-		    <p>작성자: <span th:text="${reply.memberid}"></span></p>
-		    <p>내용: <span th:text="${reply.replytxt}"></span></p>
+ 		    <p>작성자: <span id="membername" th:text="${reply.membername}"></span></p>
+		    <p>내용: <span id="replytxt" th:text="${reply.replytxt}"></span></p>
+	    	<div th:text="${reply}"></div>
 		    <hr>
 		  </div>
 		</div>
@@ -92,10 +87,11 @@
 		<!-- 댓글 작성 폼 -->
 		<form action="#" th:action="@{/reply/replywrite}" method="post">
 		  <input type="hidden" name="boardseq"  th:value="${board.boardseq}">
-		  <input type="text"   id="replytxt" name="replytxt">
+		  <input type="text" name="membername" placeholder="작성자">
+		  <input type="text"   id="replytxt" name="replytxt" placeholder="내용">
 		  <button type="submit">댓글 등록하기</button>
 		</form>
-		
+		<br><br><br>
 		
 		
 		

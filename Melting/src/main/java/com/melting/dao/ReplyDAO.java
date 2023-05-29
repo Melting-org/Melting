@@ -15,4 +15,5 @@ public interface ReplyDAO {
 
 	public int deleteReply(int replyseq);
 
+
 }

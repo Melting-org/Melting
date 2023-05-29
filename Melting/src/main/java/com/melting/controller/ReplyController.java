@@ -17,6 +17,7 @@ import com.melting.service.ReplyService;
 
 @Controller
 public class ReplyController {
+	
 	@Autowired
 	ReplyService replyService;
 	
@@ -24,20 +25,16 @@ public class ReplyController {
 	@PostMapping("reply/replywrite")
 	public String replyWrite(Reply reply, Board board) {
 		int result = replyService.writeReply(reply);
-		System.out.println(result);
 		return "redirect:/read?boardseq="+board.getBoardseq();
 	}
 	
 	/*댓글 목록 출력하기*/
 	@GetMapping("reply/replylist")
-	public String replyList(int boardseq, Model model) {
+	public void replyList(int boardseq, Model model) {
 		List<Reply> replylist = replyService.listReply(boardseq);
 		model.addAttribute("replylist", replylist);
 		System.out.println(replylist);
-		return "/board/read";
 	}
-	
-	
 	
 	
 //	@PostMapping("reply/replywrite")

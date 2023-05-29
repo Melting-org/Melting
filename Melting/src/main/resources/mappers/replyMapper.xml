@@ -7,15 +7,13 @@
 
 	<insert id="writeReply" parameterType="Reply">
 		INSERT INTO m_reply
-		(replyseq, boardseq, memberid, replytxt)
+		(replyseq, boardseq, membername, replytxt)
 		VALUES
-		(m_reply_seq.NEXTVAL, #{boardseq}, #{memberid, jdbcType=VARCHAR}, #{replytxt})
+		(m_reply_seq.NEXTVAL, #{boardseq}, #{membername}, #{replytxt})
 	</insert>
 	
-	<select id="listReply" parameterType="int" resultType="Reply">
-		SELECT
-			replyseq, boardseq, memberid, 
-			replytxt, to_char(regdate, 'YYYY/MM/DD') as regdate
+ 	<select id="listReply" parameterType="int" resultType="Reply">
+		SELECT *
 		FROM m_reply
 		WHERE boardseq = #{boardseq}
 	</select>

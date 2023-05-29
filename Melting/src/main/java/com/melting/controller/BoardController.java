@@ -12,7 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.melting.domain.Board;
 import com.melting.domain.Member;
+import com.melting.domain.Reply;
 import com.melting.service.BoardService;
+import com.melting.service.ReplyService;
 
 @Controller
 public class BoardController {
@@ -53,7 +55,6 @@ public class BoardController {
 		Board board = boardService.read(boardseq);
 		boardService.updateViewsCount(boardseq);
 		model.addAttribute("board", board);
-		System.out.println(board);
 		return "/board/read";
 	}
 	

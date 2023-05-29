@@ -12,4 +12,5 @@ public interface ReplyService {
 
 	public int deleteReply(int replyseq);
 
+
 }

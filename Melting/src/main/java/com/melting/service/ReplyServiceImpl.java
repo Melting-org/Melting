@@ -22,8 +22,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public List<Reply> listReply(int boardseq) {
-		List<Reply> list = replyDao.listReply(boardseq);
-		return list;
+		return replyDao.listReply(boardseq);
 	}
 
 	@Override
@@ -31,5 +30,6 @@ public class ReplyServiceImpl implements ReplyService {
 		int result = replyDao.deleteReply(replyseq);
 		return result;
 	}
+
 
 }
