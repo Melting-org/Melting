@@ -20,9 +20,9 @@ public class Crawling {
 	private String title;
 	private String replycnt;
 	private String kind;
+	private String link;
 //	private String writer;
 //	private String regdate;
-//	private String link;
 //	private int viewscnt;
 //	private int likecnt;
 	

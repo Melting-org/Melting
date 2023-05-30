@@ -46,47 +46,29 @@
 					<h3 class="array-like">추천순</h3>
 				</div>
 				<div class="boardlist">
-					<h1>DCinside Crawling Data</h1>
 				    <table border="1">
 				        <tr>
+				            <th>카테고리</th>
 				            <th>제목</th>
 				            <th>댓글수</th>
-				            <th>카테고리</th>
 				        </tr>
 				        <tr th:each="crawlingData : ${dcInsideDataList}">
-				            <td th:text="${crawlingData.title}"></td>
-				            <td th:text="${crawlingData.replycnt}"></td>
-				            <td th:text="${crawlingData.kind}"></td>
-				        </tr>
-				    </table>
-				
-				    <h1>FmKorea Crawling Data</h1>
-				    <table border="1">
-				        <tr>
-				            <th>제목</th>
-				            <th>댓글수</th>
-				            <th>카테고리</th>
-				        </tr>
-				        <tr th:each="crawlingData : ${fmKoreaDataList}">
-				            <td th:text="${crawlingData.title}"></td>
-				            <td th:text="${crawlingData.replycnt}"></td>
-				            <td th:text="${crawlingData.kind}"></td>
-				        </tr>
-				    </table>
-    
-				    <h1>뽐뿌 Crawling Data</h1>
-				    <table border="1">
-				        <tr>
-				            <th>제목</th>
-				            <th>댓글수</th>
-				            <th>카테고리</th>
-				        </tr>
-				        <tr th:each="crawlingData : ${ppomppuDataList}">
-				            <td th:text="${crawlingData.title}"></td>
-				            <td th:text="${crawlingData.replycnt}"></td>
-				            <td th:text="${crawlingData.kind}"></td>
-				        </tr>
-				    </table>
+					        <td th:text="${crawlingData.kind}"></td>
+					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
+					        <td th:text="${crawlingData.replycnt}"></td>
+					    </tr>
+					    <tr th:each="crawlingData : ${fmKoreaDataList}">
+					        <td th:text="${crawlingData.kind}"></td>
+					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
+					        <td th:text="${crawlingData.replycnt}"></td>
+					    </tr>
+					    <tr th:each="crawlingData : ${ppomppuDataList}">
+					        <td th:text="${crawlingData.kind}"></td>
+					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
+					        <td th:text="${crawlingData.replycnt}"></td>
+					        
+					    </tr>
+					</table>
 				</div>
 			</div>	
 		</div>

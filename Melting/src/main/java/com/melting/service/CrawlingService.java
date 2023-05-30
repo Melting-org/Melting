@@ -30,6 +30,9 @@ public class CrawlingService {
             Elements titles = document.select("div.box.besttxt > p");
             Elements replycnts = document.select("div.box.besttxt > span");
             Elements kinds = document.select("div.box.best_info > span.name");
+            Elements links = document.select(".main_log");
+            
+            
 
             // 최대 10개의 제목과 댓글 수 저장
             int count = Math.min(10, titles.size()); // 10개 이하의 게시물만 가져오기 위해 크기 제한
@@ -42,8 +45,12 @@ public class CrawlingService {
                 
                 Element kindElement = kinds.get(i);
                 String kind = kindElement.text();
+                
+                Element linkElement = links.get(i);
+                String link = linkElement.attr("href");
+//                String link = linkElement.hasAttr("href") ? linkElement.attr("href") : "";
 
-                Crawling crawling = new Crawling(title, replycnt, kind);
+                Crawling crawling = new Crawling(title, replycnt, kind, link);
                 crawlingDataList.add(crawling);
                 
             }
@@ -64,6 +71,7 @@ public class CrawlingService {
             Elements titles = document.select(".title > a");
             Elements replycnts = document.select(".title > a > span");
             Elements kinds = document.select(".category");
+            Elements links = document.select(".hotdeal_var8");
 
             int count = Math.min(10, titles.size());
             for (int i = 0; i < count; i++) {
@@ -75,8 +83,12 @@ public class CrawlingService {
                 
                 Element kindElement = kinds.get(i);
                 String kind = kindElement.text();
+                
+                Element linkElement = links.get(i);
+                String link = "https://www.fmkorea.com/"+linkElement.attr("href");
 
-                Crawling crawling = new Crawling(title, replycnt, kind);
+
+                Crawling crawling = new Crawling(title, replycnt, kind, link);
                 crawlingDataList.add(crawling);
                 
             }
@@ -97,6 +109,7 @@ public class CrawlingService {
             Elements titles = document.select(".line .title");
             Elements replycnts = document.select(".list_comment2");
             Elements kinds = document.select(".board_left a");
+            Elements links = document.select(".line .title");	
 
             int count = Math.min(10, titles.size());
             for (int i = 0; i < count; i++) {
@@ -108,8 +121,11 @@ public class CrawlingService {
                 
                 Element kindElement = kinds.get(i+1);
                 String kind = kindElement.text();
+                
+                Element linkElement = links.get(i);
+                String link = "https://www.ppomppu.co.kr"+linkElement.attr("href");
 
-                Crawling crawling = new Crawling(title, replycnt, kind);
+                Crawling crawling = new Crawling(title, replycnt, kind, link);
                 crawlingDataList.add(crawling);
                 
             }
