@@ -18,11 +18,11 @@ import lombok.ToString;
 public class Crawling {
 	
 	private String title;
+	private String replycnt;
+	private String kind;
 //	private String writer;
-//	private String kind;
 //	private String regdate;
 //	private String link;
-//	private int replycnt;
 //	private int viewscnt;
 //	private int likecnt;
 	

@@ -46,10 +46,47 @@
 					<h3 class="array-like">추천순</h3>
 				</div>
 				<div class="boardlist">
-					<ul>
-					  <li> Item two </li>
-					  <li> Item two </li>
-					</ul>
+					<h1>DCinside Crawling Data</h1>
+				    <table border="1">
+				        <tr>
+				            <th>제목</th>
+				            <th>댓글수</th>
+				            <th>카테고리</th>
+				        </tr>
+				        <tr th:each="crawlingData : ${dcInsideDataList}">
+				            <td th:text="${crawlingData.title}"></td>
+				            <td th:text="${crawlingData.replycnt}"></td>
+				            <td th:text="${crawlingData.kind}"></td>
+				        </tr>
+				    </table>
+				
+				    <h1>FmKorea Crawling Data</h1>
+				    <table border="1">
+				        <tr>
+				            <th>제목</th>
+				            <th>댓글수</th>
+				            <th>카테고리</th>
+				        </tr>
+				        <tr th:each="crawlingData : ${fmKoreaDataList}">
+				            <td th:text="${crawlingData.title}"></td>
+				            <td th:text="${crawlingData.replycnt}"></td>
+				            <td th:text="${crawlingData.kind}"></td>
+				        </tr>
+				    </table>
+    
+				    <h1>뽐뿌 Crawling Data</h1>
+				    <table border="1">
+				        <tr>
+				            <th>제목</th>
+				            <th>댓글수</th>
+				            <th>카테고리</th>
+				        </tr>
+				        <tr th:each="crawlingData : ${ppomppuDataList}">
+				            <td th:text="${crawlingData.title}"></td>
+				            <td th:text="${crawlingData.replycnt}"></td>
+				            <td th:text="${crawlingData.kind}"></td>
+				        </tr>
+				    </table>
 				</div>
 			</div>	
 		</div>

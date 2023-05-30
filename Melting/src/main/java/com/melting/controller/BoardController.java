@@ -11,18 +11,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.melting.domain.Board;
+import com.melting.domain.Crawling;
 import com.melting.domain.Member;
-import com.melting.domain.Reply;
 import com.melting.service.BoardService;
-import com.melting.service.ReplyService;
+import com.melting.service.CrawlingService;
 
 @Controller
-public class BoardController {
+public class BoardController{
+	private final CrawlingService crawlingService;
+	
 	@Autowired
 	BoardService boardService;
 	
+	public BoardController(CrawlingService crawlingService) {
+        this.crawlingService = crawlingService;
+    }
+	
 	@GetMapping({"/", ""})
-	public String main() {
+	public String main(Model model) {
+		List<Crawling> dcInsideDataList = crawlingService.getDcInsideCrawlingData();
+        List<Crawling> fmKoreaDataList = crawlingService.getFmKoreaCrawlingData();
+        List<Crawling> ppomppuDataList = crawlingService.getPpomppuCrawlingData();
+
+        model.addAttribute("dcInsideDataList", dcInsideDataList);
+        model.addAttribute("fmKoreaDataList", fmKoreaDataList);
+        model.addAttribute("ppomppuDataList",ppomppuDataList);
+        
+        System.out.println(dcInsideDataList);
+        System.out.println(fmKoreaDataList);
+        System.out.println(ppomppuDataList);
+        
 		return "/main";
 	}
 	
