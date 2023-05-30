@@ -13,18 +13,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.melting.domain.Board;
 import com.melting.domain.Crawling;
 import com.melting.domain.Member;
+import com.melting.domain.Reply;
 import com.melting.service.BoardService;
 import com.melting.service.CrawlingService;
+import com.melting.service.ReplyService;
 
 @Controller
 public class BoardController{
 	private final CrawlingService crawlingService;
+	private final ReplyService replyService;
 	
 	@Autowired
 	BoardService boardService;
 	
-	public BoardController(CrawlingService crawlingService) {
+	public BoardController(CrawlingService crawlingService, ReplyService replyService) {
         this.crawlingService = crawlingService;
+        this.replyService = replyService;
     }
 	
 	@GetMapping({"/", ""})
@@ -36,10 +40,6 @@ public class BoardController{
         model.addAttribute("dcInsideDataList", dcInsideDataList);
         model.addAttribute("fmKoreaDataList", fmKoreaDataList);
         model.addAttribute("ppomppuDataList",ppomppuDataList);
-        
-        System.out.println(dcInsideDataList);
-        System.out.println(fmKoreaDataList);
-        System.out.println(ppomppuDataList);
         
 		return "/main";
 	}
@@ -73,6 +73,10 @@ public class BoardController{
 		Board board = boardService.read(boardseq);
 		boardService.updateViewsCount(boardseq);
 		model.addAttribute("board", board);
+		
+		List<Reply> replylist = replyService.listReply(boardseq);
+		model.addAttribute("replylist", replylist);
+		System.out.println(replylist);
 		return "/board/read";
 	}
 	
@@ -102,6 +106,9 @@ public class BoardController{
 		System.out.println("board 글 수정됨");
 		return "redirect:/board/newlist";
 	}
+
+
+
 	
 	
 	

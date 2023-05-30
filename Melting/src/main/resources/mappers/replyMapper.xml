@@ -16,6 +16,7 @@
 		SELECT *
 		FROM m_reply
 		WHERE boardseq = #{boardseq}
+		ORDER BY regdate DESC
 	</select>
 	
 	<delete id="deleteReply" parameterType="int">

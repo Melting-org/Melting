@@ -59,27 +59,12 @@
 		
 		<br><hr><br>
 		<!-- 댓글 목록 -->
-		<ul>
-			<li>
-				<div>
-					<p>첫번째 댓글 작성자</p>
-					<p>첫번째 댓글</p>
-				</div>
-			</li>
-			<li>
-				<div>
-					<p>두번째 댓글 작성자</p>
-					<p>두번째 댓글</p>
-				</div>
-			</li>
-		</ul>
-		
 		<div th:each="reply : ${replylist}">
 		<input type="hidden" name="boardseq" id="boardseq" th:value="${board.boardseq}">
 		  <div>
  		    <p>작성자: <span id="membername" th:text="${reply.membername}"></span></p>
 		    <p>내용: <span id="replytxt" th:text="${reply.replytxt}"></span></p>
-	    	<div th:text="${reply}"></div>
+		    <p>작성일: <span th:text="${reply.regdate}"></span></p>
 		    <hr>
 		  </div>
 		</div>
@@ -92,7 +77,6 @@
 		  <button type="submit">댓글 등록하기</button>
 		</form>
 		<br><br><br>
-		
 		
 		
 		<!-- 댓글 처리 영역 -->

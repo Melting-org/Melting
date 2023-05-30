@@ -22,19 +22,13 @@ public class CrawlingService {
         try {
             // 디시인사이드 실시간 베스트 URL
             String dcUrl = "https://www.dcinside.com/";
-
-            // Jsoup을 사용하여 웹 페이지에 연결하고 Document 객체를 가져옴
             Document document = Jsoup.connect(dcUrl).get();
 
-            // 실시간 베스트 게시물 제목과 댓글 수 선택
             Elements titles = document.select("div.box.besttxt > p");
             Elements replycnts = document.select("div.box.besttxt > span");
             Elements kinds = document.select("div.box.best_info > span.name");
             Elements links = document.select(".main_log");
             
-            
-
-            // 최대 10개의 제목과 댓글 수 저장
             int count = Math.min(10, titles.size()); // 10개 이하의 게시물만 가져오기 위해 크기 제한
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
@@ -48,7 +42,6 @@ public class CrawlingService {
                 
                 Element linkElement = links.get(i);
                 String link = linkElement.attr("href");
-//                String link = linkElement.hasAttr("href") ? linkElement.attr("href") : "";
 
                 Crawling crawling = new Crawling(title, replycnt, kind, link);
                 crawlingDataList.add(crawling);
@@ -85,7 +78,7 @@ public class CrawlingService {
                 String kind = kindElement.text();
                 
                 Element linkElement = links.get(i);
-                String link = "https://www.fmkorea.com/"+linkElement.attr("href");
+                String link = "https://www.fmkorea.com"+linkElement.attr("href");
 
 
                 Crawling crawling = new Crawling(title, replycnt, kind, link);
