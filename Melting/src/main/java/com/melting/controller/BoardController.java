@@ -4,6 +4,7 @@ package com.melting.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,23 +17,36 @@ import com.melting.domain.Member;
 import com.melting.domain.Reply;
 import com.melting.service.BoardService;
 import com.melting.service.CrawlingService;
+import com.melting.service.MemberService;
 import com.melting.service.ReplyService;
 
 @Controller
 public class BoardController{
 	private final CrawlingService crawlingService;
 	private final ReplyService replyService;
+	private final MemberService memberService;
 	
 	@Autowired
 	BoardService boardService;
 	
-	public BoardController(CrawlingService crawlingService, ReplyService replyService) {
+	public BoardController(CrawlingService crawlingService, ReplyService replyService, MemberService memberService) {
         this.crawlingService = crawlingService;
         this.replyService = replyService;
+        this.memberService = memberService;
     }
 	
 	@GetMapping({"/", ""})
-	public String main(Model model) {
+	public String main(Model model, Authentication authentication) {
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		// 크롤링 List
 		List<Crawling> dcInsideDataList = crawlingService.getDcInsideCrawlingData();
         List<Crawling> fmKoreaDataList = crawlingService.getFmKoreaCrawlingData();
         List<Crawling> ppomppuDataList = crawlingService.getPpomppuCrawlingData();
@@ -69,15 +83,25 @@ public class BoardController{
 	
 	/*게시글 읽기 화면 요청*/
 	@GetMapping("/read")
-	public String read(int boardseq, Model model) {
+	public String read(int boardseq, Model model, Authentication authentication) {
 		Board board = boardService.read(boardseq);
 		boardService.updateViewsCount(boardseq);
 		model.addAttribute("board", board);
 		
+		// 댓글 목록 출력
 		List<Reply> replylist = replyService.listReply(boardseq);
 		model.addAttribute("replylist", replylist);
-		System.out.println(replylist);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
 		return "/board/read";
+		
 	}
 	
 	/*게시글 삭제*/

@@ -12,5 +12,8 @@ public interface MemberService {
 
 	public boolean nameCheck(String membername);
 
+	public Member getMemberUsername(String username);
+
+
 
 }

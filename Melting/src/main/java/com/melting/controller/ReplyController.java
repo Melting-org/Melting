@@ -25,16 +25,11 @@ public class ReplyController {
 	@PostMapping("reply/replywrite")
 	public String replyWrite(Reply reply, Board board) {
 		int result = replyService.writeReply(reply);
+		System.out.println(reply);
 		return "redirect:/read?boardseq="+board.getBoardseq();
 	}
 	
-	/*댓글 목록 출력하기*/
-	@GetMapping("reply/replylist")
-	public void replyList(int boardseq, Model model) {
-		List<Reply> replylist = replyService.listReply(boardseq);
-		model.addAttribute("replylist", replylist);
-		System.out.println(replylist);
-	}
+	
 	
 	
 //	@PostMapping("reply/replywrite")

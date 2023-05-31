@@ -15,5 +15,7 @@ public interface MemberDAO {
 
 	public String nameCheck(String membername);
 
+	public Member getMemberByUsername(String username);
+
 
 }

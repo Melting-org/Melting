@@ -72,7 +72,8 @@
 		<!-- 댓글 작성 폼 -->
 		<form action="#" th:action="@{/reply/replywrite}" method="post">
 		  <input type="hidden" name="boardseq"  th:value="${board.boardseq}">
-		  <input type="text" name="membername" placeholder="작성자">
+		  <input type="hidden" name="membername" th:value="${membername}">
+		  <!-- <input type="text" name="membername" placeholder="작성자"> -->
 		  <input type="text"   id="replytxt" name="replytxt" placeholder="내용">
 		  <button type="submit">댓글 등록하기</button>
 		</form>

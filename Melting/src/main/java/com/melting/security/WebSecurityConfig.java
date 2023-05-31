@@ -58,8 +58,11 @@ public class WebSecurityConfig {
 		.usersByUsernameQuery(
 				"select memberid username, memberpwd password, enabled "
 				+ "from m_member "
-				+ "where memberid = ?"
+				+ "where memberid= ?"
+				
+				
 				)
+		
 		
 		.authoritiesByUsernameQuery(
 				"select memberid username, rolename role_name "

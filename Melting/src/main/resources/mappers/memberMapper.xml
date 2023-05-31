@@ -33,4 +33,10 @@
 		WHERE membername = #{membername}
 	</select>
 	
+	<select id="getMemberByUsername" parameterType="String" resultType="Member">
+        SELECT membername
+        FROM m_member
+        WHERE memberid = #{username}
+    </select>
+	
 </mapper>
