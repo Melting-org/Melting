@@ -55,6 +55,17 @@ public class BoardController{
         model.addAttribute("fmKoreaDataList", fmKoreaDataList);
         model.addAttribute("ppomppuDataList",ppomppuDataList);
         
+        // 크롤링 DB 저장
+        for (Crawling crawling : dcInsideDataList) {
+            crawlingService.saveCrawlingData(crawling);
+        }
+        for (Crawling crawling : fmKoreaDataList) {
+            crawlingService.saveCrawlingData(crawling);
+        }
+        for (Crawling crawling : ppomppuDataList) {
+            crawlingService.saveCrawlingData(crawling);
+        }
+        
 		return "/main";
 	}
 	

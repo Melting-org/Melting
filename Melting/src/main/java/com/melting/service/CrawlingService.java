@@ -9,12 +9,17 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.melting.dao.CrawlingDAO;
 import com.melting.domain.Crawling;
 
 @Service
 public class CrawlingService {
+	
+	@Autowired
+	CrawlingDAO crawlingDao;
 		
 	public List<Crawling> getDcInsideCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
@@ -45,6 +50,10 @@ public class CrawlingService {
 
                 Crawling crawling = new Crawling(title, replycnt, kind, link);
                 crawlingDataList.add(crawling);
+                
+                // 데이터를 DB에 저장
+//                crawlingDao.insertCrawlingData(crawling);
+            
                 
             }
         } catch (IOException e) {
@@ -128,6 +137,11 @@ public class CrawlingService {
 
         return crawlingDataList;
     }
+
+	public boolean saveCrawlingData(Crawling crawling) {
+		return crawlingDao.saveCrawlingData(crawling);
+		
+	}
     
     
 	
