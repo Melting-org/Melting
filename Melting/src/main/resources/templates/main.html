@@ -19,8 +19,8 @@
 				<div class="free">자유</div>
 			</div>
  			<div class="my">
- 				<div class="join"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/join}">회원가입</a></div>
- 				<div class="login"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
+ 				<div class="join" sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/join}">회원가입</a></div>
+ 				<div class="login" sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
  				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{#}" th:text="${membername} + '님'"></a></div>
  				<div class="logout" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
  			</div>				
@@ -31,11 +31,15 @@
 		<div id="left">
 			<div class="hit-area">
 				<div class="hit-title"><h2>오늘의 HIT!</h2></div>
-				<div class="hit-contents">
-					<a><img src="images/grayphoto.png"></a>
-					<a><img src="images/grayphoto.png"></a>
-					<a><img src="images/grayphoto.png"></a>
-					<a><img src="images/grayphoto.png"></a>
+				<div th:each="crawlingData : ${hitList}">
+					<ul class="hit-list">
+						<li class="hit-l">
+							<a th:href="${crawlingData.link}">
+					            <span><img th:src="${crawlingData.image}" /></span>
+					            <span class="hit-title2" th:text="${crawlingData.title}"></span>
+					        </a>
+						</li>
+					</ul>
 				</div>
 			</div>
 			
@@ -66,7 +70,6 @@
 					        <td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
 					        <td th:text="${crawlingData.replycnt}"></td>
-					        
 					    </tr>
 					</table>
 				</div>

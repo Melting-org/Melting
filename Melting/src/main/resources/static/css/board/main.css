@@ -162,16 +162,32 @@ a {
 	border-bottom:1px solid black;
 }
 
-.hit-contents {
-	width:100%;
-	margin-top: 10px;
+.hit-list {
+     list-style:none;
 }
 
-.hit-contents img {
+.hit-list li {
+	position:relative;
 	float:left;
-	padding:4px;
-	width: 182px;
-	height: 114px;
+}
+
+.hit-l {
+	height:114px;
+	width:auto;
+	/* margin-left:12px; */
+}
+
+.hit-l img {
+	height:114px;
+	width:182px;
+}
+
+.hit-title2 {
+    width: 171px;
+    height: 42px;
+    position:absolute;
+    top:120px;
+    left:1px;
 }
 
 .board {

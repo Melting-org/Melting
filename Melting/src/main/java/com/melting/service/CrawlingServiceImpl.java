@@ -48,9 +48,14 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element linkElement = links.get(i);
                 String link = linkElement.attr("href");
 
-                Crawling crawling = new Crawling(title, replycnt, kind, link);
+                Crawling crawling = Crawling.builder()
+                        .title(title)
+                        .replycnt(replycnt)
+                        .kind(kind)
+                        .link(link)
+                        .build();
+
                 crawlingDataList.add(crawling);
-                
             }
             
         } catch (IOException e) {
@@ -87,7 +92,13 @@ public class CrawlingServiceImpl implements CrawlingService {
                 String link = "https://www.fmkorea.com"+linkElement.attr("href");
 
 
-                Crawling crawling = new Crawling(title, replycnt, kind, link);
+                Crawling crawling = Crawling.builder()
+                        .title(title)
+                        .replycnt(replycnt)
+                        .kind(kind)
+                        .link(link)
+                        .build();
+                
                 crawlingDataList.add(crawling);
                 
             }
@@ -124,7 +135,13 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element linkElement = links.get(i);
                 String link = "https://www.ppomppu.co.kr"+linkElement.attr("href");
 
-                Crawling crawling = new Crawling(title, replycnt, kind, link);
+                Crawling crawling = Crawling.builder()
+                        .title(title)
+                        .replycnt(replycnt)
+                        .kind(kind)
+                        .link(link)
+                        .build();
+                
                 crawlingDataList.add(crawling);
                 
             }
@@ -168,6 +185,50 @@ public class CrawlingServiceImpl implements CrawlingService {
                 crawlingDataList.add(crawling);
                 
             }
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return crawlingDataList;
+	}
+
+	@Override
+	public List<Crawling> getHitCrawlingData() {
+		List<Crawling> crawlingDataList = new ArrayList<>();
+		
+		try {
+			
+			String dcUrl = "https://www.dcinside.com/";
+            Document document = Jsoup.connect(dcUrl).get();
+
+            Elements titles = document.select(".txt_box .tit");
+            Elements images = document.select(".img_box img");
+            Elements links = document.select(".link_thumb.main_log");
+            
+            int count = Math.min(4, images.size());
+            for (int i = 0; i < count; i++) {
+            	
+            	Element titleElement = titles.get(i);
+                String title = titleElement.text();
+            	
+                Element imageElement = images.get(i);
+                String image = imageElement.attr("src");
+                
+                Element linkElement = links.get(i);
+                String link = linkElement.attr("href");
+
+                Crawling crawling = Crawling.builder()
+                		.title(title)
+                        .image(image)
+                        .link(link)
+                        .build();
+
+                crawlingDataList.add(crawling);
+                
+            }
+            
+            
 			
 		} catch (IOException e) {
 			e.printStackTrace();
