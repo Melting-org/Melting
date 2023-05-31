@@ -16,11 +16,11 @@
 		SELECT *
 		FROM m_reply
 		WHERE boardseq = #{boardseq}
-		ORDER BY regdate DESC
+		ORDER BY regdate ASC
 	</select>
 	
 	<delete id="deleteReply" parameterType="int">
-		DELETE reply
+		DELETE m_reply
 		WHERE replyseq = #{replyseq}
 	</delete>
 </mapper>

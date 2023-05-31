@@ -1,15 +1,9 @@
 package com.melting.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.melting.domain.Board;
 import com.melting.domain.Reply;
@@ -22,14 +16,20 @@ public class ReplyController {
 	ReplyService replyService;
 	
 	/*댓글 달기*/
-	@PostMapping("reply/replywrite")
+	@PostMapping("/reply/replywrite")
 	public String replyWrite(Reply reply, Board board) {
 		int result = replyService.writeReply(reply);
 		System.out.println(reply);
 		return "redirect:/read?boardseq="+board.getBoardseq();
 	}
 	
-	
+	/*댓글 삭제*/
+	@GetMapping("/reply/replydelete")
+	public String replydelete(int replyseq) {
+		int result = replyService.deleteReply(replyseq);
+		System.out.println(result);
+		return "redirect:/";
+	}
 	
 	
 //	@PostMapping("reply/replywrite")

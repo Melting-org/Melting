@@ -65,6 +65,8 @@
  		    <p>작성자: <span id="membername" th:text="${reply.membername}"></span></p>
 		    <p>내용: <span id="replytxt" th:text="${reply.replytxt}"></span></p>
 		    <p>작성일: <span th:text="${reply.regdate}"></span></p>
+		    <a th:href="@{/reply/replydelete(replyseq=${reply.replyseq})}">댓글 삭제</a>
+		    
 		    <hr>
 		  </div>
 		</div>
