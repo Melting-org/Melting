@@ -51,10 +51,12 @@ public class BoardController{
 		List<Crawling> dcInsideDataList = crawlingService.getDcInsideCrawlingData();
         List<Crawling> fmKoreaDataList = crawlingService.getFmKoreaCrawlingData();
         List<Crawling> ppomppuDataList = crawlingService.getPpomppuCrawlingData();
+        List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
 
         model.addAttribute("dcInsideDataList", dcInsideDataList);
         model.addAttribute("fmKoreaDataList", fmKoreaDataList);
         model.addAttribute("ppomppuDataList",ppomppuDataList);
+        model.addAttribute("dcSearchList", dcSearchList);
         
         // 크롤링 DB 저장
         for (Crawling crawling : dcInsideDataList) {

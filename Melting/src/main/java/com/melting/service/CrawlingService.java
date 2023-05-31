@@ -14,4 +14,7 @@ public interface CrawlingService {
 
 	public boolean saveCrawlingData(Crawling crawling);
 
+	public List<Crawling> getDcSearchCrawlingData();
+
+
 }

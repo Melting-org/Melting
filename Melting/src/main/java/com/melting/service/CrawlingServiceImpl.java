@@ -75,7 +75,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             int count = Math.min(10, titles.size());
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
-                String title = titleElement.text();
+                String title = titleElement.ownText();
 
                 Element replycntElement = replycnts.get(i);
                 String replycnt = replycntElement.text();
@@ -138,6 +138,42 @@ public class CrawlingServiceImpl implements CrawlingService {
 	public boolean saveCrawlingData(Crawling crawling) {
 		return crawlingDao.saveCrawlingData(crawling);
 		
+	}
+
+	@Override
+	public List<Crawling> getDcSearchCrawlingData() {
+		List<Crawling> crawlingDataList = new ArrayList<>();
+		
+		try {
+			
+			String dcUrl = "https://www.dcinside.com/";
+            Document document = Jsoup.connect(dcUrl).get();
+
+            Elements titles = document.select(".rank_txt");
+            Elements links = document.select(".busygall");
+            
+            int count = Math.min(10, titles.size());
+            for (int i = 0; i < count; i++) {
+                Element titleElement = titles.get(i);
+                String title = titleElement.text();
+
+                Element linkElement = links.get(i);
+                String link = linkElement.attr("href");
+
+                Crawling crawling = Crawling.builder()
+                        .title(title)
+                        .link(link)
+                        .build();
+
+                crawlingDataList.add(crawling);
+                
+            }
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return crawlingDataList;
 	}
     
     
