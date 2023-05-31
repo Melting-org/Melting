@@ -32,7 +32,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements titles = document.select("div.box.besttxt > p");
             Elements replycnts = document.select("div.box.besttxt > span");
             Elements kinds = document.select("div.box.best_info > span.name");
-            Elements links = document.select(".main_log");
+            Elements links = document.select("div.time_best .main_log");
             
             int count = Math.min(10, titles.size()); // 10개 이하의 게시물만 가져오기 위해 크기 제한
             for (int i = 0; i < count; i++) {
