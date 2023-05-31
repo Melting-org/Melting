@@ -17,6 +17,7 @@ import com.melting.domain.Member;
 import com.melting.domain.Reply;
 import com.melting.service.BoardService;
 import com.melting.service.CrawlingService;
+import com.melting.service.CrawlingServiceImpl;
 import com.melting.service.MemberService;
 import com.melting.service.ReplyService;
 
