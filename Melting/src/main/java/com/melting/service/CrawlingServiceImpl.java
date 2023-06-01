@@ -47,12 +47,20 @@ public class CrawlingServiceImpl implements CrawlingService {
                 
                 Element linkElement = links.get(i);
                 String link = linkElement.attr("href");
+                
+                // 게시물 페이지로 접속
+                Document postDocument = Jsoup.connect(link).get();
+
+                // 내용을 크롤링할 요소 선택 및 추출
+                Element membernameElement = postDocument.selectFirst(".nickname");
+                String membername = membernameElement.text();
 
                 Crawling crawling = Crawling.builder()
                         .title(title)
                         .replycnt(replycnt)
                         .kind(kind)
                         .link(link)
+                        .membername(membername)
                         .build();
 
                 crawlingDataList.add(crawling);
@@ -76,6 +84,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements replycnts = document.select(".title > a > span");
             Elements kinds = document.select(".category");
             Elements links = document.select(".hotdeal_var8");
+            Elements membernames = document.select(".author");
 
             int count = Math.min(10, titles.size());
             for (int i = 0; i < count; i++) {
@@ -90,6 +99,9 @@ public class CrawlingServiceImpl implements CrawlingService {
                 
                 Element linkElement = links.get(i);
                 String link = "https://www.fmkorea.com"+linkElement.attr("href");
+                
+                Element membernameElement = membernames.get(i);
+                String membername = membernameElement.text();
 
 
                 Crawling crawling = Crawling.builder()
@@ -97,11 +109,13 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .replycnt(replycnt)
                         .kind(kind)
                         .link(link)
+                        .membername(membername)
                         .build();
                 
                 crawlingDataList.add(crawling);
                 
             }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,6 +134,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements replycnts = document.select(".list_comment2");
             Elements kinds = document.select(".board_left a");
             Elements links = document.select(".line .title");	
+            Elements membernames = document.select(".name");
 
             int count = Math.min(10, titles.size());
             for (int i = 0; i < count; i++) {
@@ -134,17 +149,23 @@ public class CrawlingServiceImpl implements CrawlingService {
                 
                 Element linkElement = links.get(i);
                 String link = "https://www.ppomppu.co.kr"+linkElement.attr("href");
+                
+                Element membernameElement = membernames.get(i);
+                String membername = membernameElement.text();
+                
 
                 Crawling crawling = Crawling.builder()
                         .title(title)
                         .replycnt(replycnt)
                         .kind(kind)
                         .link(link)
+                        .membername(membername)
                         .build();
                 
                 crawlingDataList.add(crawling);
                 
             }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

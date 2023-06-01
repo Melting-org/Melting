@@ -22,7 +22,7 @@ public class Crawling {
 	private String kind;
 	private String link;
 	private String image;
-//	private String writer;
+	private String membername;
 //	private String regdate;
 //	private int viewscnt;
 //	private int likecnt;

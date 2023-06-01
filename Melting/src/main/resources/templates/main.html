@@ -55,21 +55,25 @@
 				            <th>카테고리</th>
 				            <th>제목</th>
 				            <th>댓글수</th>
+				            <th>작성자</th>
 				        </tr>
 				        <tr th:each="crawlingData : ${dcInsideDataList}">
 					        <td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
 					        <td th:text="${crawlingData.replycnt}"></td>
+					        <td th:text="${crawlingData.membername}"></td>
 					    </tr>
 					    <tr th:each="crawlingData : ${fmKoreaDataList}">
 					        <td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
 					        <td th:text="${crawlingData.replycnt}"></td>
+					        <td th:text="${crawlingData.membername}"></td>
 					    </tr>
 					    <tr th:each="crawlingData : ${ppomppuDataList}">
 					        <td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
 					        <td th:text="${crawlingData.replycnt}"></td>
+					        <td th:text="${crawlingData.membername}"></td>
 					    </tr>
 					</table>
 				</div>
