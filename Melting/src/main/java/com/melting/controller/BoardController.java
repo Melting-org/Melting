@@ -61,15 +61,15 @@ public class BoardController{
         model.addAttribute("hitList", hitList);
         
         // 크롤링 DB 저장
-        for (Crawling crawling : dcInsideDataList) {
-            crawlingService.saveCrawlingData(crawling);
-        }
-        for (Crawling crawling : fmKoreaDataList) {
-            crawlingService.saveCrawlingData(crawling);
-        }
-        for (Crawling crawling : ppomppuDataList) {
-            crawlingService.saveCrawlingData(crawling);
-        }
+//        for (Crawling crawling : dcInsideDataList) {
+//            crawlingService.saveCrawlingData(crawling);
+//        }
+//        for (Crawling crawling : fmKoreaDataList) {
+//            crawlingService.saveCrawlingData(crawling);
+//        }
+//        for (Crawling crawling : ppomppuDataList) {
+//            crawlingService.saveCrawlingData(crawling);
+//        }
         
 		return "/main";
 	}
@@ -90,10 +90,23 @@ public class BoardController{
 	
 	/*게시글 목록 화면 요청*/
 	@GetMapping("/board/newlist")
-	public String boardlist(String memberid, Model model) {
+	public String boardlist(String memberid, Model model, Authentication authentication) {
 		List<Board> list = boardService.getAllList(memberid);
 		model.addAttribute("list", list);
 		model.addAttribute("memberid", memberid);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		// 크롤링 List
+		List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
+		model.addAttribute("dcSearchList", dcSearchList);
+		
 		return "/board/newlist";
 	}
 	

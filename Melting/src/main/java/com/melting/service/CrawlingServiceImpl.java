@@ -3,6 +3,8 @@ package com.melting.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -10,6 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.melting.dao.CrawlingDAO;
@@ -50,11 +53,18 @@ public class CrawlingServiceImpl implements CrawlingService {
                 
                 // 게시물 페이지로 접속
                 Document postDocument = Jsoup.connect(link).get();
-
-                // 내용을 크롤링할 요소 선택 및 추출
                 Element membernameElement = postDocument.selectFirst(".nickname");
-                String membername = membernameElement.text();
-
+                
+                String membername;
+                
+                if (membernameElement == null) {
+                    membername = "작성자 비공개";
+                    
+                } else {
+                    membername = membernameElement.text();
+                    
+                }
+                
                 Crawling crawling = Crawling.builder()
                         .title(title)
                         .replycnt(replycnt)
@@ -249,15 +259,56 @@ public class CrawlingServiceImpl implements CrawlingService {
                 
             }
             
-            
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		return crawlingDataList;
 	}
+	
+//	// 마다 실행되도록 스케줄링 설정
+//    @Scheduled(fixedRate = 10000)
+//    public void saveCrawlingData() {
+//        List<Crawling> dcInsideCrawlingDataList = getDcInsideCrawlingData();
+////        List<Crawling> fmKoreaCrawlingDataList = getFmKoreaCrawlingData();
+////        List<Crawling> ppomppuCrawlingDataList = getPpomppuCrawlingData();
+//
+//        for (Crawling crawling : dcInsideCrawlingDataList) {
+//            crawlingDao.saveCrawlingData(crawling); // 디시인사이드 데이터를 DB에 저장
+//        }
+//
+////        for (Crawling crawling : fmKoreaCrawlingDataList) {
+////            crawlingDao.saveCrawlingData(crawling); // FM코리아 데이터를 DB에 저장
+////        }
+////        
+////        for (Crawling crawling : ppomppuCrawlingDataList) {
+////            crawlingDao.saveCrawlingData(crawling); // 뽐뿌 데이터를 DB에 저장
+////        }
+//    }
     
+    
+    public void saveCrawlingData() {
+        List<Crawling> dcInsideCrawlingDataList = getDcInsideCrawlingData();
+
+        for (Crawling crawling : dcInsideCrawlingDataList) {
+            crawlingDao.saveCrawlingData(crawling); // 디시인사이드 데이터를 DB에 저장
+        }
+    }
+    
+    
+    
+    
+
+    // 마다 실행되도록 스케줄링 설정
+    @Scheduled(fixedRate = 30000)
+    public void deleteCrawlingData() {
+        // 현재 시간 기준으로 초 이전의 데이터를 삭제
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, -30);
+        Date timestamp = calendar.getTime();
+        
+        crawlingDao.deleteByCreatedAtBefore(timestamp);
+    }
     
 	
 }

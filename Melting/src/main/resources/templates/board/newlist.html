@@ -21,8 +21,8 @@
  			<div class="my">
  				<div class="join"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/join}">회원가입</a></div>
  				<div class="login"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
- 				<div class="logout" sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
- 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
+ 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{#}" th:text="${membername} + '님'"></a></div>
+ 				<div class="logout" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
  			</div>				
 		</div>
 	</div>
@@ -74,8 +74,9 @@
 			<div class="bestsearch">
 				<h3>인기 검색어</h3>
 				<div class="bestsearch-list">
-					<br>1<br>2<br>3<br>4<br>5<br>
-					6<br>7<br>7<br>8<br>9<br>10<br>
+					<div th:each="crawlingData, index : ${dcSearchList}">
+						<p><span th:text="${index.index + 1}"></span>.<a th:href="${crawlingData.link}" th:text=${crawlingData.title}></a></p>
+					</div>
 				</div>
 			</div>
 			<div class="bestkeyword">

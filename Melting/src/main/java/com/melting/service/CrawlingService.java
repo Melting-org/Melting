@@ -17,6 +17,11 @@ public interface CrawlingService {
 	public List<Crawling> getDcSearchCrawlingData();
 
 	public List<Crawling> getHitCrawlingData();
+	
+	public void saveCrawlingData();
+	
+	public void deleteCrawlingData();
+	
 
 
 }
