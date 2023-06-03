@@ -60,14 +60,14 @@
 				        <tr th:each="crawlingData : ${dcInsideDataList}">
 					        <td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
-					        <td th:text="${crawlingData.replycnt}"></td>
+					        <td th:text="${crawlingData.replycnt.replace('[', '').replace(']', '')}"></td>
 					        <td th:text="${crawlingData.membername}"></td>
 					    </tr>
 					    <tr th:each="crawlingData : ${fmKoreaDataList}">
 					        <td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
-					        <td th:text="${crawlingData.replycnt}"></td>
-					        <td th:text="${crawlingData.membername}"></td>
+					        <td th:text="${crawlingData.replycnt.replace('[', '').replace(']', '')}"></td>
+					        <td th:text="${crawlingData.membername.replace('/', '')}"></td>
 					    </tr>
 					    <tr th:each="crawlingData : ${ppomppuDataList}">
 					        <td th:text="${crawlingData.kind}"></td>

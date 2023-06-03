@@ -18,9 +18,9 @@ public interface CrawlingService {
 
 	public List<Crawling> getHitCrawlingData();
 	
-	public void saveCrawlingData();
-	
-	public void deleteCrawlingData();
+//	public void saveCrawlingData();
+//	
+//	public void deleteCrawlingData();
 	
 
 

@@ -285,30 +285,28 @@ public class CrawlingServiceImpl implements CrawlingService {
 ////            crawlingDao.saveCrawlingData(crawling); // 뽐뿌 데이터를 DB에 저장
 ////        }
 //    }
-    
-    
-    public void saveCrawlingData() {
-        List<Crawling> dcInsideCrawlingDataList = getDcInsideCrawlingData();
-
-        for (Crawling crawling : dcInsideCrawlingDataList) {
-            crawlingDao.saveCrawlingData(crawling); // 디시인사이드 데이터를 DB에 저장
-        }
-    }
-    
-    
-    
-    
-
-    // 마다 실행되도록 스케줄링 설정
-    @Scheduled(fixedRate = 30000)
-    public void deleteCrawlingData() {
-        // 현재 시간 기준으로 초 이전의 데이터를 삭제
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, -30);
-        Date timestamp = calendar.getTime();
-        
-        crawlingDao.deleteByCreatedAtBefore(timestamp);
-    }
+//    
+//    
+//    public void saveCrawlingData() {
+//        List<Crawling> dcInsideCrawlingDataList = getDcInsideCrawlingData();
+//
+//        for (Crawling crawling : dcInsideCrawlingDataList) {
+//            crawlingDao.saveCrawlingData(crawling); // 디시인사이드 데이터를 DB에 저장
+//        }
+//    }
+//    
+//
+//    // 마다 실행되도록 스케줄링 설정
+//    @Scheduled(fixedRate = 30000)
+//    public void deleteCrawlingData() {
+//        // 현재 시간 기준으로 초 이전의 데이터를 삭제
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.SECOND, -30);
+//        Date timestamp = calendar.getTime();
+//        
+//        crawlingDao.deleteByCreatedAtBefore(timestamp);
+//        System.out.println("Crawling data deleted at: " + new Date());
+//    }
     
 	
 }
