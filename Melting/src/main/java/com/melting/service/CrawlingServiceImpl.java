@@ -66,7 +66,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                 String likecnt = likecntElement.text().replace("추천", "").trim();
                 
                 // likecnt 값을 int로 변환
-                int likeCount = Integer.parseInt(likecnt);
+                int likecnt2 = Integer.parseInt(likecnt);
                 
                 Crawling crawling = Crawling.builder()
                         .title(title)
@@ -74,7 +74,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .kind(kind)
                         .link(link)
                         .membername(membername)
-                        .likecnt(likeCount)
+                        .likecnt2(likecnt2)
                         .build();
 
                 crawlingDataList.add(crawling);
@@ -124,8 +124,8 @@ public class CrawlingServiceImpl implements CrawlingService {
                 
 
                 
-                // likecnt 값을 int로 변환
-                int likeCount = Integer.parseInt(likecnt);
+             // likecnt 값을 int로 변환
+                int likecnt2 = Integer.parseInt(likecnt);
                 
                 Crawling crawling = Crawling.builder()
                         .title(title)
@@ -133,7 +133,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .kind(kind)
                         .link(link)
                         .membername(membername)
-                        .likecnt(likeCount)
+                        .likecnt2(likecnt2)
                         .build();
                 
                 crawlingDataList.add(crawling);
@@ -188,8 +188,8 @@ public class CrawlingServiceImpl implements CrawlingService {
                 }
                 
 
-                // likecnt 값을 int로 변환
-                int likeCount = Integer.parseInt(likecnt);
+             // likecnt 값을 int로 변환
+                int likecnt2 = Integer.parseInt(likecnt);
                 
                 Crawling crawling = Crawling.builder()
                         .title(title)
@@ -197,7 +197,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .kind(kind)
                         .link(link)
                         .membername(membername)
-                        .likecnt(likeCount)
+                        .likecnt2(likecnt2)
                         .build();
                 
                 crawlingDataList.add(crawling);
@@ -294,6 +294,7 @@ public class CrawlingServiceImpl implements CrawlingService {
 		return crawlingDataList;
 	}
 	
+	
 	public List<Crawling> getLikecntSortedData() {
 	    List<Crawling> combinedDataList = new ArrayList<>();
 
@@ -310,10 +311,12 @@ public class CrawlingServiceImpl implements CrawlingService {
 	    combinedDataList.addAll(ppomppuDataList);
 
 	    // likecnt를 기준으로 내림차순 정렬
-	    Collections.sort(combinedDataList, Comparator.comparingInt(Crawling::getLikecnt).reversed());
+	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getLikecnt2).reversed());
 
 	    return combinedDataList;
 	}
+
+	
 
 	
 //	// DB에 실시간 크롤링 데이터 저장

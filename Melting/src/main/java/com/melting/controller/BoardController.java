@@ -65,6 +65,10 @@ public class BoardController{
         model.addAttribute("likecntSorted", likecntSortedDataList);
         System.out.println(likecntSortedDataList);
         
+        // 댓글순으로 정렬
+//        List<Crawling> replycntSortedDataList = crawlingService.getReplycntSortedData();
+        
+        
 //        // 크롤링 DB 저장
 //        for (Crawling crawling : dcInsideDataList) {
 //            crawlingService.saveCrawlingData(crawling);

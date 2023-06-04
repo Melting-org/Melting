@@ -25,6 +25,7 @@ public interface CrawlingService {
 //	public List<Crawling> getCombinedAndSortedData();
 
 	public List<Crawling> getLikecntSortedData();
+
 	
 
 
