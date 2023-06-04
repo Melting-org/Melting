@@ -21,10 +21,10 @@ public interface CrawlingService {
 //	public void saveCrawlingData();
 	
 //	public void deleteCrawlingData();
-	
-//	public List<Crawling> getCombinedAndSortedData();
 
 	public List<Crawling> getLikecntSortedData();
+
+	public List<Crawling> getReplycntSortedData();
 
 	
 

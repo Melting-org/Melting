@@ -21,6 +21,7 @@ public class Crawling {
 	
 	private String title;
 	private String replycnt;
+	private int replycnt2;
 	private String kind;
 	private String link;
 	private String image;

@@ -27,7 +27,7 @@ public class CrawlingServiceImpl implements CrawlingService {
         List<Crawling> crawlingDataList = new ArrayList<>();
 
         try {
-            // 디시인사이드 실시간 베스트 URL
+        	
             String dcUrl = "https://www.dcinside.com/";
             Document document = Jsoup.connect(dcUrl).get();
 
@@ -36,7 +36,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements kinds = document.select("div.box.best_info > span.name");
             Elements links = document.select("div.time_best .main_log");
             
-            int count = Math.min(10, titles.size()); // 10개 이하의 게시물만 가져오기 위해 크기 제한
+            int count = Math.min(3, titles.size()); // 10개 이하의 게시물만 가져오기 위해 크기 제한
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
                 String title = titleElement.text();
@@ -63,14 +63,26 @@ public class CrawlingServiceImpl implements CrawlingService {
                 }
                 
                 Element likecntElement = postDocument.selectFirst(".gall_reply_num");
+                if (likecntElement == null) {
+                    continue;
+                }
+
                 String likecnt = likecntElement.text().replace("추천", "").trim();
-                
+
                 // likecnt 값을 int로 변환
-                int likecnt2 = Integer.parseInt(likecnt);
+                int likecnt2;
+                try {
+                    likecnt2 = Integer.parseInt(likecnt);
+                } catch (NumberFormatException e) {
+                    continue;
+                }
+                
+             // replycnt 값을 int로 변환
+                int replycnt2 = Integer.parseInt(replycnt);
                 
                 Crawling crawling = Crawling.builder()
                         .title(title)
-                        .replycnt(replycnt)
+                        .replycnt2(replycnt2)
                         .kind(kind)
                         .link(link)
                         .membername(membername)
@@ -87,10 +99,12 @@ public class CrawlingServiceImpl implements CrawlingService {
         return crawlingDataList;
     }
 	
+	
 	public List<Crawling> getFmKoreaCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
 
         try {
+        	
             String fmKoreaUrl = "https://www.fmkorea.com/index.php?mid=best2&listStyle=list&page=1";
             Document document = Jsoup.connect(fmKoreaUrl).get();
 
@@ -102,7 +116,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements likecnts = document.select(".m_no_voted");
             
 
-            int count = Math.min(10, replycnts.size());
+            int count = Math.min(3, replycnts.size());
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
                 String title = titleElement.ownText();
@@ -122,14 +136,13 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element likecntElement = likecnts.get(i);
                 String likecnt = likecntElement.text().trim();
                 
-
-                
-             // likecnt 값을 int로 변환
+             // likecnt, replycnt 값을 int로 변환
                 int likecnt2 = Integer.parseInt(likecnt);
+                int replycnt2 = Integer.parseInt(replycnt);
                 
                 Crawling crawling = Crawling.builder()
                         .title(title)
-                        .replycnt(replycnt)
+                        .replycnt2(replycnt2)
                         .kind(kind)
                         .link(link)
                         .membername(membername)
@@ -152,6 +165,7 @@ public class CrawlingServiceImpl implements CrawlingService {
         List<Crawling> crawlingDataList = new ArrayList<>();
 
         try {
+        	
             String ppomppuUrl = "https://www.ppomppu.co.kr/hot.php?category=2";
             Document document = Jsoup.connect(ppomppuUrl).get();
 
@@ -162,7 +176,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements membernames = document.select(".name");
             Elements likecnts = document.select("table.board_table tr.line td:nth-child(6)");
 
-            int count = Math.min(10, titles.size());
+            int count = Math.min(3, titles.size());
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
                 String title = titleElement.text();
@@ -187,13 +201,13 @@ public class CrawlingServiceImpl implements CrawlingService {
                     likecnt = likecnt.substring(0, hyphenIndex).trim();
                 }
                 
-
-             // likecnt 값을 int로 변환
+             // likecnt, replycnt 값을 int로 변환
                 int likecnt2 = Integer.parseInt(likecnt);
+                int replycnt2 = Integer.parseInt(replycnt);
                 
                 Crawling crawling = Crawling.builder()
                         .title(title)
-                        .replycnt(replycnt)
+                        .replycnt2(replycnt2)
                         .kind(kind)
                         .link(link)
                         .membername(membername)
@@ -298,20 +312,34 @@ public class CrawlingServiceImpl implements CrawlingService {
 	public List<Crawling> getLikecntSortedData() {
 	    List<Crawling> combinedDataList = new ArrayList<>();
 
-	    // 디시인사이드 데이터 가져오기
 	    List<Crawling> dcInsideDataList = getDcInsideCrawlingData();
 	    combinedDataList.addAll(dcInsideDataList);
 
-	    // FM코리아 데이터 가져오기
 	    List<Crawling> fmKoreaDataList = getFmKoreaCrawlingData();
 	    combinedDataList.addAll(fmKoreaDataList);
 
-	    // 뽐뿌 데이터 가져오기
 	    List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
 	    combinedDataList.addAll(ppomppuDataList);
 
-	    // likecnt를 기준으로 내림차순 정렬
 	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getLikecnt2).reversed());
+
+	    return combinedDataList;
+	}
+
+	@Override
+	public List<Crawling> getReplycntSortedData() {
+		List<Crawling> combinedDataList = new ArrayList<>();
+
+	    List<Crawling> dcInsideDataList = getDcInsideCrawlingData();
+	    combinedDataList.addAll(dcInsideDataList);
+
+	    List<Crawling> fmKoreaDataList = getFmKoreaCrawlingData();
+	    combinedDataList.addAll(fmKoreaDataList);
+
+	    List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
+	    combinedDataList.addAll(ppomppuDataList);
+
+	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getReplycnt2).reversed());
 
 	    return combinedDataList;
 	}
