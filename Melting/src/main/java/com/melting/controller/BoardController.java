@@ -60,7 +60,12 @@ public class BoardController{
         model.addAttribute("dcSearchList", dcSearchList);
         model.addAttribute("hitList", hitList);
         
-        // 크롤링 DB 저장
+        // 추천순으로 정렬
+        List<Crawling> likecntSortedDataList = crawlingService.getLikecntSortedData();
+        model.addAttribute("likecntSorted", likecntSortedDataList);
+        System.out.println(likecntSortedDataList);
+        
+//        // 크롤링 DB 저장
 //        for (Crawling crawling : dcInsideDataList) {
 //            crawlingService.saveCrawlingData(crawling);
 //        }
@@ -70,6 +75,7 @@ public class BoardController{
 //        for (Crawling crawling : ppomppuDataList) {
 //            crawlingService.saveCrawlingData(crawling);
 //        }
+        
         
 		return "/main";
 	}

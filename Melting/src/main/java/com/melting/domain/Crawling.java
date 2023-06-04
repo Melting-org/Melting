@@ -26,9 +26,9 @@ public class Crawling {
 	private String image;
 	private String membername;
 	private Date created_at;
+	private int likecnt;
 //	private String regdate;
 //	private int viewscnt;
-//	private int likecnt;
 	
 
 }

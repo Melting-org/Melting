@@ -7,14 +7,16 @@
 
 	<insert id="saveCrawlingData" parameterType="Crawling">
         INSERT INTO m_crawling 
-        	(title, replycnt, kind, link, membername)
+        	(title, replycnt, kind, link, membername, likecnt)
         VALUES 
-        	(#{title}, #{replycnt}, #{kind}, #{link}, #{membername})
+        	(#{title}, #{replycnt}, #{kind}, #{link}, #{membername}, #{likecnt})
     </insert>
     
     <delete id="deleteByCreatedAtBefore" parameterType="Date">
         DELETE FROM m_crawling 
         WHERE created_at &lt; #{created_at}
     </delete>
+    
+    
     
 </mapper>

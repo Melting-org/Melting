@@ -12,15 +12,19 @@ public interface CrawlingService {
 
 	public List<Crawling> getPpomppuCrawlingData();
 
-	public boolean saveCrawlingData(Crawling crawling);
-
+//	public boolean saveCrawlingData(Crawling crawling);
+	
 	public List<Crawling> getDcSearchCrawlingData();
 
 	public List<Crawling> getHitCrawlingData();
 	
 //	public void saveCrawlingData();
-//	
+	
 //	public void deleteCrawlingData();
+	
+//	public List<Crawling> getCombinedAndSortedData();
+
+	public List<Crawling> getLikecntSortedData();
 	
 
 

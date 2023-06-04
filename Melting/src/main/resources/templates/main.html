@@ -50,24 +50,42 @@
 					<h3 class="array-like">추천순</h3>
 				</div>
 				<div class="boardlist">
-				    <table border="1">
+					<table border='1'>
+						<tr>
+							<th>카테고리</th>
+				            <th>제목</th>
+				            <th>댓글수</th>
+				            <th>작성자</th>
+				            <th>추천</th>
+						</tr>
+						<tr th:each="crawlingData : ${likecntSorted}">
+							<td th:text="${crawlingData.kind}"></td>
+					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
+					        <td th:text="${crawlingData.replycnt}"></td>
+					        <td th:text="${crawlingData.membername}"></td>
+					        <td th:text="${crawlingData.likecnt}"></td>
+						</tr>
+					</table>
+				    <!-- <table border="1">
 				        <tr>
 				            <th>카테고리</th>
 				            <th>제목</th>
 				            <th>댓글수</th>
 				            <th>작성자</th>
+				            <th>추천</th>
 				        </tr>
 				        <tr th:each="crawlingData : ${dcInsideDataList}">
 					        <td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
-					        <td th:text="${crawlingData.replycnt.replace('[', '').replace(']', '')}"></td>
+					        <td th:text="${crawlingData.replycnt}"></td>
 					        <td th:text="${crawlingData.membername}"></td>
+					        <td th:text="${crawlingData.regdate}"></td>
 					    </tr>
 					    <tr th:each="crawlingData : ${fmKoreaDataList}">
 					        <td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
-					        <td th:text="${crawlingData.replycnt.replace('[', '').replace(']', '')}"></td>
-					        <td th:text="${crawlingData.membername.replace('/', '')}"></td>
+					        <td th:text="${crawlingData.replycnt}"></td>
+					        <td th:text="${crawlingData.membername}"></td>
 					    </tr>
 					    <tr th:each="crawlingData : ${ppomppuDataList}">
 					        <td th:text="${crawlingData.kind}"></td>
@@ -75,7 +93,7 @@
 					        <td th:text="${crawlingData.replycnt}"></td>
 					        <td th:text="${crawlingData.membername}"></td>
 					    </tr>
-					</table>
+					</table> -->
 				</div>
 			</div>	
 		</div>
