@@ -11,14 +11,12 @@ public interface CrawlingService {
 	public List<Crawling> getFmKoreaCrawlingData();
 
 	public List<Crawling> getPpomppuCrawlingData();
-
-//	public boolean saveCrawlingData(Crawling crawling);
 	
 	public List<Crawling> getDcSearchCrawlingData();
 
 	public List<Crawling> getHitCrawlingData();
 	
-//	public void saveCrawlingData();
+//	public void deleteOldData(int rowLimit);
 	
 //	public void deleteCrawlingData();
 

@@ -1,6 +1,7 @@
 package com.melting.controller;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class BoardController{
     }
 	
 	@GetMapping({"/", ""})
-	public String main(Model model, Authentication authentication) {
+	public String main(Model model, Authentication authentication) throws IOException {
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -60,28 +61,15 @@ public class BoardController{
         model.addAttribute("dcSearchList", dcSearchList);
         model.addAttribute("hitList", hitList);
         
-        // 추천순으로 정렬
-        List<Crawling> likecntSortedDataList = crawlingService.getLikecntSortedData();
-        model.addAttribute("likecntSorted", likecntSortedDataList);
-        System.out.println(likecntSortedDataList);
+//        // 추천순으로 정렬
+//        List<Crawling> likecntSortedDataList = crawlingService.getLikecntSortedData();
+//        model.addAttribute("likecntSorted", likecntSortedDataList);
+//        System.out.println(likecntSortedDataList);
         
         // 댓글순으로 정렬
         List<Crawling> replycntSortedDataList = crawlingService.getReplycntSortedData();
         model.addAttribute("replycntSorted", replycntSortedDataList);
         System.out.println(replycntSortedDataList);
-        
-        
-//        // 크롤링 DB 저장
-//        for (Crawling crawling : dcInsideDataList) {
-//            crawlingService.saveCrawlingData(crawling);
-//        }
-//        for (Crawling crawling : fmKoreaDataList) {
-//            crawlingService.saveCrawlingData(crawling);
-//        }
-//        for (Crawling crawling : ppomppuDataList) {
-//            crawlingService.saveCrawlingData(crawling);
-//        }
-        
         
 		return "/main";
 	}

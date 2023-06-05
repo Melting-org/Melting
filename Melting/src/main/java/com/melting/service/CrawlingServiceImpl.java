@@ -12,6 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.melting.dao.CrawlingDAO;
@@ -22,10 +23,13 @@ public class CrawlingServiceImpl implements CrawlingService {
 	
 	@Autowired
 	CrawlingDAO crawlingDao;
-		
+	
+	@Scheduled(fixedDelay = 30000)
 	public List<Crawling> getDcInsideCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
 
+        int count = 10;
+        
         try {
         	
             String dcUrl = "https://www.dcinside.com/";
@@ -36,7 +40,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements kinds = document.select("div.box.best_info > span.name");
             Elements links = document.select("div.time_best .main_log");
             
-            int count = Math.min(3, titles.size()); // 10개 이하의 게시물만 가져오기 위해 크기 제한
+            Math.min(count, titles.size());
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
                 String title = titleElement.text();
@@ -50,9 +54,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element linkElement = links.get(i);
                 String link = linkElement.attr("href");
                 
-                // 게시물 페이지로 접속
-                Document postDocument = Jsoup.connect(link).get();
-                
+                Document postDocument = Jsoup.connect(link).get();	// 게시물 페이지로 접속
                 Element membernameElement = postDocument.selectFirst(".nickname");
                 String membername;
                 
@@ -69,15 +71,13 @@ public class CrawlingServiceImpl implements CrawlingService {
 
                 String likecnt = likecntElement.text().replace("추천", "").trim();
 
-                // likecnt 값을 int로 변환
-                int likecnt2;
+                int likecnt2;	
                 try {
                     likecnt2 = Integer.parseInt(likecnt);
                 } catch (NumberFormatException e) {
                     continue;
                 }
                 
-             // replycnt 값을 int로 변환
                 int replycnt2 = Integer.parseInt(replycnt);
                 
                 Crawling crawling = Crawling.builder()
@@ -96,13 +96,21 @@ public class CrawlingServiceImpl implements CrawlingService {
             e.printStackTrace();
         }
 
+        for (int i = 0; i < count; i++) {
+            Crawling crawling = crawlingDataList.get(i);
+            crawlingDao.saveCrawlingData(crawling);
+        }
+        
         return crawlingDataList;
     }
+		
 	
-	
+	@Scheduled(fixedDelay = 30000)
 	public List<Crawling> getFmKoreaCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
 
+        int count = 10;
+        
         try {
         	
             String fmKoreaUrl = "https://www.fmkorea.com/index.php?mid=best2&listStyle=list&page=1";
@@ -116,7 +124,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements likecnts = document.select(".m_no_voted");
             
 
-            int count = Math.min(3, replycnts.size());
+            Math.min(count, replycnts.size());
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
                 String title = titleElement.ownText();
@@ -136,8 +144,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element likecntElement = likecnts.get(i);
                 String likecnt = likecntElement.text().trim();
                 
-             // likecnt, replycnt 값을 int로 변환
-                int likecnt2 = Integer.parseInt(likecnt);
+                int likecnt2 = Integer.parseInt(likecnt);	
                 int replycnt2 = Integer.parseInt(replycnt);
                 
                 Crawling crawling = Crawling.builder()
@@ -156,13 +163,21 @@ public class CrawlingServiceImpl implements CrawlingService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        for (int i = 0; i < count; i++) {
+            Crawling crawling = crawlingDataList.get(i);
+            crawlingDao.saveCrawlingData(crawling);
+        }
 
         return crawlingDataList;
     }
 
-    
+	
+	@Scheduled(fixedDelay = 30000)
     public List<Crawling> getPpomppuCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
+        
+        int count = 10;
 
         try {
         	
@@ -176,7 +191,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements membernames = document.select(".name");
             Elements likecnts = document.select("table.board_table tr.line td:nth-child(6)");
 
-            int count = Math.min(3, titles.size());
+            Math.min(count, titles.size());
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
                 String title = titleElement.text();
@@ -201,7 +216,6 @@ public class CrawlingServiceImpl implements CrawlingService {
                     likecnt = likecnt.substring(0, hyphenIndex).trim();
                 }
                 
-             // likecnt, replycnt 값을 int로 변환
                 int likecnt2 = Integer.parseInt(likecnt);
                 int replycnt2 = Integer.parseInt(replycnt);
                 
@@ -221,14 +235,16 @@ public class CrawlingServiceImpl implements CrawlingService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
+        for (int i = 0; i < count; i++) {
+            Crawling crawling = crawlingDataList.get(i);
+            crawlingDao.saveCrawlingData(crawling);
+        }
+        
         return crawlingDataList;
     }
 
-//	public boolean saveCrawlingData(Crawling crawling) {
-//		return crawlingDao.saveCrawlingData(crawling);
-//		
-//	}
+
 
 	@Override
 	public List<Crawling> getDcSearchCrawlingData() {
@@ -343,52 +359,14 @@ public class CrawlingServiceImpl implements CrawlingService {
 
 	    return combinedDataList;
 	}
-
 	
-
 	
-//	// DB에 실시간 크롤링 데이터 저장
-//    public void saveCrawlingData() {
-//        List<Crawling> dcInsideCrawlingDataList = getDcInsideCrawlingData();
-//        List<Crawling> fmKoreaCrawlingDataList = getFmKoreaCrawlingData();
-//        List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
-//
-//        for (Crawling crawling : dcInsideCrawlingDataList) {
-//            crawlingDao.saveCrawlingData(crawling); //DB에 저장
-//        }
-//        for (Crawling crawling : fmKoreaCrawlingDataList) {
-//            crawlingDao.saveCrawlingData(crawling); //DB에 저장
-//        }
-//        for (Crawling crawling : ppomppuDataList) {
-//            crawlingDao.saveCrawlingData(crawling); //DB에 저장
-//        }
+//    @Override
+//    public void deleteOldData(int rowLimit) {
+//    	crawlingDao.deleteOldData(rowLimit);
+//    	
 //    }
-
-	
-	
-//	// 마다 실행되도록 스케줄링 설정
-//    @Scheduled(fixedRate = 10000)
-//    public void saveCrawlingData() {
-//        List<Crawling> dcInsideCrawlingDataList = getDcInsideCrawlingData();
-////        List<Crawling> fmKoreaCrawlingDataList = getFmKoreaCrawlingData();
-////        List<Crawling> ppomppuCrawlingDataList = getPpomppuCrawlingData();
-//
-//        for (Crawling crawling : dcInsideCrawlingDataList) {
-//            crawlingDao.saveCrawlingData(crawling); // 디시인사이드 데이터를 DB에 저장
-//        }
-//
-////        for (Crawling crawling : fmKoreaCrawlingDataList) {
-////            crawlingDao.saveCrawlingData(crawling); // FM코리아 데이터를 DB에 저장
-////        }
-////        
-////        for (Crawling crawling : ppomppuCrawlingDataList) {
-////            crawlingDao.saveCrawlingData(crawling); // 뽐뿌 데이터를 DB에 저장
-////        }
-//    }
-//    
-//    
-//
-//    
+//   
 //
 //    // 마다 실행되도록 스케줄링 설정
 //    @Scheduled(fixedRate = 30000)
@@ -401,6 +379,8 @@ public class CrawlingServiceImpl implements CrawlingService {
 //        crawlingDao.deleteByCreatedAtBefore(timestamp);
 //        System.out.println("Crawling data deleted at: " + new Date());
 //    }
+
+
     
 	
 }

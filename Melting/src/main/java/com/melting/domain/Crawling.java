@@ -19,6 +19,7 @@ import lombok.ToString;
 
 public class Crawling {
 	
+	private int crawlingseq;
 	private String title;
 	private String replycnt;
 	private int replycnt2;

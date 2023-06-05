@@ -6,17 +6,27 @@
 <mapper namespace="com.melting.dao.CrawlingDAO">
 
 	<insert id="saveCrawlingData" parameterType="Crawling">
-        INSERT INTO m_crawling 
-        	(title, replycnt, kind, link, membername, likecnt)
+		INSERT INTO m_crawling 
+        	(crawlingseq, title, replycnt2, kind, link, membername, likecnt2)
         VALUES 
-        	(#{title}, #{replycnt}, #{kind}, #{link}, #{membername}, #{likecnt})
-    </insert>
-    
+        	(m_crawling_seq.NEXTVAL, #{title}, #{replycnt2}, #{kind}, #{link}, #{membername}, #{likecnt2})
+	</insert>
+	
     <delete id="deleteByCreatedAtBefore" parameterType="Date">
         DELETE FROM m_crawling 
         WHERE created_at &lt; #{created_at}
     </delete>
     
-    
-    
+
+	<delete id="deleteOldData" parameterType="int">
+	    DELETE FROM m_crawling
+		WHERE crawlingseq IN (
+		    SELECT crawlingseq
+		    FROM (
+		      SELECT crawlingseq, ROW_NUMBER() OVER (ORDER BY created_at ASC) AS row_num
+		      FROM m_crawling
+		    	)
+		    WHERE row_num > #{rowLimit}
+	   )
+	</delete>
 </mapper>

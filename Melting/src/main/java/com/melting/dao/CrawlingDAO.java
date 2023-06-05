@@ -9,11 +9,13 @@ import com.melting.domain.Crawling;
 @Mapper
 public interface CrawlingDAO {
 
-//	public boolean saveCrawlingData(Crawling crawling);
-
-	public void deleteByCreatedAtBefore(Date created_at);
-
 	public void saveCrawlingData(Crawling crawling);
+
+	public void deleteOldData(int rowLimit);
+
+//	public void deleteByCreatedAtBefore(Date created_at);
+
+
 	
 	
 
