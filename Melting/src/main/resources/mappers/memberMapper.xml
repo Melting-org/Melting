@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.melting.dao.MemberDAO">
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO m_member
+		(
+			memberid, email, membername, memberpwd
+		)
+		VALUES
+		(
+			#{memberid}, #{email}, #{membername}, #{memberpwd}
+		)
+	</insert>
+	
+ 	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT memberid
+		FROM m_member
+		WHERE memberid = #{memberid}
+	</select>
+	
+	<select id="idChk" resultType="int">
+		SELECT count(*) 
+		FROM m_member
+		WHERE memberid = #{memberid}
+	</select>
+	
+	<select id="nameCheck" parameterType="String" resultType="String">
+		SELECT membername
+		FROM m_member
+		WHERE membername = #{membername}
+	</select>
+	
+	<select id="getMemberByUsername" parameterType="String" resultType="Member">
+        SELECT membername
+        FROM m_member
+        WHERE memberid = #{username}
+    </select>
+	
+</mapper>

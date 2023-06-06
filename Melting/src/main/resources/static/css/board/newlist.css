@@ -1,0 +1,305 @@
+@charset "UTF-8";
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: black;
+	user-select: none;
+	font-family:'Pretendard-Regular';
+}
+
+a {
+	text-decoration: none;
+}
+
+
+#header {
+	height:200px;
+	width:100%;
+}
+
+.header-area {
+	width: 1000px;
+	position:relative;
+	margin: 0 auto;
+	height:100%;
+	border-bottom: 1px solid black;
+}
+
+.logo {
+	position:absolute;
+	top:50px;
+	
+}
+
+.logo img {
+	width:200px;
+}
+
+.menu {
+	position:absolute;
+	top:160px;
+	
+}
+
+.hot {
+	font-size:28px;
+	width: 80px;
+	float: left;
+}
+
+.all {
+	font-size:28px;
+	margin-left:5px;
+	float: left;
+	width: 80px;
+	
+}
+
+.all a {
+	color:red;
+}
+
+.humor {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.sports {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.game {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.free {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+
+.m {
+	float: left;
+	color:black;
+	font-size:28px;
+	margin-left:5px;
+	width: 80px;
+}
+
+.my {
+	position:absolute;
+	top:160px;
+	right:1px;
+	font-size: 23px;
+	display: inline-block;
+	
+}
+
+.join {
+	float:left;
+	margin:0px 2px;
+}
+
+.login {
+	float:left;
+	margin:0px 2px;
+}
+
+.logout {
+	float:left;
+	margin:0px 2px;
+}
+
+.myid {
+	float:left;
+	margin:0px 2px;
+}
+
+#container {
+	width: 1000px;
+	position:relative;
+	margin: 35px auto 0;
+	display:flex;
+}
+
+
+
+#left {
+	width:730px;
+	height:100%;
+	float:left;
+}
+
+.hit-area {
+	width:100%;
+	height:280px;
+}
+
+.hit-title {
+	border-bottom:1px solid black;
+}
+
+.hit-contents {
+	width:100%;
+	margin-top: 10px;
+}
+
+.hit-contents img {
+	float:left;
+	padding:4px;
+	width: 182px;
+	height: 114px;
+}
+
+.board {
+	position:relative;
+	width:100%;
+}
+
+
+.board-array {
+	height:40px;
+	width:100%;
+	border-bottom:1px solid black;
+}
+
+.array-views {
+	float:left;
+	width: 80px;
+}
+
+.array-comment {
+	float:left;
+	width: 80px;
+}
+
+.array-like {
+	float:left;
+	width: 80px;
+
+}
+
+.boardlist {
+	width:100%;
+	border-bottom:1px solid black;
+	height: 800px;
+	margin-bottom: 20px;
+}
+
+.boardlist .category {
+	width:30px;
+	background-color:red;
+	float:left;
+}
+
+.boardlist .title {
+	width:200px;
+	background-color:yellow;
+	float:left;
+}
+
+.boardlist .comment {
+	width:30px;
+	background-color:aqua;
+	float:left;
+}
+
+.boardlist .writer {
+	width:70px;
+	background-color:orange;
+	float:left;
+}
+
+.boardlist .like {
+	width:30px;
+	background-color:lightblue;
+	float:right;
+}
+
+.boardlist .views {
+	width:30px;
+	background-color:red;
+	float:right;
+}
+
+.boardlist .regdate {
+	width:80px;
+	background-color:pink;
+	float:right;
+}
+
+
+#right {
+	width:250px;
+	height:100%;
+	margin-left: auto;
+}
+
+.write {
+	width: 50px;
+	position: absolute;
+	top: -30px;
+	right: 0px;
+	border: 1px solid black;
+	text-align: center;
+    
+}
+
+.search{
+	height:60px;
+	position:relative;
+	margin-top: 25px;
+}
+
+.form-control {
+	width:248px;
+	height: 35px;
+	background-color:lightgray;
+	border:1px solid black;
+	color:gray;
+}
+
+.bestsearch {
+	width:248px;
+}
+
+.bestsearch-list {
+	background-color:lightgray;
+	border:1px solid gray;
+}
+
+.bestkeyword {
+	width:248px;
+	position: relative;
+	margin-top: 40px;
+}
+
+.bestkeyword-list {
+	background-color:lightgray;
+	border:1px solid gray;
+}
+
+
+

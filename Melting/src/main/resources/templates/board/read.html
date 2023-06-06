@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Melting | 통합 유머 커뮤니티</title>
+<link rel="stylesheet" type="text/css" href="css/board/read.css">
+<script th:src="@{/script/jquery-3.6.3.min.js}"></script>
+<script th:src="@{/script/reply.js}"></script>
+</head>
+<body>
+	<div id="header">
+		<div class="header-area">
+			<div class="logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
+			<div class="menu">
+				<div class="hot">HOT</div>
+				<div class="all"><a th:href="@{/board/newlist}">전체</a></div>
+				<div class="humor">유머</div>
+				<div class="sports">스포츠</div>
+				<div class="game">게임</div>
+				<div class="free">자유</div>
+			</div>
+ 			<div class="my">
+ 				<div class="join"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/join}">회원가입</a></div>
+ 				<div class="login"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
+ 				<div class="logout" sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
+ 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
+ 			</div>				
+		</div>
+	</div>
+	<div id="container">
+		<div class="category-area">
+			<div class="category">
+				<span th:if="${board.kind=='free'}">자유 게시판</span>
+				<span th:if="${board.kind=='humor'}">유머 게시판</span>
+				<span th:if="${board.kind=='sports'}">스포츠 게시판</span>
+				<span th:if="${board.kind=='game'}">게임 게시판</span>
+			</div>
+		</div>
+		<div class="read">
+			<div class="read-header">
+				<div class="title" th:text="${board.title}">제목</div>
+				<div class="read-header-l">
+					<div class="writer" th:text="${board.membername}">작성자</div>
+					<div class="regdate" th:text="${board.regdate}">작성일</div>
+				</div>
+				<div class="read-header-r">
+					<div class="replycnt" th:text="${board.replycnt}">댓글수</div>
+					<div class="likecnt" th:text="${board.likecnt}">추천수</div>
+					<div class="viewscnt" th:text="${board.viewscnt}">조회수</div>
+				</div>
+			</div>
+			
+			<div class="boardtxt" th:text="${board.boardtxt}">본문내용칸</div>
+			<a th:href="@{/delete(boardseq=${board.boardseq})}">삭제</a>
+			<a th:href="@{/update(boardseq=${board.boardseq})}">수정</a>		
+		</div>
+		<!-- <button type ="button" id="btnRecommend">추천하기</button> -->
+		
+		<br><hr><br>
+		<!-- 댓글 목록 -->
+		<div th:each="reply : ${replylist}">
+		<input type="hidden" name="boardseq" id="boardseq" th:value="${board.boardseq}">
+		  <div>
+ 		    <p>작성자: <span id="membername" th:text="${reply.membername}"></span></p>
+		    <p>내용: <span id="replytxt" th:text="${reply.replytxt}"></span></p>
+		    <p>작성일: <span th:text="${reply.regdate}"></span></p>
+		    <a th:href="@{/reply/replydelete(replyseq=${reply.replyseq})}">댓글 삭제</a>
+		    
+		    <hr>
+		  </div>
+		</div>
+
+		<!-- 댓글 작성 폼 -->
+		<form action="#" th:action="@{/reply/replywrite}" method="post">
+		  <input type="hidden" name="boardseq"  th:value="${board.boardseq}">
+		  <input type="hidden" name="membername" th:value="${membername}">
+		  <!-- <input type="text" name="membername" placeholder="작성자"> -->
+		  <input type="text"   id="replytxt" name="replytxt" placeholder="내용">
+		  <button type="submit">댓글 등록하기</button>
+		</form>
+		<br><br><br>
+		
+		
+		<!-- 댓글 처리 영역 -->
+		<!-- 댓글 입력 창 -->
+		<!-- <form th:action="@{/reply/replywrite}" method="POST">
+			<input type="hidden" id="boardseq"  name="boardseq" th:value="${board.boardseq}">
+			<input type="text"   id="replytxt" name="replytxt">
+			<input type="button" id="replybtn" value="등록">
+		</form>
+		<br> -->
+		
+		<!-- 댓글 출력창 -->
+		<!-- <span id="loginID" th:text="${#authentication.name}" style="display:none"></span>
+		<div id="replyResult"></div> -->
+		
+	</div>
+</body>
+</html>

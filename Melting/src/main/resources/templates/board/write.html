@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Melting | 통합 유머 커뮤니티</title>
+<link rel="stylesheet" type="text/css" href="css/board/write.css">
+<script th:inline="javascript" th:src="@{/script/jquery-3.6.3.min.js}"></script>
+<script th:inline="javascript" th:src="@{/script/reply.js}"></script>
+</head>
+<body>
+	<div id="header">
+		<div class="header-area">
+			<div class="logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
+			<div class="menu">
+				<h2 class="best">BEST</h2>
+				<h2 class="new">NEW</h2>
+				<h2 class="m">M</h2>
+			</div>
+ 			<div class="my">
+ 				<div class="logout" sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
+ 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
+			</div>				
+		</div>
+	</div>
+	
+	<div id="container">
+		<div class="write-name"><h1>게시글 작성하기</h1></div>
+		<div class="write-area">
+			<form th:action="@{/write}" method="POST">
+				<input type="hidden" name="memberid" th:value="${#authentication.name}" readonly>
+				<table border="1">
+					<tr>
+						<th>카테고리</th>
+						<td>
+							<select name="kind">
+							    <option value="free" selected>자유게시판</option>
+							    <option value="humor">유머게시판</option>
+							    <option value="sports">스포츠게시판</option>
+							    <option value="game">게임게시판</option>
+							 </select>		
+						</td>
+					
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td style="width:250px;"><input type="text" name="title" required></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td><textarea name="boardtxt" required rows="7" cols="80"></textarea></td>
+					</tr>
+					<tr>
+						<th colspan="2">
+							<input type="submit" value="등록">
+						</th>
+					</tr>
+				</table>
+			</form>
+		</div>
+		
+	</div>
+</body>
+</html>

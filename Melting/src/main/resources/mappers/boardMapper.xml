@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.melting.dao.BoardDAO">
+
+	<insert id="insertBoard" parameterType="Board">
+		INSERT INTO m_board
+		(
+			boardseq, memberid, title,
+			boardtxt, kind, membername
+		)
+		VALUES
+		(
+			m_board_seq.NEXTVAL, #{memberid}, #{title},
+			#{boardtxt}, #{kind},
+			(SELECT membername FROM m_member WHERE memberid = #{memberid})
+		)
+	</insert>
+	
+	<select id="getAllList" parameterType="String" resultType="Board">
+		SELECT 
+			boardseq, memberid, membername, title, kind, viewscnt,
+			to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate
+		FROM m_board
+		ORDER BY boardseq DESC, regdate DESC
+	</select>
+	
+	<select id="read" parameterType="int" resultType="Board">
+		SELECT
+			boardseq, memberid, title, boardtxt, kind,
+			to_char(regdate, 'YYYY-MM-DD') as regdate,
+			viewscnt, likecnt, replycnt
+		FROM m_board
+		WHERE boardseq = #{boardseq} 
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM m_board
+		WHERE boardseq = #{boardseq}
+	</delete>
+	
+	<update id="update" parameterType="Board">
+		UPDATE m_board
+		SET title = #{title}, boardtxt= #{boardtxt}, regdate = sysdate, kind = #{kind}
+		WHERE boardseq = #{boardseq}
+	</update>
+	
+	<update id="updateViewsCount" parameterType="int">
+		UPDATE m_board
+		SET viewscnt = viewscnt + 1
+		WHERE boardseq = #{boardseq}
+	</update>
+	
+</mapper>

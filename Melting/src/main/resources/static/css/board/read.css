@@ -1,0 +1,197 @@
+@charset "UTF-8";
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: black;
+	user-select: none;
+	font-family:'Pretendard-Regular';
+}
+
+a {
+	text-decoration: none;
+}
+
+
+#header {
+	height:200px;
+	width:100%;
+}
+
+.header-area {
+	width: 1000px;
+	position:relative;
+	margin: 0 auto;
+	height:100%;
+	border-bottom: 1px solid black;
+}
+
+.logo {
+	position:absolute;
+	top:50px;
+	
+}
+
+.logo img {
+	width:200px;
+}
+
+.menu {
+	position:absolute;
+	top:160px;
+	
+}
+
+.hot {
+	font-size:28px;
+	width: 80px;
+	float: left;
+}
+
+.hot a {
+	color:red;
+}
+
+.all {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;
+	
+}
+
+.humor {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.sports {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.game {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.free {
+	font-size:28px;
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 80px;	
+}
+
+.m {
+	float: left;
+	color:black;
+	font-size:28px;
+	margin-left:5px;
+	width: 80px;
+}
+
+.my {
+	position:absolute;
+	top:160px;
+	right:1px;
+	font-size: 23px;
+	display: inline-block;
+	
+}
+
+.join {
+	float:left;
+	margin:0px 2px;
+}
+
+.login {
+	float:left;
+	margin:0px 2px;
+}
+
+.logout {
+	float:left;
+	margin:0px 2px;
+}
+
+.myid {
+	float:left;
+	margin:0px 2px;
+}
+
+#container {
+	width: 1000px;
+	position:relative;
+	margin: 50px auto 0;
+}
+
+.category-area {
+	border-bottom:1px solid black;
+	height:40px;
+}
+
+
+
+.read-header {
+	background-color:yellow;
+	height:80px;
+	border:1px solid lightgrey;
+}
+
+.read-header-l {
+	float:left;
+	width:200px;
+}
+
+.writer {
+	float:left;
+}
+
+.regdate {
+	float:left;
+}
+
+.read-header-r {
+	float:right;
+	width:300px;
+}
+
+.viewscnt {
+	float:right;
+}
+
+.likecnt {
+	float:right;
+	
+}
+
+.replycnt {
+	float:right;
+}
+
+.boardtxt {
+	height:500px;
+}
+
+
+
+
+

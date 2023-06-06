@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Melting | 통합 유머 커뮤니티</title>
+<script th:inline="javascript" th:src="@{/script/member.js}"></script>
+<script th:inline="javascript" th:src="@{/script/jquery-3.6.3.min.js}"></script>
+<script th:inline="javascript" th:src="@{/script/idcheck.js}"></script>
+<script th:inline="javascript" th:src="@{/script/namecheck.js}"></script>
+</head>
+<body>
+	<h2>[ 회원 가입 ]</h2>
+	<form th:action="@{/join}" method="POST" onsubmit="return validation();">
+		<table border="1">
+			<tr>
+				<th>ID</th>
+				<td>
+					<input type="text" name="memberid" id="memberid" placeholder="아이디를 3~10자 사이로 입력">
+					<span id="checkResult"></span>
+					<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+				</td>
+			</tr>
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="memberpwd" id="memberpwd" placeholder="비밀번호를 3~10 사이로 입력"></td>
+			</tr>
+			<tr>
+				<th>비밀번호 확인</th>
+				<td><input type="password" id="memberpwd2" placeholder="비밀번호 다시 입력"></td>
+			</tr>
+			<tr>
+				<th>닉네임</th>
+				<td>
+					<input type="text" name="membername" id="membername" placeholder="닉네임 입력">
+					<span id="checkResult2"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td><input type="email" name="email" placeholder="Email을 입력"></td>
+			</tr>
+			<tr>
+				<td><input type="reset"  value="다시 입력하기"></td>
+				<td><input type="submit" value="가입하기"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

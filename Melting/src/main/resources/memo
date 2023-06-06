@@ -1,0 +1,47 @@
+package com.melting.service;
+
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
+
+import com.melting.domain.Crawling;
+
+@Service
+public class CrawlingService {
+	
+	private static String Dc_URL = "https://www.dcinside.com/";
+	
+	@PostConstruct
+	public List<Crawling> getCrawlingDatas() throws IOException {
+		List<Crawling> newList = new ArrayList<>();
+		Document document = Jsoup.connect(Dc_URL).get();
+		
+		Elements contents = document.select(".typet_list p_1 li");
+		
+		for (Element content : contents) {
+			Crawling crawling = Crawling.builder()
+					.title(content.select(".box besttxt p").text())
+					.build();
+			newList.add(crawling);
+		}
+		
+		// 데이터 출력
+		for (Crawling crawling : newList) {
+			System.out.println("Title: " + crawling.getTitle());
+		}
+		
+		return newList;
+		
+	}
+	
+	
+}

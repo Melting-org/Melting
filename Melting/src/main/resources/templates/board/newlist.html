@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Melting | 통합 유머 커뮤니티</title>
+<link href="../css/board/newlist.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="header">
+		<div class="header-area">
+			<div class="logo"><a th:href="@{/}"><img src="../images/meltingLogo.JPG"></a></div>
+			<div class="menu">
+				<div class="hot"><a th:href="@{../}">HOT</a></div>
+				<div class="all"><a th:href="@{../board/newlist}">전체</a></div>
+				<div class="humor">유머</div>
+				<div class="sports">스포츠</div>
+				<div class="game">게임</div>
+				<div class="free">자유</div>
+			</div>
+ 			<div class="my">
+ 				<div class="join"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/join}">회원가입</a></div>
+ 				<div class="login"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
+ 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{#}" th:text="${membername} + '님'"></a></div>
+ 				<div class="logout" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
+ 			</div>				
+		</div>
+	</div>
+	
+	<div id="container">
+		<div id="left">
+			<div class="board">
+				<div class="board-array">
+					<h3 class="array-views">조회순</h3>
+					<h3 class="array-comment">댓글순</h3>
+					<h3 class="array-like">추천순</h3>
+				</div>
+				<div class="boardlist">
+					<table border="1">
+						<tr>
+							<th>카테고리</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>조회수</th>
+							<th>등록일</th>
+						</tr>
+					
+						<tr th:each="board : ${list}">
+							<td> 
+								<span th:if="${board.kind=='free'}">자유</span>
+								<span th:if="${board.kind=='humor'}">유머</span>
+								<span th:if="${board.kind=='sports'}">스포츠</span>
+								<span th:if="${board.kind=='game'}">게임</span>
+							</td>
+							<td>
+							 	<a th:href="@{/read(boardseq=${board.boardseq})}" th:text="${board.title}"></a>
+						 	</td>
+						 	<td th:text="${board.membername}"></td>
+						 	<td th:text="${board.viewscnt}"></td>
+							<td th:text="${board.regdate}"></td>
+						</tr>
+					</table>
+				</div>
+			</div>	
+		</div>
+		
+		<div id="right">
+			<div class="write">
+				<a th:href="@{/write}">글쓰기</a>
+			</div>
+			<div class="search">
+				<input type="text" name="searchWord" class="form-control" placeholder=" 검색어를 입력하세요" onkeypress="if( event.keyCode == 13 ){enterKey();}">
+			</div>
+			<div class="bestsearch">
+				<h3>인기 검색어</h3>
+				<div class="bestsearch-list">
+					<div th:each="crawlingData, index : ${dcSearchList}">
+						<p><span th:text="${index.index + 1}"></span>.<a th:href="${crawlingData.link}" th:text=${crawlingData.title}></a></p>
+					</div>
+				</div>
+			</div>
+			<div class="bestkeyword">
+				<h3>인기 키워드</h3>
+				<div class="bestkeyword-list">
+					<br>1<br>2<br>3<br>4<br>5<br>
+					6<br>7<br>7<br>8<br>9<br>10<br>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>
