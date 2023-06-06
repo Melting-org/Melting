@@ -241,6 +241,7 @@ public class CrawlingServiceImpl implements CrawlingService {
         return crawlingDataList;
     }
 
+	
 
 
 	@Override
