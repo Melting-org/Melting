@@ -24,88 +24,88 @@ public class CrawlingServiceImpl implements CrawlingService {
 	@Autowired
 	CrawlingDAO crawlingDao;
 	
-	@Scheduled(fixedDelay = 30000)
-	public List<Crawling> getDcInsideCrawlingData() {
-        List<Crawling> crawlingDataList = new ArrayList<>();
-
-        int count = 10;
-        
-        try {
-        	
-            String dcUrl = "https://www.dcinside.com/";
-            Document document = Jsoup.connect(dcUrl).get();
-
-            Elements titles = document.select("div.box.besttxt > p");
-            Elements replycnts = document.select("div.box.besttxt > span");
-            Elements kinds = document.select("div.box.best_info > span.name");
-            Elements links = document.select("div.time_best .main_log");
-            
-            Math.min(count, titles.size());
-            for (int i = 0; i < count; i++) {
-                Element titleElement = titles.get(i);
-                String title = titleElement.text();
-
-                Element replycntElement = replycnts.get(i);
-                String replycnt = replycntElement.text().replace("[", "").replace("]", "");
-                
-                Element kindElement = kinds.get(i);
-                String kind = kindElement.text();
-                
-                Element linkElement = links.get(i);
-                String link = linkElement.attr("href");
-                
-                Document postDocument = Jsoup.connect(link).get();	// 게시물 페이지로 접속
-                Element membernameElement = postDocument.selectFirst(".nickname");
-                String membername;
-                
-                if (membernameElement == null) {
-                	membername = "작성자 비공개";
-                } else {
-                	membername = membernameElement.text();
-                }
-                
-                Element likecntElement = postDocument.selectFirst(".gall_reply_num");
-                if (likecntElement == null) {
-                    continue;
-                }
-
-                String likecnt = likecntElement.text().replace("추천", "").trim();
-
-                int likecnt2;	
-                try {
-                    likecnt2 = Integer.parseInt(likecnt);
-                } catch (NumberFormatException e) {
-                    continue;
-                }
-                
-                int replycnt2 = Integer.parseInt(replycnt);
-                
-                Crawling crawling = Crawling.builder()
-                        .title(title)
-                        .replycnt2(replycnt2)
-                        .kind(kind)
-                        .link(link)
-                        .membername(membername)
-                        .likecnt2(likecnt2)
-                        .build();
-
-                crawlingDataList.add(crawling);
-            }
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 0; i < count; i++) {
-            Crawling crawling = crawlingDataList.get(i);
-            crawlingDao.saveCrawlingData(crawling);
-        }
-        
-        return crawlingDataList;
-    }
-		
-	
-	@Scheduled(fixedDelay = 30000)
+//	@Scheduled(fixedDelay = 300000)
+//	public List<Crawling> getDcInsideCrawlingData() {
+//        List<Crawling> crawlingDataList = new ArrayList<>();
+//
+//        int count = 10;
+//        
+//        try {
+//        	
+//            String dcUrl = "https://www.dcinside.com/";
+//            Document document = Jsoup.connect(dcUrl).get();
+//
+//            Elements titles = document.select("div.box.besttxt > p");
+//            Elements replycnts = document.select("div.box.besttxt > span");
+//            Elements kinds = document.select("div.box.best_info > span.name");
+//            Elements links = document.select("div.time_best .main_log");
+//            
+//            Math.min(count, titles.size());
+//            for (int i = 0; i < count; i++) {
+//                Element titleElement = titles.get(i);
+//                String title = titleElement.text();
+//
+//                Element replycntElement = replycnts.get(i);
+//                String replycnt = replycntElement.text().replace("[", "").replace("]", "");
+//                
+//                Element kindElement = kinds.get(i);
+//                String kind = kindElement.text();
+//                
+//                Element linkElement = links.get(i);
+//                String link = linkElement.attr("href");
+//                
+//                Document postDocument = Jsoup.connect(link).get();	// 게시물 페이지로 접속
+//                Element membernameElement = postDocument.selectFirst(".nickname");
+//                String membername;
+//                
+//                if (membernameElement == null) {
+//                	membername = "작성자 비공개";
+//                } else {
+//                	membername = membernameElement.text();
+//                }
+//                
+//                Element likecntElement = postDocument.selectFirst(".gall_reply_num");
+//                if (likecntElement == null) {
+//                    continue;
+//                }
+//
+//                String likecnt = likecntElement.text().replace("추천", "").trim();
+//
+//                int likecnt2;	
+//                try {
+//                    likecnt2 = Integer.parseInt(likecnt);
+//                } catch (NumberFormatException e) {
+//                    continue;
+//                }
+//                
+//                int replycnt2 = Integer.parseInt(replycnt);
+//                
+//                Crawling crawling = Crawling.builder()
+//                        .title(title)
+//                        .replycnt2(replycnt2)
+//                        .kind(kind)
+//                        .link(link)
+//                        .membername(membername)
+//                        .likecnt2(likecnt2)
+//                        .build();
+//
+//                crawlingDataList.add(crawling);
+//            }
+//            
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        for (int i = 0; i < count; i++) {
+//            Crawling crawling = crawlingDataList.get(i);
+//            crawlingDao.saveCrawlingData(crawling);
+//        }
+//        
+//        return crawlingDataList;
+//    }
+//		
+//	
+	@Scheduled(fixedDelay = 300000)
 	public List<Crawling> getFmKoreaCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
 
@@ -173,7 +173,7 @@ public class CrawlingServiceImpl implements CrawlingService {
     }
 
 	
-	@Scheduled(fixedDelay = 30000)
+	@Scheduled(fixedDelay = 300000)
     public List<Crawling> getPpomppuCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
         
@@ -325,40 +325,40 @@ public class CrawlingServiceImpl implements CrawlingService {
 	}
 	
 	
-	public List<Crawling> getLikecntSortedData() {
-	    List<Crawling> combinedDataList = new ArrayList<>();
-
-	    List<Crawling> dcInsideDataList = getDcInsideCrawlingData();
-	    combinedDataList.addAll(dcInsideDataList);
-
-	    List<Crawling> fmKoreaDataList = getFmKoreaCrawlingData();
-	    combinedDataList.addAll(fmKoreaDataList);
-
-	    List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
-	    combinedDataList.addAll(ppomppuDataList);
-
-	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getLikecnt2).reversed());
-
-	    return combinedDataList;
-	}
-
-	@Override
-	public List<Crawling> getReplycntSortedData() {
-		List<Crawling> combinedDataList = new ArrayList<>();
-
-	    List<Crawling> dcInsideDataList = getDcInsideCrawlingData();
-	    combinedDataList.addAll(dcInsideDataList);
-
-	    List<Crawling> fmKoreaDataList = getFmKoreaCrawlingData();
-	    combinedDataList.addAll(fmKoreaDataList);
-
-	    List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
-	    combinedDataList.addAll(ppomppuDataList);
-
-	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getReplycnt2).reversed());
-
-	    return combinedDataList;
-	}
+//	public List<Crawling> getLikecntSortedData() {
+//	    List<Crawling> combinedDataList = new ArrayList<>();
+//
+//	    List<Crawling> dcInsideDataList = getDcInsideCrawlingData();
+//	    combinedDataList.addAll(dcInsideDataList);
+//
+//	    List<Crawling> fmKoreaDataList = getFmKoreaCrawlingData();
+//	    combinedDataList.addAll(fmKoreaDataList);
+//
+//	    List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
+//	    combinedDataList.addAll(ppomppuDataList);
+//
+//	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getLikecnt2).reversed());
+//
+//	    return combinedDataList;
+//	}
+//
+//	@Override
+//	public List<Crawling> getReplycntSortedData() {
+//		List<Crawling> combinedDataList = new ArrayList<>();
+//
+//	    List<Crawling> dcInsideDataList = getDcInsideCrawlingData();
+//	    combinedDataList.addAll(dcInsideDataList);
+//
+//	    List<Crawling> fmKoreaDataList = getFmKoreaCrawlingData();
+//	    combinedDataList.addAll(fmKoreaDataList);
+//
+//	    List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
+//	    combinedDataList.addAll(ppomppuDataList);
+//
+//	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getReplycnt2).reversed());
+//
+//	    return combinedDataList;
+//	}
 	
 	
 //    @Override

@@ -48,28 +48,28 @@ public class BoardController{
 			model.addAttribute("membername", membername);
 		}
 		
-		// 크롤링 List
-		List<Crawling> dcInsideDataList = crawlingService.getDcInsideCrawlingData();
-        List<Crawling> fmKoreaDataList = crawlingService.getFmKoreaCrawlingData();
-        List<Crawling> ppomppuDataList = crawlingService.getPpomppuCrawlingData();
-        List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
-        List<Crawling> hitList = crawlingService.getHitCrawlingData();
-
-        model.addAttribute("dcInsideDataList", dcInsideDataList);
-        model.addAttribute("fmKoreaDataList", fmKoreaDataList);
-        model.addAttribute("ppomppuDataList",ppomppuDataList);
-        model.addAttribute("dcSearchList", dcSearchList);
-        model.addAttribute("hitList", hitList);
+//		// 크롤링 List
+//		List<Crawling> dcInsideDataList = crawlingService.getDcInsideCrawlingData();
+//        List<Crawling> fmKoreaDataList = crawlingService.getFmKoreaCrawlingData();
+//        List<Crawling> ppomppuDataList = crawlingService.getPpomppuCrawlingData();
+//        List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
+//        List<Crawling> hitList = crawlingService.getHitCrawlingData();
+//
+//        model.addAttribute("dcInsideDataList", dcInsideDataList);
+//        model.addAttribute("fmKoreaDataList", fmKoreaDataList);
+//        model.addAttribute("ppomppuDataList",ppomppuDataList);
+//        model.addAttribute("dcSearchList", dcSearchList);
+//        model.addAttribute("hitList", hitList);
         
 //        // 추천순으로 정렬
 //        List<Crawling> likecntSortedDataList = crawlingService.getLikecntSortedData();
 //        model.addAttribute("likecntSorted", likecntSortedDataList);
 //        System.out.println(likecntSortedDataList);
-        
-        // 댓글순으로 정렬
-        List<Crawling> replycntSortedDataList = crawlingService.getReplycntSortedData();
-        model.addAttribute("replycntSorted", replycntSortedDataList);
-        System.out.println(replycntSortedDataList);
+//        
+//        // 댓글순으로 정렬
+//        List<Crawling> replycntSortedDataList = crawlingService.getReplycntSortedData();
+//        model.addAttribute("replycntSorted", replycntSortedDataList);
+//        System.out.println(replycntSortedDataList);
         
 		return "/main";
 	}
