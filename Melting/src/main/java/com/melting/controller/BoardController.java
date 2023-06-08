@@ -48,6 +48,9 @@ public class BoardController{
 			model.addAttribute("membername", membername);
 		}
 		
+		// DB 데이터 가져오기
+		
+		
 //		// 크롤링 List
 //		List<Crawling> dcInsideDataList = crawlingService.getDcInsideCrawlingData();
 //        List<Crawling> fmKoreaDataList = crawlingService.getFmKoreaCrawlingData();

@@ -21,17 +21,19 @@ public class Crawling {
 	
 	private int crawlingseq;
 	private String title;
-	private String replycnt;
-	private int replycnt2;
 	private String kind;
 	private String link;
 	private String image;
 	private String membername;
 	private Date created_at;
+	private String replycnt;
+	private int replycnt2;
 	private String likecnt;
 	private int likecnt2;
+	private String viewscnt;
+	private int viewscnt2;
+	private String site;
 //	private String regdate;
-//	private int viewscnt;
 	
 
 }
