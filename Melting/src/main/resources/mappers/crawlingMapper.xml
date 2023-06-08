@@ -7,26 +7,28 @@
 
 	<insert id="saveCrawlingData" parameterType="Crawling">
 		INSERT INTO m_crawling 
-        	(crawlingseq, title, replycnt2, kind, link, membername, likecnt2)
+        	(crawlingseq, title, replycnt2, kind, link, membername, likecnt2, site)
         VALUES 
-        	(m_crawling_seq.NEXTVAL, #{title}, #{replycnt2}, #{kind}, #{link}, #{membername}, #{likecnt2})
+        	(m_crawling_seq.NEXTVAL, #{title}, #{replycnt2}, #{kind}, #{link}, #{membername}, #{likecnt2}, #{site})
 	</insert>
 	
-    <delete id="deleteByCreatedAtBefore" parameterType="Date">
-        DELETE FROM m_crawling 
-        WHERE created_at &lt; #{created_at}
-    </delete>
-    
-
-	<delete id="deleteOldData" parameterType="int">
-	    DELETE FROM m_crawling
-		WHERE crawlingseq IN (
-		    SELECT crawlingseq
-		    FROM (
-		      SELECT crawlingseq, ROW_NUMBER() OVER (ORDER BY created_at ASC) AS row_num
-		      FROM m_crawling
-		    	)
-		    WHERE row_num > #{rowLimit}
-	   )
+    <select id="countCrawlingData" parameterType="String" resultType="int">
+       SELECT COUNT(*) 
+       FROM m_crawling
+       WHERE site = #{site}
+    </select>
+	
+ 	<delete id="deleteOldData" parameterType="String">
+    DELETE FROM m_crawling
+	WHERE crawlingseq IN (
+	  SELECT crawlingseq
+	  FROM (
+	    SELECT crawlingseq, ROW_NUMBER() OVER (ORDER BY created_at DESC) AS row_num
+	    FROM m_crawling
+	    WHERE site = #{site}
+	  )
+	  WHERE row_num > (SELECT COUNT(*) - 2 FROM m_crawling WHERE site=#{site})
+	)
 	</delete>
+
 </mapper>

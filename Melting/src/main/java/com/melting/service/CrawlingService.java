@@ -6,7 +6,7 @@ import com.melting.domain.Crawling;
 
 public interface CrawlingService {
 
-//	public List<Crawling> getDcInsideCrawlingData();
+	public List<Crawling> getDcInsideCrawlingData();
 
 	public List<Crawling> getFmKoreaCrawlingData();
 
@@ -16,10 +16,6 @@ public interface CrawlingService {
 
 	public List<Crawling> getHitCrawlingData();
 	
-//	public void deleteOldData(int rowLimit);
-	
-//	public void deleteCrawlingData();
-
 //	public List<Crawling> getLikecntSortedData();
 //
 //	public List<Crawling> getReplycntSortedData();

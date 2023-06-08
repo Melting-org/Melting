@@ -3,8 +3,6 @@ package com.melting.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -21,95 +19,114 @@ import com.melting.domain.Crawling;
 @Service
 public class CrawlingServiceImpl implements CrawlingService {
 	
+
 	@Autowired
 	CrawlingDAO crawlingDao;
 	
-//	@Scheduled(fixedDelay = 300000)
-//	public List<Crawling> getDcInsideCrawlingData() {
-//        List<Crawling> crawlingDataList = new ArrayList<>();
-//
-//        int count = 10;
-//        
-//        try {
-//        	
-//            String dcUrl = "https://www.dcinside.com/";
-//            Document document = Jsoup.connect(dcUrl).get();
-//
-//            Elements titles = document.select("div.box.besttxt > p");
-//            Elements replycnts = document.select("div.box.besttxt > span");
-//            Elements kinds = document.select("div.box.best_info > span.name");
-//            Elements links = document.select("div.time_best .main_log");
-//            
-//            Math.min(count, titles.size());
-//            for (int i = 0; i < count; i++) {
-//                Element titleElement = titles.get(i);
-//                String title = titleElement.text();
-//
-//                Element replycntElement = replycnts.get(i);
-//                String replycnt = replycntElement.text().replace("[", "").replace("]", "");
-//                
-//                Element kindElement = kinds.get(i);
-//                String kind = kindElement.text();
-//                
-//                Element linkElement = links.get(i);
-//                String link = linkElement.attr("href");
-//                
-//                Document postDocument = Jsoup.connect(link).get();	// 게시물 페이지로 접속
-//                Element membernameElement = postDocument.selectFirst(".nickname");
-//                String membername;
-//                
-//                if (membernameElement == null) {
-//                	membername = "작성자 비공개";
-//                } else {
-//                	membername = membernameElement.text();
-//                }
-//                
-//                Element likecntElement = postDocument.selectFirst(".gall_reply_num");
-//                if (likecntElement == null) {
-//                    continue;
-//                }
-//
-//                String likecnt = likecntElement.text().replace("추천", "").trim();
-//
-//                int likecnt2;	
-//                try {
-//                    likecnt2 = Integer.parseInt(likecnt);
-//                } catch (NumberFormatException e) {
-//                    continue;
-//                }
-//                
-//                int replycnt2 = Integer.parseInt(replycnt);
-//                
-//                Crawling crawling = Crawling.builder()
-//                        .title(title)
-//                        .replycnt2(replycnt2)
-//                        .kind(kind)
-//                        .link(link)
-//                        .membername(membername)
-//                        .likecnt2(likecnt2)
-//                        .build();
-//
-//                crawlingDataList.add(crawling);
-//            }
-//            
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        for (int i = 0; i < count; i++) {
-//            Crawling crawling = crawlingDataList.get(i);
-//            crawlingDao.saveCrawlingData(crawling);
-//        }
-//        
-//        return crawlingDataList;
-//    }
-//		
-//	
-	@Scheduled(fixedDelay = 300000)
+	int count = 2;
+//	int rowLimit = 6;
+
+	@Scheduled(fixedDelay = 20000)
+	public List<Crawling> getDcInsideCrawlingData() {
+        List<Crawling> crawlingDataList = new ArrayList<>();
+        String site = "dc";
+        
+        try {
+        	
+            String dcUrl = "https://www.dcinside.com/";
+            Document document = Jsoup.connect(dcUrl).get();
+
+            Elements titles = document.select("div.box.besttxt > p");
+            Elements replycnts = document.select("div.box.besttxt > span");
+            Elements kinds = document.select("div.box.best_info > span.name");
+            Elements links = document.select("div.time_best .main_log");
+            
+            Math.min(count, titles.size());
+            for (int i = 0; i < count; i++) {
+                Element titleElement = titles.get(i);
+                String title = titleElement.text();
+
+                Element replycntElement = replycnts.get(i);
+                String replycnt = replycntElement.text().replace("[", "").replace("]", "");
+                
+                Element kindElement = kinds.get(i);
+                String kind = kindElement.text();
+                
+                Element linkElement = links.get(i);
+                String link = linkElement.attr("href");
+                
+                Document postDocument = Jsoup.connect(link).get();	// 게시물 페이지로 접속
+                Element membernameElement = postDocument.selectFirst(".nickname");
+                String membername;
+                
+                if (membernameElement == null) {
+                	membername = "작성자 비공개";
+                } else {
+                	membername = membernameElement.text();
+                }
+                
+                
+                Element likecntElement = postDocument.selectFirst(".gall_reply_num");
+                if (likecntElement == null) {
+                    continue;
+                }
+                String likecnt = likecntElement.text().replace("추천", "").trim();
+                
+                
+                Element viewscntElement = postDocument.selectFirst(".gall_count");
+                String viewscnt = viewscntElement.text().replace("조회", "").trim();
+                
+
+                int likecnt2;	
+                try {
+                    likecnt2 = Integer.parseInt(likecnt);
+                } catch (NumberFormatException e) {
+                    continue;
+                }
+                
+                int replycnt2 = Integer.parseInt(replycnt);
+                int viewscnt2 = Integer.parseInt(viewscnt);
+                
+                
+                Crawling crawling = Crawling.builder()
+                		.site(site)
+                        .title(title)
+                        .replycnt2(replycnt2)
+                        .kind(kind)
+                        .link(link)
+                        .membername(membername)
+                        .likecnt2(likecnt2)
+                        .viewscnt2(viewscnt2)
+                        .build();
+
+                crawlingDataList.add(crawling);
+            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        for (int i = 0; i < count; i++) {
+            Crawling crawling = crawlingDataList.get(i);
+            crawlingDao.saveCrawlingData(crawling);
+        }
+        
+        int rowcount = crawlingDao.countCrawlingData(site);
+        System.out.println("rowcount :" + rowcount);
+        
+        if (rowcount > count) {
+			crawlingDao.deleteOldData(site);
+			System.out.println("데이터 삭제됨");
+		}
+        
+        return crawlingDataList;
+    }
+		
+	
+	@Scheduled(fixedDelay = 20000)
 	public List<Crawling> getFmKoreaCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
-
-        int count = 10;
+        String site = "fm";
         
         try {
         	
@@ -122,6 +139,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements links = document.select(".hx");
             Elements membernames = document.select(".author");
             Elements likecnts = document.select(".m_no_voted");
+            Elements viewscnts = document.select(".m_no");
             
 
             Math.min(count, replycnts.size());
@@ -144,16 +162,22 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element likecntElement = likecnts.get(i);
                 String likecnt = likecntElement.text().trim();
                 
+                Element viewscntElement = viewscnts.get(i+2);
+                String viewscnt = viewscntElement.text().trim();
+                
                 int likecnt2 = Integer.parseInt(likecnt);	
                 int replycnt2 = Integer.parseInt(replycnt);
+                int viewscnt2 = Integer.parseInt(viewscnt);
                 
                 Crawling crawling = Crawling.builder()
+                		.site(site)
                         .title(title)
                         .replycnt2(replycnt2)
                         .kind(kind)
                         .link(link)
                         .membername(membername)
                         .likecnt2(likecnt2)
+                        .viewscnt2(viewscnt2)
                         .build();
                 
                 crawlingDataList.add(crawling);
@@ -167,18 +191,26 @@ public class CrawlingServiceImpl implements CrawlingService {
         for (int i = 0; i < count; i++) {
             Crawling crawling = crawlingDataList.get(i);
             crawlingDao.saveCrawlingData(crawling);
+            
         }
-
+        
+        int rowcount = crawlingDao.countCrawlingData(site);
+        System.out.println("rowcount :" + rowcount);
+        
+        if (rowcount > count) {
+			crawlingDao.deleteOldData(site);
+			System.out.println("데이터 삭제됨");
+		}
+        
         return crawlingDataList;
     }
 
 	
-	@Scheduled(fixedDelay = 300000)
+	@Scheduled(fixedDelay = 20000)
     public List<Crawling> getPpomppuCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
+        String site = "pp";
         
-        int count = 10;
-
         try {
         	
             String ppomppuUrl = "https://www.ppomppu.co.kr/hot.php?category=2";
@@ -191,6 +223,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements membernames = document.select(".name");
             Elements likecnts = document.select("table.board_table tr.line td:nth-child(6)");
 
+            
             Math.min(count, titles.size());
             for (int i = 0; i < count; i++) {
                 Element titleElement = titles.get(i);
@@ -220,6 +253,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                 int replycnt2 = Integer.parseInt(replycnt);
                 
                 Crawling crawling = Crawling.builder()
+                		.site(site)
                         .title(title)
                         .replycnt2(replycnt2)
                         .kind(kind)
@@ -240,6 +274,14 @@ public class CrawlingServiceImpl implements CrawlingService {
             Crawling crawling = crawlingDataList.get(i);
             crawlingDao.saveCrawlingData(crawling);
         }
+        
+        int rowcount = crawlingDao.countCrawlingData(site);
+        System.out.println("rowcount :" + rowcount);
+        
+        if (rowcount > count) {
+			crawlingDao.deleteOldData(site);
+			System.out.println("데이터 삭제됨");
+		}
         
         return crawlingDataList;
     }
@@ -359,26 +401,6 @@ public class CrawlingServiceImpl implements CrawlingService {
 //
 //	    return combinedDataList;
 //	}
-	
-	
-//    @Override
-//    public void deleteOldData(int rowLimit) {
-//    	crawlingDao.deleteOldData(rowLimit);
-//    	
-//    }
-//   
-//
-//    // 마다 실행되도록 스케줄링 설정
-//    @Scheduled(fixedRate = 30000)
-//    public void deleteCrawlingData() {
-//        // 현재 시간 기준으로 초 이전의 데이터를 삭제
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.add(Calendar.SECOND, -30);
-//        Date timestamp = calendar.getTime();
-//        
-//        crawlingDao.deleteByCreatedAtBefore(timestamp);
-//        System.out.println("Crawling data deleted at: " + new Date());
-//    }
 
 
     

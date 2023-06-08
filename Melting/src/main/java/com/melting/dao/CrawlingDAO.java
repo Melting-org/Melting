@@ -11,10 +11,9 @@ public interface CrawlingDAO {
 
 	public void saveCrawlingData(Crawling crawling);
 
-	public void deleteOldData(int rowLimit);
+	public int countCrawlingData(String site);
 
-//	public void deleteByCreatedAtBefore(Date created_at);
-
+	public void deleteOldData(String site);
 
 	
 	
