@@ -23,10 +23,10 @@ public class CrawlingServiceImpl implements CrawlingService {
 	@Autowired
 	CrawlingDAO crawlingDao;
 	
-	int count = 2;
+	int count = 10;
 
 	
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 120000)
 	public List<Crawling> getDcInsideCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
         String site = "dc";
@@ -112,18 +112,16 @@ public class CrawlingServiceImpl implements CrawlingService {
         }
         
         int rowcount = crawlingDao.countCrawlingData(site);
-        System.out.println("rowcount :" + rowcount);
         
         if (rowcount > count) {
 			crawlingDao.deleteOldData(site);
-			System.out.println("데이터 삭제됨");
 		}
         
         return crawlingDataList;
     }
 		
 	
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 120000)
 	public List<Crawling> getFmKoreaCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
         String site = "fm";
@@ -181,7 +179,6 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .build();
                 
                 crawlingDataList.add(crawling);
-                System.out.println(viewscnt);
                 
             }
             
@@ -196,18 +193,16 @@ public class CrawlingServiceImpl implements CrawlingService {
         }
         
         int rowcount = crawlingDao.countCrawlingData(site);
-        System.out.println("rowcount :" + rowcount);
         
         if (rowcount > count) {
 			crawlingDao.deleteOldData(site);
-			System.out.println("데이터 삭제됨");
 		}
         
         return crawlingDataList;
     }
 
 	
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 120000)
     public List<Crawling> getPpomppuCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
         String site = "pp";
@@ -283,11 +278,9 @@ public class CrawlingServiceImpl implements CrawlingService {
         }
         
         int rowcount = crawlingDao.countCrawlingData(site);
-        System.out.println("rowcount :" + rowcount);
         
         if (rowcount > count) {
 			crawlingDao.deleteOldData(site);
-			System.out.println("데이터 삭제됨");
 		}
         
         return crawlingDataList;
@@ -372,42 +365,36 @@ public class CrawlingServiceImpl implements CrawlingService {
 		
 		return crawlingDataList;
 	}
-	
-	
-//	public List<Crawling> getLikecntSortedData() {
-//	    List<Crawling> combinedDataList = new ArrayList<>();
-//
-//	    List<Crawling> dcInsideDataList = getDcInsideCrawlingData();
-//	    combinedDataList.addAll(dcInsideDataList);
-//
-//	    List<Crawling> fmKoreaDataList = getFmKoreaCrawlingData();
-//	    combinedDataList.addAll(fmKoreaDataList);
-//
-//	    List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
-//	    combinedDataList.addAll(ppomppuDataList);
-//
-//	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getLikecnt2).reversed());
-//
-//	    return combinedDataList;
-//	}
-//
-//	@Override
-//	public List<Crawling> getReplycntSortedData() {
-//		List<Crawling> combinedDataList = new ArrayList<>();
-//
-//	    List<Crawling> dcInsideDataList = getDcInsideCrawlingData();
-//	    combinedDataList.addAll(dcInsideDataList);
-//
-//	    List<Crawling> fmKoreaDataList = getFmKoreaCrawlingData();
-//	    combinedDataList.addAll(fmKoreaDataList);
-//
-//	    List<Crawling> ppomppuDataList = getPpomppuCrawlingData();
-//	    combinedDataList.addAll(ppomppuDataList);
-//
-//	    Collections.sort(combinedDataList, Comparator.comparing(Crawling::getReplycnt2).reversed());
-//
-//	    return combinedDataList;
-//	}
+
+
+	@Override
+	public List<Crawling> getCrawlingList() {
+		List<Crawling> list = crawlingDao.getCrawlingList();
+		return list;
+	}
+
+
+	@Override
+	public List<Crawling> getViewscntSortedList() {
+		List<Crawling> list = crawlingDao.getViewscntSortedList();
+		return list;
+	}
+
+
+	@Override
+	public List<Crawling> getLikecntSortedList() {
+		List<Crawling> list = crawlingDao.getLikecntSortedList();
+		return list;
+	}
+
+
+	@Override
+	public List<Crawling> getReplycntSortedList() {
+		List<Crawling> list = crawlingDao.getReplycntSortedList();
+		return list;
+	}
+
+
 
 
     

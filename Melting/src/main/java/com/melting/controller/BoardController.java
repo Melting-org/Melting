@@ -49,6 +49,20 @@ public class BoardController{
 		}
 		
 		// DB 데이터 가져오기
+		List<Crawling> list = crawlingService.getCrawlingList();
+		model.addAttribute("list", list);
+		
+		// 조회순으로 정렬
+		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
+		model.addAttribute("viewscntSortedList", viewscntSortedList);
+		
+		// 추천순으로 정렬
+		List<Crawling> likecntSortedList = crawlingService.getLikecntSortedList();
+		model.addAttribute("likecntSortedList", likecntSortedList);
+
+		// 댓글순으로 정렬
+		List<Crawling> replycntSortedList = crawlingService.getReplycntSortedList();
+		model.addAttribute("replycntSortedList", replycntSortedList);
 		
 		
 //		// 크롤링 List
@@ -64,15 +78,6 @@ public class BoardController{
 //        model.addAttribute("dcSearchList", dcSearchList);
 //        model.addAttribute("hitList", hitList);
         
-//        // 추천순으로 정렬
-//        List<Crawling> likecntSortedDataList = crawlingService.getLikecntSortedData();
-//        model.addAttribute("likecntSorted", likecntSortedDataList);
-//        System.out.println(likecntSortedDataList);
-//        
-//        // 댓글순으로 정렬
-//        List<Crawling> replycntSortedDataList = crawlingService.getReplycntSortedData();
-//        model.addAttribute("replycntSorted", replycntSortedDataList);
-//        System.out.println(replycntSortedDataList);
         
 		return "/main";
 	}

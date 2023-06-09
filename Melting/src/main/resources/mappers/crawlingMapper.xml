@@ -21,17 +21,40 @@
     </select>
 	
  	<delete id="deleteOldData" parameterType="String">
-    DELETE FROM m_crawling
-	WHERE crawlingseq IN (
-	  SELECT crawlingseq
-	  FROM (
-	    SELECT crawlingseq, ROW_NUMBER() OVER (ORDER BY created_at DESC) AS row_num
-	    FROM m_crawling
-	    WHERE site = #{site}
-	  )
-	  WHERE row_num > (SELECT COUNT(*) - 2 FROM m_crawling WHERE site=#{site})
-	)
+	    DELETE FROM m_crawling
+		WHERE crawlingseq IN (
+		  SELECT crawlingseq
+		  FROM (
+		    SELECT crawlingseq, ROW_NUMBER() OVER (ORDER BY created_at DESC) AS row_num
+		    FROM m_crawling
+		    WHERE site = #{site}
+		  )
+		  WHERE row_num > (SELECT COUNT(*) - 10 FROM m_crawling WHERE site=#{site})
+		)
 	</delete>
+	
+	<select id="getCrawlingList" resultType="Crawling">
+		SELECT *
+		FROM m_crawling
+	</select>
+	
+ 	<select id="getViewscntSortedList" resultType="Crawling" >
+		SELECT *
+		FROM m_crawling
+		ORDER BY viewscnt2 DESC
+	</select>
+	
+ 	<select id="getLikecntSortedList" resultType="Crawling" >
+		SELECT *
+		FROM m_crawling
+		ORDER BY likecnt2 DESC
+	</select>
+	
+ 	<select id="getReplycntSortedList" resultType="Crawling" >
+		SELECT *
+		FROM m_crawling
+		ORDER BY replycnt2 DESC
+	</select>
 	
 
 </mapper>
