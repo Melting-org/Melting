@@ -1,4 +1,5 @@
-# 소개
+# 프로젝트 소개
+![Logo](../Melting/readmeimg/Logo.png)<br>
 Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 사이트입니다.<br>
 디시인사이드, 에펨코리아 등 다양한 인기 사이트를 제공하며 원하는 게시글을 스크랩 할 수 있습니다.
 
@@ -21,7 +22,7 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 사이트입�
 <img src="https://img.shields.io/badge/CSS-blue?style=flat&logo=css3&logoColor=white"/>
 <img src="https://img.shields.io/badge/JavaScript-yellow?style=flat&logo=JavaScript&logoColor=white"/>
 <img src="https://img.shields.io/badge/jQuery-blue?style=flat&logo=jquery&logoColor=black"/>
-<img src="https://img.shields.io/badge/React-skyblue?style=flat&logo=React&logoColor=black"/>
+<img src="https://img.shields.io/badge/React Native-skyblue?style=flat&logo=React&logoColor=black"/>
 
 - <div>Backend </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
