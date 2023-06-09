@@ -5,7 +5,7 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 사이트입�
 
 # 기능
 - 회원가입, 로그인
-- 게시글 읽기, 쓰기, 삭제, 수정, 추천, 검색
+- 게시글 읽기, 쓰기, 삭제, 수정, 추천, 검색, 공유
 - 댓글 달기, 삭제
 - 마이페이지 쓴 글 알림, 댓글 알림, 글 스크랩
 
@@ -41,9 +41,15 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 사이트입�
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/VS Code-blue?style=flat&logo=visual studio&logoColor=white"/>
 
-- <div>API </div>
+- <div>API</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/kakao-yellow?style=flat&logo=kakaotalk&logoColor=black"/>
+
+- <div>ETC</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Notion-white?style=flat&logo=Notion&logoColor=black"/>
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white"/>
+
 <br><br>
 
 # 조원 소개
@@ -56,4 +62,8 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 사이트입�
 3. 뽐뿌
 4. 루리웹(예정)
 5. 인벤(예정)
+
+# 협업 Notion
+(추후 추가)
+
 
