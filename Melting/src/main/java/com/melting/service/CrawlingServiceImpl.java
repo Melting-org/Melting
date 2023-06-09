@@ -24,8 +24,8 @@ public class CrawlingServiceImpl implements CrawlingService {
 	CrawlingDAO crawlingDao;
 	
 	int count = 2;
-//	int rowLimit = 6;
 
+	
 	@Scheduled(fixedDelay = 20000)
 	public List<Crawling> getDcInsideCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
@@ -162,7 +162,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element likecntElement = likecnts.get(i);
                 String likecnt = likecntElement.text().trim();
                 
-                Element viewscntElement = viewscnts.get(i+2);
+                Element viewscntElement = viewscnts.get(i*2+2);
                 String viewscnt = viewscntElement.text().trim();
                 
                 int likecnt2 = Integer.parseInt(likecnt);	
@@ -181,6 +181,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .build();
                 
                 crawlingDataList.add(crawling);
+                System.out.println(viewscnt);
                 
             }
             
@@ -222,6 +223,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements links = document.select(".line .title");	
             Elements membernames = document.select(".name");
             Elements likecnts = document.select("table.board_table tr.line td:nth-child(6)");
+            Elements viewscnts = document.select("table.board_table tr.line td:nth-child(7)");
 
             
             Math.min(count, titles.size());
@@ -249,8 +251,12 @@ public class CrawlingServiceImpl implements CrawlingService {
                     likecnt = likecnt.substring(0, hyphenIndex).trim();
                 }
                 
+                Element viewscntElement = viewscnts.get(i);
+                String viewscnt = viewscntElement.text();
+                
                 int likecnt2 = Integer.parseInt(likecnt);
                 int replycnt2 = Integer.parseInt(replycnt);
+                int viewscnt2 = Integer.parseInt(viewscnt);
                 
                 Crawling crawling = Crawling.builder()
                 		.site(site)
@@ -260,6 +266,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .link(link)
                         .membername(membername)
                         .likecnt2(likecnt2)
+                        .viewscnt2(viewscnt2)
                         .build();
                 
                 crawlingDataList.add(crawling);
