@@ -5,13 +5,11 @@
   
 <mapper namespace="com.melting.dao.CrawlingDAO">
 
-	<insert id="saveCrawlingData" parameterType="Crawling">
+ 	<insert id="saveCrawlingData" parameterType="Crawling">
 		INSERT INTO m_crawling 
-        	(crawlingseq, title, replycnt2, kind, link, 
-        	membername, likecnt2, site, viewscnt2)
+        	(crawlingseq, title, replycnt2, image, kind, membername, link, viewscnt2, likecnt2, site)
         VALUES 
-        	(m_crawling_seq.NEXTVAL, #{title}, #{replycnt2}, #{kind}, #{link}, 
-        	#{membername}, #{likecnt2}, #{site}, #{viewscnt2})
+        	(m_crawling_seq.NEXTVAL, #{title}, #{replycnt2}, #{image}, #{kind}, #{membername}, #{link}, #{viewscnt2}, #{likecnt2}, #{site})
 	</insert>
 	
     <select id="countCrawlingData" parameterType="String" resultType="int">

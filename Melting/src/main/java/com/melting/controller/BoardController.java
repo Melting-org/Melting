@@ -48,33 +48,28 @@ public class BoardController{
 			model.addAttribute("membername", membername);
 		}
 		
-		// DB 데이터 가져오기
-		List<Crawling> list = crawlingService.getCrawlingList();
-		model.addAttribute("list", list);
-		
+//		// DB 데이터 가져오기
+//		List<Crawling> list = crawlingService.getCrawlingList();
+//		model.addAttribute("list", list);
+//		
 		// 조회순으로 정렬
 		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
 		model.addAttribute("viewscntSortedList", viewscntSortedList);
-		
-		// 추천순으로 정렬
-		List<Crawling> likecntSortedList = crawlingService.getLikecntSortedList();
-		model.addAttribute("likecntSortedList", likecntSortedList);
-
-		// 댓글순으로 정렬
-		List<Crawling> replycntSortedList = crawlingService.getReplycntSortedList();
-		model.addAttribute("replycntSortedList", replycntSortedList);
-		
-		
+//		System.out.println(viewscntSortedList);
+//		
+//		// 추천순으로 정렬
+//		List<Crawling> likecntSortedList = crawlingService.getLikecntSortedList();
+//		model.addAttribute("likecntSortedList", likecntSortedList);
+//
+//		// 댓글순으로 정렬
+//		List<Crawling> replycntSortedList = crawlingService.getReplycntSortedList();
+//		model.addAttribute("replycntSortedList", replycntSortedList);
+//		
+//		
 //		// 크롤링 List
-//		List<Crawling> dcInsideDataList = crawlingService.getDcInsideCrawlingData();
-//        List<Crawling> fmKoreaDataList = crawlingService.getFmKoreaCrawlingData();
-//        List<Crawling> ppomppuDataList = crawlingService.getPpomppuCrawlingData();
 //        List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
 //        List<Crawling> hitList = crawlingService.getHitCrawlingData();
 //
-//        model.addAttribute("dcInsideDataList", dcInsideDataList);
-//        model.addAttribute("fmKoreaDataList", fmKoreaDataList);
-//        model.addAttribute("ppomppuDataList",ppomppuDataList);
 //        model.addAttribute("dcSearchList", dcSearchList);
 //        model.addAttribute("hitList", hitList);
         

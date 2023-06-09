@@ -51,22 +51,28 @@
 				</div>
 				<div class="boardlist">
 				<!-- 현재 조회수 정렬로 설정 -->
-					<table border='1'>
+					 <table border='1'>
 						<tr>
+							<th>이미지</th>
 							<th>카테고리</th>
 				            <th>제목</th>
 				            <th>댓글수</th>
 				            <th>작성자</th>
 				            <th>추천</th>
 				            <th>조회</th>
+				            <th>사이트명</th>
 						</tr>
 						<tr th:each="crawlingData : ${viewscntSortedList}">
+					        <td>
+					        	<img alt="이미지" th:src="${crawlingData.image}" class="boardlist-image">
+					        </td>
 							<td th:text="${crawlingData.kind}"></td>
 					        <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}"></a></td>
 					        <td th:text="${crawlingData.replycnt2}"></td>
 					        <td th:text="${crawlingData.membername}"></td>
 					        <td th:text="${crawlingData.likecnt2}"></td>
 					        <td th:text="${crawlingData.viewscnt2}"></td>
+					        <td th:text="${crawlingData.site}"></td>
 						</tr>
 					</table>
 				</div>
