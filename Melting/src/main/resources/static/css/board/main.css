@@ -225,6 +225,12 @@ a {
 	margin-bottom: 20px;
 }
 
+.boardlist-image {
+	width:80px;
+	height:60px;
+	overflow: hidden;
+}
+
 .boardlist .category {
 	width:30px;
 	background-color:red;

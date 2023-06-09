@@ -2,6 +2,7 @@ package com.melting.service;
 
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements replycnts = document.select("div.box.besttxt > span");
             Elements kinds = document.select("div.box.best_info > span.name");
             Elements links = document.select("div.time_best .main_log");
+            Elements images = document.select("div.box.bestimg > img");
             
             Math.min(count, titles.size());
             for (int i = 0; i < count; i++) {
@@ -55,7 +57,12 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element linkElement = links.get(i);
                 String link = linkElement.attr("href");
                 
+                Element imageElement = images.get(i);
+                String image = imageElement.attr("src");
+                
+                
                 Document postDocument = Jsoup.connect(link).get();	// 게시물 페이지로 접속
+	
                 Element membernameElement = postDocument.selectFirst(".nickname");
                 String membername;
                 
@@ -97,6 +104,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .membername(membername)
                         .likecnt2(likecnt2)
                         .viewscnt2(viewscnt2)
+                        .image(image)
                         .build();
 
                 crawlingDataList.add(crawling);
@@ -119,89 +127,94 @@ public class CrawlingServiceImpl implements CrawlingService {
         
         return crawlingDataList;
     }
+	
+//	@Scheduled(fixedDelay = 120000)
+//	public List<Crawling> getFmKoreaCrawlingData() {
+//        List<Crawling> crawlingDataList = new ArrayList<>();
+//        String site = "fm";
+//        
+//        try {
+//        	
+//            String fmKoreaUrl = "https://www.fmkorea.com/index.php?mid=best2&listStyle=webzine&page=1";
+//            Document document = Jsoup.connect(fmKoreaUrl).get();
+//
+//            Elements titles = document.select(".hotdeal_var8");
+//            Elements replycnts = document.select(".comment_count");
+//            Elements images = document.select("div.fm_best_widget._bd_pc img");
+//            Elements kinds = document.select(".category");
+//            Elements membernames = document.select(".author");
+//            Elements links = document.select(".hotdeal_var8");
+//
+//            Math.min(count, titles.size());
+//            for (int i = 0; i < count; i++) {
+//                Element titleElement = titles.get(i);
+//                String title = titleElement.ownText();
+//
+//                Element replycntElement = replycnts.get(i);
+//                String replycnt = replycntElement.text().replace("[", "").replace("]", "");
+//                
+//                Element imageElement = images.get(i);
+//                String image = imageElement.attr("src");
+//                
+//                Element kindElement = kinds.get(i);
+//                String kind = kindElement.text();
+//                
+//                Element membernameElement = membernames.get(i);
+//                String membername = membernameElement.text().replace("/", "").trim();
+//                
+//                Element linkElement = links.get(i);
+//                String link = "https://www.fmkorea.com"+linkElement.attr("href");
+//                
+//                Document postDocument = Jsoup.connect(link).get();	// 게시물 페이지로 접속
+//	
+//                Element viewscntElement = postDocument.selectFirst("div.side.fr > span:nth-child(1) > b");
+//                String viewscnt = viewscntElement.text().trim();
+//                
+//                Element likecntElement = postDocument.selectFirst("div.side.fr > span:nth-child(2) > b");
+//                String likecnt = likecntElement.text().trim();
+//                
+//                
+//                int likecnt2 = Integer.parseInt(likecnt);	
+//                int replycnt2 = Integer.parseInt(replycnt);
+//                int viewscnt2 = Integer.parseInt(viewscnt);
+//                
+//                Crawling crawling = Crawling.builder()
+//                		.site(site)
+//                        .title(title)
+//                        .replycnt2(replycnt2)
+//                        .kind(kind)
+//                        .membername(membername) 
+//                        .link(link)
+//                        .likecnt2(likecnt2)
+//                        .viewscnt2(viewscnt2)
+//                        .image(image)
+//                        .build();
+//                
+//                crawlingDataList.add(crawling);
+//                
+//            }
+//            
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        
+//        for (int i = 0; i < count; i++) {
+//            Crawling crawling = crawlingDataList.get(i);
+//            crawlingDao.saveCrawlingData(crawling);
+//            
+//        }
+//        
+//        int rowcount = crawlingDao.countCrawlingData(site);
+//        
+//        if (rowcount > count) {
+//			crawlingDao.deleteOldData(site);
+//		}
+//        
+//        System.out.println(crawlingDataList);
+//        return crawlingDataList;
+//    }
 		
-	
-	@Scheduled(fixedDelay = 120000)
-	public List<Crawling> getFmKoreaCrawlingData() {
-        List<Crawling> crawlingDataList = new ArrayList<>();
-        String site = "fm";
-        
-        try {
-        	
-            String fmKoreaUrl = "https://www.fmkorea.com/index.php?mid=best2&listStyle=list&page=1";
-            Document document = Jsoup.connect(fmKoreaUrl).get();
 
-            Elements titles = document.select(".hx");
-            Elements replycnts = document.select(".replyNum");
-            Elements kinds = document.select(".bd_lst.bd_tb_lst.bd_tb tr td:nth-child(1) a");
-            Elements links = document.select(".hx");
-            Elements membernames = document.select(".author");
-            Elements likecnts = document.select(".m_no_voted");
-            Elements viewscnts = document.select(".m_no");
-            
-
-            Math.min(count, replycnts.size());
-            for (int i = 0; i < count; i++) {
-                Element titleElement = titles.get(i);
-                String title = titleElement.ownText();
-
-                Element replycntElement = replycnts.get(i);
-                String replycnt = replycntElement.text();
-                
-                Element kindElement = kinds.get(i);
-                String kind = kindElement.text();
-                
-                Element linkElement = links.get(i);
-                String link = "https://www.fmkorea.com"+linkElement.attr("href");
-                
-                Element membernameElement = membernames.get(i);
-                String membername = membernameElement.text();
-                
-                Element likecntElement = likecnts.get(i);
-                String likecnt = likecntElement.text().trim();
-                
-                Element viewscntElement = viewscnts.get(i*2+2);
-                String viewscnt = viewscntElement.text().trim();
-                
-                int likecnt2 = Integer.parseInt(likecnt);	
-                int replycnt2 = Integer.parseInt(replycnt);
-                int viewscnt2 = Integer.parseInt(viewscnt);
-                
-                Crawling crawling = Crawling.builder()
-                		.site(site)
-                        .title(title)
-                        .replycnt2(replycnt2)
-                        .kind(kind)
-                        .link(link)
-                        .membername(membername)
-                        .likecnt2(likecnt2)
-                        .viewscnt2(viewscnt2)
-                        .build();
-                
-                crawlingDataList.add(crawling);
-                
-            }
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        for (int i = 0; i < count; i++) {
-            Crawling crawling = crawlingDataList.get(i);
-            crawlingDao.saveCrawlingData(crawling);
-            
-        }
-        
-        int rowcount = crawlingDao.countCrawlingData(site);
-        
-        if (rowcount > count) {
-			crawlingDao.deleteOldData(site);
-		}
-        
-        return crawlingDataList;
-    }
-
-	
 	@Scheduled(fixedDelay = 120000)
     public List<Crawling> getPpomppuCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
@@ -249,6 +262,17 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element viewscntElement = viewscnts.get(i);
                 String viewscnt = viewscntElement.text();
                 
+                Document postDocument = Jsoup.connect(link).get();	// 게시물 페이지로 접속
+                
+                Element imageElement = postDocument.selectFirst(".board-contents p img");
+                String image;
+                if (imageElement == null) {
+					image = "이미지 없음";
+				}else {					
+					image = "https:"+imageElement.attr("src");
+				}
+                System.out.println(image);
+                
                 int likecnt2 = Integer.parseInt(likecnt);
                 int replycnt2 = Integer.parseInt(replycnt);
                 int viewscnt2 = Integer.parseInt(viewscnt);
@@ -262,6 +286,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .membername(membername)
                         .likecnt2(likecnt2)
                         .viewscnt2(viewscnt2)
+                        .image(image)
                         .build();
                 
                 crawlingDataList.add(crawling);

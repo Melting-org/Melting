@@ -8,7 +8,7 @@ public interface CrawlingService {
 
 	public List<Crawling> getDcInsideCrawlingData();
 
-	public List<Crawling> getFmKoreaCrawlingData();
+//	public List<Crawling> getFmKoreaCrawlingData();
 
 	public List<Crawling> getPpomppuCrawlingData();
 	

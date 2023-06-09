@@ -33,7 +33,7 @@ public class Crawling {
 	private String viewscnt;
 	private int viewscnt2;
 	private String site;
-//	private String regdate;
+	private String regdate;
 	
 
 }
