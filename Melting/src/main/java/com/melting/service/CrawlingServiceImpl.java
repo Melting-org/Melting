@@ -25,12 +25,11 @@ public class CrawlingServiceImpl implements CrawlingService {
 	CrawlingDAO crawlingDao;
 	
 	int count = 10;
-
 	
 	@Scheduled(fixedDelay = 120000)
 	public List<Crawling> getDcInsideCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
-        String site = "dc";
+        String site = "dcinside";
         
         try {
         	
@@ -136,7 +135,7 @@ public class CrawlingServiceImpl implements CrawlingService {
 	@Scheduled(fixedDelay = 120000)
     public List<Crawling> getPpomppuCrawlingData() {
         List<Crawling> crawlingDataList = new ArrayList<>();
-        String site = "pp";
+        String site = "ppomppu";
         
         try {
         	
@@ -244,6 +243,118 @@ public class CrawlingServiceImpl implements CrawlingService {
 
 
 
+	@Scheduled(fixedDelay = 120000)
+	@Override
+	public List<Crawling> getTheqooCrawlingData() {
+		List<Crawling> crawlingDataList = new ArrayList<>();
+        String site = "theqoo";
+        String membername = "무명의 더쿠";
+        int likecnt2 = 0;
+        
+        try {
+        	
+        	String theqooUrl = "https://theqoo.net/hot?filter_mode=normal";
+            Document document = Jsoup.connect(theqooUrl)
+            		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+            		.get();
+
+            Elements titles = document.select(".title span");
+            Elements kinds = document.select(".cate");
+            Elements replycnts = document.select(".replyNum");
+            Elements links = document.select(".title a");	
+            Elements viewscnts = document.select(".m_no");
+            
+            
+            Math.min(count, titles.size());
+          for (int i = 0; i < count; i++) {
+              Element titleElement = titles.get(i+5);
+              String title = titleElement.text();
+              
+              Element kindElement = kinds.get(i+5);
+              String kind = kindElement.text();
+              
+              Element replycntElement = replycnts.get(i+1);
+              String replycnt = replycntElement.text();
+              
+              Element linkElement = links.get(2*i+5);
+              String link = "https://theqoo.net"+linkElement.attr("href");
+              
+              Element viewscntElement = viewscnts.get(i+6);
+              String viewscnt = viewscntElement.text();
+              
+              int manIndex = viewscnt.indexOf("만");
+              int dotIndex = viewscnt.indexOf(".");
+              
+              if (dotIndex != -1 && manIndex != -1) {
+				viewscnt = viewscnt.replace("만", "000").replace(".", "").trim();
+			} else if (dotIndex ==-1 && manIndex != -1) {
+				viewscnt = viewscnt.replace("만", "0000").trim();
+			} else {
+				viewscnt = viewscnt.trim();
+			}
+              
+          	// 게시물 페이지로 접속
+            Document postDocument = Jsoup.connect(link)
+            		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+            		.referrer(theqooUrl)
+            		.get();
+            
+            Element regdateElement = postDocument.selectFirst("div.side.fr > span");
+            String regdate = regdateElement.text();
+            
+            
+            int replycnt2 = Integer.parseInt(replycnt);
+            int viewscnt2 = Integer.parseInt(viewscnt);
+            
+            
+            
+            Crawling crawling = Crawling.builder()
+            		.site(site)
+                    .title(title)
+                    .kind(kind)
+                    .replycnt2(replycnt2)
+                    .link(link)
+                    .membername(membername)
+                    .viewscnt2(viewscnt2)
+                    .likecnt2(likecnt2)
+                    .regdate(regdate)
+                    .build();
+            
+            crawlingDataList.add(crawling);
+            
+      		}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+      for (int i = 0; i < count; i++) {
+      Crawling crawling = crawlingDataList.get(i);
+      crawlingDao.saveCrawlingData(crawling);
+  }
+        
+        return crawlingDataList;
+	}
+	
+	
+	/*사이트별 hot 게시판 크롤링 end*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public List<Crawling> getDcSearchCrawlingData() {
 		List<Crawling> crawlingDataList = new ArrayList<>();
@@ -349,6 +460,9 @@ public class CrawlingServiceImpl implements CrawlingService {
 		List<Crawling> list = crawlingDao.getReplycntSortedList();
 		return list;
 	}
+
+
+
 	
 	
 //	@Scheduled(fixedDelay = 120000)
