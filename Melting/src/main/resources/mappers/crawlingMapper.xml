@@ -7,10 +7,17 @@
 
  	<insert id="saveCrawlingData" parameterType="Crawling">
 		INSERT INTO m_crawling 
-        	(crawlingseq, title, replycnt2, image, kind, membername, link, viewscnt2, likecnt2, site)
+        	(crawlingseq, title, site, kind, replycnt2, membername, link, viewscnt2, likecnt2, regdate)
         VALUES 
-        	(m_crawling_seq.NEXTVAL, #{title}, #{replycnt2}, #{image}, #{kind}, #{membername}, #{link}, #{viewscnt2}, #{likecnt2}, #{site})
+        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{kind}, #{replycnt2}, #{membername}, #{link}, #{viewscnt2}, #{likecnt2}, #{regdate})
 	</insert>
+
+<!--  	<insert id="saveCrawlingData" parameterType="Crawling">
+		INSERT INTO m_crawling 
+        	(crawlingseq, title, replycnt2, image, kind, membername, link, viewscnt2, likecnt2, site, regdate)
+        VALUES 
+        	(m_crawling_seq.NEXTVAL, #{title}, #{replycnt2}, #{image}, #{kind}, #{membername}, #{link}, #{viewscnt2}, #{likecnt2}, #{site}, #{regdate})
+	</insert> -->
 	
     <select id="countCrawlingData" parameterType="String" resultType="int">
        SELECT COUNT(*) 

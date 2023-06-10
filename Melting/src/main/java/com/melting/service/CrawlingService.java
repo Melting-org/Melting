@@ -12,6 +12,8 @@ public interface CrawlingService {
 
 	public List<Crawling> getPpomppuCrawlingData();
 	
+	public List<Crawling> getTheqooCrawlingData();
+	
 	public List<Crawling> getDcSearchCrawlingData();
 
 	public List<Crawling> getHitCrawlingData();
