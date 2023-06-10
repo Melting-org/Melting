@@ -66,12 +66,12 @@ public class BoardController{
 //		model.addAttribute("replycntSortedList", replycntSortedList);
 //		
 //		
-//		// 크롤링 List
-//        List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
-//        List<Crawling> hitList = crawlingService.getHitCrawlingData();
-//
-//        model.addAttribute("dcSearchList", dcSearchList);
-//        model.addAttribute("hitList", hitList);
+		// 크롤링 List
+        List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
+        List<Crawling> hitList = crawlingService.getHitCrawlingData();
+
+        model.addAttribute("dcSearchList", dcSearchList);
+        model.addAttribute("hitList", hitList);
         
         
 		return "/main";
