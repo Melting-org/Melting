@@ -83,6 +83,9 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element viewscntElement = postDocument.selectFirst(".gall_count");
                 String viewscnt = viewscntElement.text().replace("조회", "").trim();
                 
+                Element regdateElement = postDocument.selectFirst(".gall_date");
+                String regdate = regdateElement.text();
+                
 
                 int likecnt2;	
                 try {
@@ -105,6 +108,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .likecnt2(likecnt2)
                         .viewscnt2(viewscnt2)
                         .image(image)
+                        .regdate(regdate)
                         .build();
 
                 crawlingDataList.add(crawling);
@@ -148,6 +152,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             Elements membernames = document.select(".name");
             Elements likecnts = document.select("table.board_table tr.line td:nth-child(6)");
             Elements viewscnts = document.select("table.board_table tr.line td:nth-child(7)");
+            Elements regdates = document.select("table.board_table tr.line td:nth-child(5)");
 
             
             Math.min(count, titles.size());
@@ -178,6 +183,10 @@ public class CrawlingServiceImpl implements CrawlingService {
                 Element viewscntElement = viewscnts.get(i);
                 String viewscnt = viewscntElement.text();
                 
+                Element regdateElement = regdates.get(i);
+                String regdate = regdateElement.text();
+                
+                
             	// 게시물 페이지로 접속
                 Document postDocument = Jsoup.connect(link)
                 		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
@@ -191,7 +200,8 @@ public class CrawlingServiceImpl implements CrawlingService {
 				}else {					
 					image = "https:" + imageElement.attr("src");
 				}
-                System.out.println(image);
+//                System.out.println(image);
+
                 
                 int likecnt2 = Integer.parseInt(likecnt);
                 int replycnt2 = Integer.parseInt(replycnt);
@@ -207,6 +217,7 @@ public class CrawlingServiceImpl implements CrawlingService {
                         .likecnt2(likecnt2)
                         .viewscnt2(viewscnt2)
                         .image(image)
+                        .regdate(regdate)
                         .build();
                 
                 crawlingDataList.add(crawling);
