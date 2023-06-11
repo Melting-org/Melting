@@ -1,5 +1,6 @@
+<p align="center"><img src="readmeimg/Logo.png" height="180px"></p>
+
 # 프로젝트 소개
-<img src="readmeimg/Logo.png" height="180px">
 Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 사이트입니다.<br>
 디시인사이드, 더쿠 등 다양한 인기 사이트를 제공하며 원하는 게시글을 스크랩 할 수 있습니다.
 
