@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.11'
+	id 'org.springframework.boot' version '2.7.12'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
@@ -34,6 +34,11 @@ dependencies {
 	implementation 'org.seleniumhq.selenium:selenium-java:4.9.0'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.quartz-scheduler:quartz:2.3.2'
+    implementation 'org.webjars:toastui-editor:2.5.2'
+    implementation 'org.webjars:jquery:3.6.0'
+    implementation 'org.webjars:bootstrap:5.0.1'
+    implementation 'org.commonmark:commonmark:0.17.1'
+	
 }
 
 tasks.named('test') {

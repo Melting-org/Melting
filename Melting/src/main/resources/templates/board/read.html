@@ -51,7 +51,7 @@
 				</div>
 			</div>
 			
-			<div class="boardtxt" th:text="${board.boardtxt}">본문내용칸</div>
+			<div class="boardtxt" th:utext="${board.content}">본문내용칸</div>
 			<a th:href="@{/delete(boardseq=${board.boardseq})}">삭제</a>
 			<a th:href="@{/update(boardseq=${board.boardseq})}">수정</a>		
 		</div>

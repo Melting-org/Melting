@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.melting.domain.Board;
@@ -18,9 +19,9 @@ import com.melting.domain.Member;
 import com.melting.domain.Reply;
 import com.melting.service.BoardService;
 import com.melting.service.CrawlingService;
-import com.melting.service.CrawlingServiceImpl;
 import com.melting.service.MemberService;
 import com.melting.service.ReplyService;
+import com.melting.util.MarkdownConverter;
 
 @Controller
 public class BoardController{
@@ -86,7 +87,13 @@ public class BoardController{
 	
 	/*게시글 저장 요청*/
 	@PostMapping("/write")
-	public String write(Board board) {
+	public String write(Board board, @RequestParam("boardtxt") String boardtxt) {
+		
+		// 마크다운 적용
+		String markdownContent = boardtxt;
+        String htmlContent = MarkdownConverter.convertMarkdownToHtml(markdownContent);
+        board.setContent(htmlContent);
+		
 		int result = boardService.write(board);
 		return "redirect:/board/newlist";
 	}
