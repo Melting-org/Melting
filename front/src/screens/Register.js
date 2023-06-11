@@ -52,7 +52,7 @@ const Register = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.loginContainer} onPress={handleLogin}>
-            <Text style={styles.loginText}>로그인으로 돌아가기</Text>
+            <Text style={styles.loginText}>로그인 화면으로 돌아가기</Text>
         </TouchableOpacity>
     </View>
   );
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center', // 수직 가운데 정렬
       alignItems: 'center', // 수평 가운데 정렬
-      backgroundColor: '#1D1D1D', // 배경색 지정
+      backgroundColor: '#161616', // 배경색 지정
     },
     logo: {
         width: 130,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
       line: {
         height: 0.5,
         width: '90%',
-        backgroundColor: '#939393',
+        backgroundColor: '#474747',
         marginBottom: 15,
       },
       kakao: {
