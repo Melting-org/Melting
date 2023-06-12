@@ -96,6 +96,7 @@ public class BoardController{
 		
 		int result = boardService.write(board);
 		return "redirect:/board/newlist";
+		
 	}
 	
 	/*게시글 목록 화면 요청*/
