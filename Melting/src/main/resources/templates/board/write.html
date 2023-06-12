@@ -5,8 +5,11 @@
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
 <link rel="stylesheet" type="text/css" href="css/board/write.css">
+<link rel="stylesheet" href="/webjars/bootstrap/5.0.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/webjars/toastui-editor/2.5.2/toastui-editor-viewer.min.css">
 <script th:inline="javascript" th:src="@{/script/jquery-3.6.3.min.js}"></script>
 <script th:inline="javascript" th:src="@{/script/reply.js}"></script>
+
 </head>
 <body>
 	<div id="header">
@@ -60,5 +63,23 @@
 		</div>
 		
 	</div>
+	
+	<script src="/webjars/toastui-editor/2.5.2/toastui-editor-all.min.js"></script>
+    <script>
+        $(function() {
+            var editor = new toastui.Editor({
+                el: document.querySelector("#editor"),
+                initialEditType: "markdown",
+                previewStyle: "vertical",
+                height: "300px"
+            });
+
+            // 게시글 내용을 hidden 필드에 설정하여 전송
+            $("form").submit(function() {
+                var markdownContent = editor.getMarkdown();
+                $("#boardtxt").val(markdownContent);
+            });
+        });
+    </script>
 </body>
 </html>
