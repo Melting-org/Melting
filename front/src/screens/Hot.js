@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, ScrollView, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
-const Hot = ({ navigation }) => {
+const Hot = () => {
 
   // RNPickerSelect 기본값을 '추천순'으로 설정.
   const [selectedSort, setSelectedSort] = useState('추천순');
@@ -10,10 +10,13 @@ const Hot = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.flexContainer}>
+        <Image style={styles.bigImg} source={require('../../assets/big.png')} />
         <RNPickerSelect
           textInputProps={{ 
             style: {
               fontSize: 16,
+              backgroundColor: 'blue',
+              alignItems: 'center',
             },
             underlineColorAndroid: 'transparent' }}
           onValueChange={(value) => setSelectedSort(value)}
@@ -55,9 +58,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingHorizontal: 16, // 오른쪽
+    paddingVertical: 16, // 위쪽
     height: 50,
+    backgroundColor: 'red'
   },
   title: {
     fontSize: 16,
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
   },
   postsContainer: {
     paddingHorizontal: 16,
-    marginTop: 10,
+    marginTop: 10, // flexcontainer, postcontainer 사이 여백
   },
   postItem: {
     flexDirection: 'row',
