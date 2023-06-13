@@ -10,12 +10,13 @@ const Hot = () => {
   return (
     <View style={styles.container}>
       <View style={styles.flexContainer}>
-        <Image style={styles.bigImg} source={require('../../assets/big.png')} />
+        <Image style={styles.arrow} source={require('../../assets/arrow.png')} />
         <RNPickerSelect
           textInputProps={{ 
             style: {
-              fontSize: 16,
-              backgroundColor: 'blue',
+              fontSize: 13,
+              marginRight: 10,
+              // backgroundColor: 'blue', // 추천순 배경
               alignItems: 'center',
             },
             underlineColorAndroid: 'transparent' }}
@@ -28,22 +29,26 @@ const Hot = () => {
           ]}
         />
         <Image style={styles.bigImg} source={require('../../assets/big.png')} />
+        {/* <Image style={styles.bigImg} source={require('../../assets/small.png')} /> */}
       </View>
       <ScrollView style={styles.postsContainer}>
         {/* 게시글 */}
         <TouchableOpacity style={styles.postItem}>
           <Image style={styles.thumbnail} source={require('../../assets/thumbnail.jpg')} />
           <View style={styles.postContent}>
-            <Text style={styles.postTitle}>게시글 제목</Text>
+            <Text style={styles.postTitle}>멜팅 프로젝트의 게시물의 제목</Text>
             <View style={styles.postDetails}>
-              <Text style={styles.postInfo}>커뮤니티</Text>
-              <Text style={styles.postInfo}>날짜</Text>
+              <Text style={styles.detail1}>커뮤니티이름</Text>
+              {/* <Text style={styles.detail2}>23.06.14</Text> */}
             </View>
-            <Text style={styles.postStats}>50 30</Text>
+            <View style={styles.reactions}>
+            <Text style={styles.like}>💗50</Text>
+            <Text style={styles.comment}>💬30</Text>
+            </View>
           </View>
         </TouchableOpacity>
         {/* TouchableOpacity가 반복되면 게시글 반복 */}
-        
+        <View style={styles.line}></View>
       </ScrollView>
     </View>
   );
@@ -59,9 +64,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     paddingHorizontal: 16, // 오른쪽
-    paddingVertical: 16, // 위쪽
-    height: 50,
-    backgroundColor: 'red'
+    marginTop: 10,
+    // backgroundColor: 'red' // 상단 배경
+  },
+  arrow: {
+    width: 9,
+    height: 12,
+    marginRight: 5
   },
   title: {
     fontSize: 16,
@@ -70,8 +79,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bigImg: {
-    width: 16,
-    height: 16,
+    width: 13,
+    height: 13,
   },
   postsContainer: {
     paddingHorizontal: 16,
@@ -79,37 +88,58 @@ const styles = StyleSheet.create({
   },
   postItem: {
     flexDirection: 'row',
-    height: 50,
     marginBottom: 10,
-    backgroundColor: '#ffffff',
+    // backgroundColor: 'green', // thumnail 이미지 배경
+    paddingBottom: 10,
   },
   thumbnail: {
-    width: 50,
-    height: 50,
+    width: 120,
+    height: 120,
+    borderRadius: 10
   },
   postContent: {
     flex: 1,
-    paddingLeft: 10,
-    justifyContent: 'center',
+    paddingLeft: 15,
+    justifyContent: 'center', // 수직 가운데 정렬
+    // backgroundColor: 'yellow' // thumnail 옆 게시글 관련 배경
   },
   postTitle: {
-    fontSize: 14,
+    fontSize: 18,
+    padding: 0,
     fontWeight: 'bold',
   },
   postDetails: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 2,
+    marginTop: 5,
   },
-  postInfo: {
+  detail1: {
+    fontSize: 12,
+    width: 100,
+    color: '#818181'
+    // backgroundColor: 'purple',
+  },
+  detail2: {
+    fontSize: 12,
+    color: '#818181'
+  },
+  reactions: {
+    flexDirection: 'row',
+    marginTop: 40,
+
+  },
+  like: {
+    fontSize: 12,
+    width: 50,
+  },
+  comment: {
     fontSize: 12,
   },
-  postStats: {
-    fontSize: 12,
-    marginTop: 2,
-    marginLeft: 10,
-  },
+  line: {
+    borderBottomColor: '#D9D9D9',
+    borderBottomWidth: 1,
+  }
 });
 
 export default Hot;
