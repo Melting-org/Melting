@@ -34,7 +34,7 @@ dependencies {
 	implementation 'org.seleniumhq.selenium:selenium-java:4.9.0'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.quartz-scheduler:quartz:2.3.2'
-    implementation 'org.webjars:toastui-editor:2.5.2'
+    implementation 'org.webjars:toastui-editor:3.2.2'
     implementation 'org.webjars:jquery:3.6.0'
     implementation 'org.webjars:bootstrap:5.0.1'
     implementation 'org.commonmark:commonmark:0.17.1'
