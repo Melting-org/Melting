@@ -242,7 +242,7 @@ public class CrawlingServiceImpl implements CrawlingService {
     }
 
 
-
+	
 	@Scheduled(fixedDelay = 120000)
 	@Override
 	public List<Crawling> getTheqooCrawlingData() {
@@ -258,7 +258,7 @@ public class CrawlingServiceImpl implements CrawlingService {
             		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
             		.get();
 
-            Elements titles = document.select(".title span");
+            Elements titles = document.select(".title a");
             Elements kinds = document.select(".cate");
             Elements replycnts = document.select(".replyNum");
             Elements links = document.select(".title a");	
@@ -307,7 +307,6 @@ public class CrawlingServiceImpl implements CrawlingService {
             int viewscnt2 = Integer.parseInt(viewscnt);
             
             
-            
             Crawling crawling = Crawling.builder()
             		.site(site)
                     .title(title)
@@ -324,17 +323,25 @@ public class CrawlingServiceImpl implements CrawlingService {
             
       		}
 			
-		} catch (IOException e) {
-			e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        for (int i = 0; i < count; i++) {
+            Crawling crawling = crawlingDataList.get(i);
+            crawlingDao.saveCrawlingData(crawling);
+        }
+        
+        int rowcount = crawlingDao.countCrawlingData(site);
+        
+        if (rowcount > count) {
+			crawlingDao.deleteOldData(site);
 		}
         
-      for (int i = 0; i < count; i++) {
-      Crawling crawling = crawlingDataList.get(i);
-      crawlingDao.saveCrawlingData(crawling);
-  }
-        
         return crawlingDataList;
-	}
+    }
+	
+	
 	
 	
 	/*사이트별 hot 게시판 크롤링 end*/
