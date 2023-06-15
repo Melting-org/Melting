@@ -7,7 +7,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./src/screens/Login";
 import Register from "./src/screens/Register";
 import Hot from "./src/screens/Hot";
+import Menu from "./src/screens/Menu";
 import Header from "./src/components/Header";
+import Header2 from "./src/components/Header2";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +22,7 @@ export default function App() {
         animationEnabled: false, // 전환 애니메이션 비활성화
       }}>
         {/* initialRouteName에 기본적으로 렌더링할 화면을 등록 */}
+
         <Stack.Screen
             name="HOT" // 헤더 문구
             component={Hot}
@@ -27,7 +30,13 @@ export default function App() {
               header: () => <Header />, // Hot.js에만 헤더 적용
             }}
           />
-
+        <Stack.Screen
+            name="MENU" // 헤더 문구
+            component={Menu}
+            options={{
+              header: () => <Header2 />, // Menu.js에 헤더2 적용
+            }}
+          />
         <Stack.Screen
           name="Login"
           component={Login}

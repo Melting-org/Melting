@@ -1,18 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 
-const Header = (navigation) => {
-
-  const handleRegister = () => {
-    navigation.navigate('Menu');
-  };
-
+const Header2 = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={handleRegister}>
-          <Image style={styles.hamImg} source={require('../../assets/ham.png')} />
-        </TouchableOpacity>
+        {/* pre 이미지 찾아서 ham위치에 넣기 */}
+        <Image style={styles.hamImg} source={require('../../assets/ham.png')} />
         <Text style={styles.title}>HOT</Text>
         <Image style={styles.magImg} source={require('../../assets/mag.png')} />
       </View>
@@ -30,6 +24,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     justifyContent: 'space-between', // 수직 가운데 정렬
   },
+  // pre 이미지로 변경해야됨
   hamImg: {
     width: 25,
     height: 20,
@@ -48,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default Header2;
