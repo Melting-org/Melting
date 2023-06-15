@@ -5,6 +5,17 @@
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
 <link rel="stylesheet" type="text/css" href="css/board/update.css">
+<script>
+  function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      var imgElement = '<img src="' + reader.result + '" alt="Image" />';
+      var previewDiv = document.getElementById('imagePreview');
+      previewDiv.innerHTML = imgElement; // 이미지 태그를 삽입하는 대신, <div>에 HTML 코드를 설정합니다.
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
 </head>
 <body>
 	<div id="header">
@@ -25,11 +36,18 @@
 	<div id="container">
 		<div class="write-name"><h1>게시글 수정하기</h1></div>
 		<div class="write-area">
-			<form th:action="@{/update}" method="POST">
+			<form th:action="@{/update}" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="boardseq" th:value="${board.boardseq}">
-				
-				
 				<table border="1">
+					<tr>
+						<th>파일첨부하기</th>
+						<td>
+							<input type="file" name="upload" onchange="previewImage(event)">
+<!-- 							<div>첨부된 파일 : 
+								<a th:text="${board.originalfile}"></a>
+							</div> -->
+						</td>
+					</tr>
 					<tr>
 						<th>카테고리</th>
 						<td>
@@ -47,9 +65,21 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><input type="text" name="boardtxt" th:value="${board.boardtxt}"></td>
+						<td>
+							<div>
+								<!-- <textarea name="boardtxt" required rows="7" cols="80">[[${board.boardtxt}]]</textarea> -->
+								<input type="text" name="boardtxt" th:value="${board.content}">
+								<div contenteditable="true" id="editor" th:value="${board.content}"></div>
+							</div>
+							<div id="imagePreview">
+			                    <!-- 이미지 미리보기를 표시할 영역 -->
+			                    <img th:src="@{/board/download(boardseq=${board.boardseq})}" alt="첨부 이미지">
+			                </div>
+							
+							<!-- <img th:src="@{/board/download(boardseq=${board.boardseq})}" alt="첨부 이미지" />
+							<div id="imagePreview"></div> -->
+						</td>
 					</tr>
-					
 					<tr>
 						<th colspan="2">
 							<input type="submit" value="수정하기">
@@ -59,5 +89,9 @@
 			</form>
 		</div>
 	</div>
+	<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+	<script>
+	    CKEDITOR.replace('editor');
+	</script>
 </body>
 </html>
