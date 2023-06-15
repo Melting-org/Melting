@@ -18,13 +18,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#161616', // 배경색 지정
   },
   container: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: 20,
-    justifyContent: 'center', // 수직 가운데 정렬
+    justifyContent: 'space-between', // 수직 가운데 정렬
   },
   hamImg: {
     width: 25,
     height: 20,
-    // borderRadius: 10
+    marginLeft: 20, // 왼쪽 여백 추가
   },
   title: {
     color: "white",
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
   magImg: {
     width: 25,
     height: 30,
-    // borderRadius: 10
+    marginRight: 20, // 오른쪽 여백 추가
   },
 });
 
