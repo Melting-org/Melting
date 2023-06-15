@@ -25,5 +25,7 @@ public class Board {
 	private int likecnt;
 	private int replycnt;
 	private String content;
+	private String originalfile;
+	private String savedfile;
 	
 }

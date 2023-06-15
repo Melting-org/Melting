@@ -30,7 +30,7 @@
 	<div id="container">
 		<div class="write-name"><h1>게시글 작성하기</h1></div>
 		<div class="write-area">
-			<form th:action="@{/write}" method="POST">
+			<form th:action="@{/write}" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="memberid" th:value="${#authentication.name}" readonly>
 				<table border="1">
 					<tr>
@@ -52,6 +52,10 @@
 					<tr>
 						<th>내용</th>
 						<td><textarea name="boardtxt" required rows="7" cols="80"></textarea></td>
+					</tr>
+					<tr>
+						<th>첨부파일</th>
+						<td><input type="file" name="upload"></td>
 					</tr>
 					<tr>
 						<th colspan="2">

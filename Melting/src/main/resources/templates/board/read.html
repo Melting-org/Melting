@@ -52,6 +52,9 @@
 			</div>
 			
 			<div class="boardtxt" th:utext="${board.content}">본문내용칸</div>
+			<div>첨부파일<a th:href="@{/board/download(boardseq=${board.boardseq})}" th:text="${board.originalfile}"></a></div>
+			
+			
 			<a th:href="@{/delete(boardseq=${board.boardseq})}">삭제</a>
 			<a th:href="@{/update(boardseq=${board.boardseq})}">수정</a>		
 		</div>

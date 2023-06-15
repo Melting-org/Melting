@@ -5,24 +5,44 @@
   
 <mapper namespace="com.melting.dao.BoardDAO">
 
-	<insert id="insertBoard" parameterType="Board">
+<!-- 	<insert id="insertBoard" parameterType="Board">
 		INSERT INTO m_board
 		(
 			boardseq, memberid, title,
-			boardtxt, kind, content, membername
+			boardtxt, kind, content, membername,
+			<if test="originalfile !=null">
+			originalfile, savedfile		
+			</if>
 		)
 		VALUES
 		(
 			m_board_seq.NEXTVAL, #{memberid}, #{title},
 			#{boardtxt}, #{kind}, #{content},
-			(SELECT membername FROM m_member WHERE memberid = #{memberid})
+			(SELECT membername FROM m_member WHERE memberid = #{memberid}),
+			<if test="originalfile !=null">
+			#{originalfile}, #{savedfile}		
+			</if>
 		)
+	</insert> -->
+	
+	<insert id="insertBoard" parameterType="Board">
+	    INSERT INTO m_board (
+	        boardseq, memberid, title, boardtxt, kind, content, membername
+	        <if test="originalfile != null">
+	            , originalfile, savedfile
+	        </if>
+	    ) VALUES (
+	        m_board_seq.NEXTVAL, #{memberid}, #{title}, #{boardtxt}, #{kind}, #{content}, (SELECT membername FROM m_member WHERE memberid = #{memberid})
+	        <if test="originalfile != null">
+	            , #{originalfile}, #{savedfile}
+	        </if>
+	    )
 	</insert>
 	
 	<select id="getAllList" parameterType="String" resultType="Board">
 		SELECT 
 			boardseq, memberid, membername, title, kind, viewscnt,
-			to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate, content
+			to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate, content, originalfile, savedfile
 		FROM m_board
 		ORDER BY boardseq DESC, regdate DESC
 	</select>
@@ -31,7 +51,7 @@
 		SELECT
 			boardseq, memberid, title, boardtxt, kind,
 			to_char(regdate, 'YYYY-MM-DD') as regdate,
-			viewscnt, likecnt, replycnt, content
+			viewscnt, likecnt, replycnt, content, originalfile, savedfile
 		FROM m_board
 		WHERE boardseq = #{boardseq} 
 	</select>
