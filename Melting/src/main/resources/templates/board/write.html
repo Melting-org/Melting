@@ -9,7 +9,18 @@
 <link rel="stylesheet" href="/webjars/toastui-editor/2.5.2/toastui-editor-viewer.min.css">
 <script th:inline="javascript" th:src="@{/script/jquery-3.6.3.min.js}"></script>
 <script th:inline="javascript" th:src="@{/script/reply.js}"></script>
-
+<!-- 이미지 미리보기 기능 -->
+<script>
+  function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      var imgElement = '<img src="' + reader.result + '" alt="Image" />';
+      var previewDiv = document.getElementById('imagePreview');
+      previewDiv.innerHTML = imgElement; // 이미지 태그를 삽입하는 대신, <div>에 HTML 코드를 설정합니다.
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
 </head>
 <body>
 	<div id="header">
@@ -30,9 +41,13 @@
 	<div id="container">
 		<div class="write-name"><h1>게시글 작성하기</h1></div>
 		<div class="write-area">
-			<form th:action="@{/write}" method="POST" enctype="multipart/form-data">
+			<form th:action="@{/write}" id="uploadForm" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="memberid" th:value="${#authentication.name}" readonly>
 				<table border="1">
+					<tr>
+						<th>파일첨부하기</th>
+						<td><input type="file" name="upload" onchange="previewImage(event)"></td>
+					</tr>
 					<tr>
 						<th>카테고리</th>
 						<td>
@@ -51,12 +66,12 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea name="boardtxt" required rows="7" cols="80"></textarea></td>
-					</tr>
-					<tr>
-						<th>첨부파일</th>
-						<td><input type="file" name="upload"></td>
-					</tr>
+						<td>
+					      <div>
+					        <textarea name="boardtxt" id="boardtxt" required rows="7" cols="80"></textarea>
+					      </div>
+					      <div id="imagePreview"></div>
+					    </td>
 					<tr>
 						<th colspan="2">
 							<input type="submit" value="등록">

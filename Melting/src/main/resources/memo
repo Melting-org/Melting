@@ -44,4 +44,17 @@ public class CrawlingService {
 	}
 	
 	
+	
+	// update mapper
+			<if test="originalfile !=null">
+			, originalfile = #{originalfile}
+			, savedfile = #{savedfile}	
+			</if>
+			
+			<if test="originalfile ==null">
+			, originalfile = null
+			, savedfile = null	
+			</if>
+	
+	
 }

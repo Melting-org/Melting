@@ -63,7 +63,9 @@
 	
 	<update id="update" parameterType="Board">
 		UPDATE m_board
-		SET title = #{title}, boardtxt= #{boardtxt}, regdate = sysdate, kind = #{kind}
+		SET title = #{title}, boardtxt= #{boardtxt}, 
+		regdate = sysdate, kind = #{kind}
+		
 		WHERE boardseq = #{boardseq}
 	</update>
 	

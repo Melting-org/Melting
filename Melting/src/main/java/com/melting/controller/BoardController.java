@@ -88,6 +88,8 @@ public class BoardController{
         model.addAttribute("hitList", hitList);
         
         
+        
+        
 		return "/main";
 	}
 	
@@ -213,11 +215,18 @@ public class BoardController{
 		String originalFileName = board.getOriginalfile();
 		
 		// encode에 마우스 데서 surround 뭐시기 클릭
-		try {
-			response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(originalFileName, "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+		if (originalFileName==null) {
+			originalFileName="이름이 없음요";
+		}else {
+			try {
+				response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(originalFileName, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				originalFileName="파일없음";
+				e.printStackTrace();
+				
+			}
 		}
+		
 		
 		// 저장된 파일명
 		String savedFileName = board.getSavedfile();
