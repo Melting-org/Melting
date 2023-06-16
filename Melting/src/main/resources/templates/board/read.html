@@ -23,7 +23,7 @@
  			<div class="my">
  				<div class="join"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/join}">회원가입</a></div>
  				<div class="login"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
- 				<div class="logout" sec:authorize="isAuthenticated()">[[${#authentication.name}]]님</div>
+ 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/mypage}" th:text="${membername} + '님'"></a></div>
  				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
  			</div>				
 		</div>

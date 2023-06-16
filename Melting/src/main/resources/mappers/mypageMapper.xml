@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.melting.dao.MypageDAO">
+
+	<select id="mywrite" parameterType="String" resultType="Board">
+		SELECT * FROM m_board
+		WHERE membername = #{membername}
+	</select>
+	
+	<select id="myreply" parameterType="String" resultType="Reply">
+		SELECT * FROM m_reply
+		WHERE membername = #{membername}
+	</select>
+	
+</mapper>
+	
+	
