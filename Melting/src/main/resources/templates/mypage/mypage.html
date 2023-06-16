@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>마이페이지</h1>
+	
+	<div sec:authorize="isAuthenticated()"><span th:text="${membername} + '님의 마이페이지'"></span></div>
+	<a th:href="@{/mypage/mywrite(membername=${membername})}">내가 쓴 글 보기</a>
+	<a th:href="@{/mypage/myreply(membername=${membername})}">내가 쓴 댓글 보기</a>
+	<a>알림 확인</a>
+	<a>회원탈퇴</a>
+	<a>로그아웃</a>
+</body>
+</html>

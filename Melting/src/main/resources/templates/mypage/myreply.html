@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>내가 쓴 댓글 확인하기</h1>
+	
+	<table border="1">
+ 		<tr>
+			<th>작성자</th>
+			<th>댓글 내용</th>
+			<th>등록일</th>
+ 		</tr>
+ 		
+ 		<tr th:each="reply : ${list}">
+ 			<td th:text="${reply.membername}"></td>
+ 			<td th:text="${reply.replytxt}"></td>
+			<td th:text="${reply.regdate}"></td>
+ 		</tr>
+ 	</table>
+ 	
+</body>
+</html>

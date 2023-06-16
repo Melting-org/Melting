@@ -40,7 +40,7 @@ public class BoardController{
 	private final MemberService memberService;
 	
 	@Autowired
-	BoardService boardService;
+	private BoardService boardService;
 	
 	public BoardController(CrawlingService crawlingService, ReplyService replyService, MemberService memberService) {
         this.crawlingService = crawlingService;
@@ -95,7 +95,16 @@ public class BoardController{
 	
 	/*게시글 쓰기 화면 요청*/
 	@GetMapping("/write")
-	public String write(Model model, Member member) {
+	public String write(Model model, Member member, Authentication authentication) {
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
 		model.addAttribute("member", member);
 		return "/board/write";
 	}
@@ -188,10 +197,19 @@ public class BoardController{
 	
 	/*게시글 수정 화면 요청*/
 	@GetMapping("/update")
-	public String update(int boardseq, Model model) {
+	public String update(int boardseq, Model model, Authentication authentication) {
 		Board board = boardService.read(boardseq);
 		model.addAttribute("board", board);
 		System.out.println(board);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+				
 		return "/board/update";
 	}
 	
