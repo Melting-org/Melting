@@ -17,7 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-      initialRouteName="Hot"
+      initialRouteName="Register"
       screenOptions={{
         animationEnabled: false, // 전환 애니메이션 비활성화
       }}>

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MeltingApplication<Melting>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.melting.MeltingApplication",
+            "projectName": "Melting",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
