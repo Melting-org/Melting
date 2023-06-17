@@ -1,9 +1,30 @@
 import React from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
+import axios from 'axios';
 
 const Register = ({ navigation }) => {
   const handleRegister = () => {
-    // 회원가입 로직 구현
+    const [memberid, setMemberid] = useState('');
+    const [memberpwd, setMemberpwd] = useState('');
+    const [membername, setMembername] = useState('');
+
+    // const handleRegister = () => {
+    // 회원가입 요청을 서버로 보내는 코드
+    axios.post('http://localhost:5555/melting/', {
+      memberid: memberid,
+      memberpwd: memberpwd,
+      membername: membername
+    })
+      .then(response => {
+        console.log('회원가입 성공');
+        navigation.navigate('Login');
+      })
+      .catch(error => {
+        console.log('회원가입 실패:', error);
+        // 필요한 에러 처리 수행
+      });
+  // };
+    
   };
 
   const handleKakaoRegister = () => {
@@ -22,12 +43,16 @@ const Register = ({ navigation }) => {
             placeholder="닉네임"
             placeholderTextColor="#757575" // 플레이스홀더 텍스트 색상
             fontSize={16}
+            value={membername}
+            onChangeText={text => setMembername(text)}
         />
         <TextInput 
             style={styles.input}
             placeholder="이메일"
             placeholderTextColor="#757575" // 플레이스홀더 텍스트 색상
             fontSize={16}
+            value={memberid}
+            onChangeText={text => setMemberid(text)}
         />
         <TextInput 
             style={styles.input}
@@ -35,6 +60,8 @@ const Register = ({ navigation }) => {
             secureTextEntry={true}
             placeholderTextColor="#757575" // 플레이스홀더 텍스트 색상
             fontSize={16}
+            value={memberpwd}
+            onChangeText={text => setMemberpwd(text)}
         />       
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
             <Text style={styles.buttonText}>회원가입</Text>
