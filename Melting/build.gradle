@@ -38,7 +38,7 @@ dependencies {
     implementation 'org.webjars:jquery:3.6.0'
     implementation 'org.webjars:bootstrap:5.0.1'
     implementation 'org.commonmark:commonmark:0.17.1'
-    implementation 'com.facebook.react:react-native:+'
+    implementation 'com.facebook.react:react-native:0.71.8'
 	
 }
 
